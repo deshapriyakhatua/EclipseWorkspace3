@@ -6,7 +6,9 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
   	<servlet-name>Home</servlet-name>
-  	<servlet-class>Home</servlet-class>
+  	<display-name>Home</display-name>
+  	<description></description>
+  	<servlet-class>com.desh.java.Home</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>Home</servlet-name>
