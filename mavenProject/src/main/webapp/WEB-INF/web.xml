@@ -14,4 +14,23 @@
   	<servlet-name>Home</servlet-name>
   	<url-pattern>/Home</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Customers</servlet-name>
+  	<servlet-class>com.desh.java.Customers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Customers</servlet-name>
+  	<url-pattern>/Customers</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Passwords</servlet-name>
+  	<servlet-class>com.desh.java.Passwords</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Passwords</servlet-name>
+  	<url-pattern>/Passwords</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

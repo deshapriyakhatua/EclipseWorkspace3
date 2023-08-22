@@ -11,21 +11,34 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Home extends HttpServlet {
+public class Passwords extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-    public Home() {
+    public Passwords() {
         
     }
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		MysqlDatabaseManager dbManager = new MysqlDatabaseManager();
+		ArrayList<UserPassword> list;
+		try {
+			list = dbManager.showUserPasswords();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			list = new ArrayList<>();
+			e.printStackTrace();
+		}
+		
+        String passwordsJsonString = new Gson().toJson(list);
         
 		PrintWriter out = resp.getWriter();
-	
-        out.print("welcome to Home...");
+		resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        out.print(passwordsJsonString);
         
-        out.close();
+        out.flush();
         
 	}
 

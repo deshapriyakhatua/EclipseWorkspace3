@@ -2,40 +2,51 @@ package com.desh.java;
 
 public class Employee {
 
-	int id;
+	String id;
 	String name;
-	String department;
-	int salary;
-	public Employee(int id, String name, String department, int salary) {
+	long phone;
+	String email;
+	
+	public Employee(String id, String name, long phone, String email) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.department = department;
-		this.salary = salary;
+		this.phone = phone;
+		this.email = email;
 	}
-	public int getId() {
+
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDepartment() {
-		return department;
+
+	public long getPhone() {
+		return phone;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+
+	public void setPhone(long phone) {
+		this.phone = phone;
 	}
-	public int getSalary() {
-		return salary;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setSalary(int salary) {
-		this.salary = salary;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	
 	
 }
