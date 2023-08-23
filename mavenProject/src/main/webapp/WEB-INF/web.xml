@@ -1,36 +1,36 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>Home</servlet-name>
-  	<display-name>Home</display-name>
-  	<description></description>
-  	<servlet-class>com.desh.java.Home</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>Home</servlet-name>
-  	<url-pattern>/Home</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-  	<servlet-name>Customers</servlet-name>
-  	<servlet-class>com.desh.java.Customers</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>Customers</servlet-name>
-  	<url-pattern>/Customers</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-  	<servlet-name>Passwords</servlet-name>
-  	<servlet-class>com.desh.java.Passwords</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>Passwords</servlet-name>
-  	<url-pattern>/Passwords</url-pattern>
-  </servlet-mapping>
-  
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<servlet-name>Home</servlet-name>
+		<servlet-class>com.desh.java.Home</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/Home</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Customers</servlet-name>
+		<servlet-class>com.desh.java.Customers</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Customers</servlet-name>
+		<url-pattern>/Customers</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Passwords</servlet-name>
+		<servlet-class>com.desh.java.Passwords</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Passwords</servlet-name>
+		<url-pattern>/Passwords</url-pattern>
+	</servlet-mapping>
+
 </web-app>
