@@ -21,7 +21,7 @@
 
 		body {
 			font-family: 'Montserrat', sans-serif;
-			--font-color : rgb(116, 116, 116);
+			--font-color: rgb(116, 116, 116);
 		}
 
 		/* Header styles */
@@ -61,34 +61,22 @@
 
 		/* section_slider_holder section styles */
 		.section_slider_holder {
-			background-image: url('section_slider_holder-background.jpg');
-			background-size: cover;
-			color: #fff;
-			text-align: center;
-			padding: 100px 0;
+			width: 60%;
+			margin: auto;
+			
 		}
 
 		.slider_container {
-			max-width: 800px;
-			margin: 0 auto;
-			color: #000;
-		}
-
-		.slider_container h1 {
-			font-size: 36px;
-			margin-bottom: 20px;
+			width: 70%;
+			margin: 50px auto;
 		}
 
 		/* slider */
-		
+
 		#items_for_auto_slider {
 			position: relative;
 			height: 50px;
 			width: 100%;
-		}
-		
-		#items_for_auto_slider h1 {
-			margin: 0px;
 		}
 
 		.item-1,
@@ -99,8 +87,8 @@
 		.item-6 {
 			position: absolute;
 			width: 100%;
-			height: max-content;
-			
+			height: 100%;
+
 
 			animation-duration: 20s;
 			animation-timing-function: ease-in-out;
@@ -193,7 +181,7 @@
 				opacity: 0;
 			}
 		}
-		
+
 		@keyframes anim-4 {
 
 			0%,
@@ -214,7 +202,7 @@
 				opacity: 0;
 			}
 		}
-		
+
 		@keyframes anim-5 {
 
 			0%,
@@ -235,7 +223,7 @@
 				opacity: 0;
 			}
 		}
-		
+
 		@keyframes anim-6 {
 
 			0%,
@@ -255,17 +243,25 @@
 				opacity: 0;
 			}
 		}
-		
+
+		#items_for_auto_slider h1 {
+			font-size: 36px;
+			text-align: center;
+			margin: 0px;
+		}
+
 		#pTag_below_auto_slider {
-			margin-top: 20px;
+			margin-top: 50px;
 			font-size: 18px;
 			font-weight: bold;
-			margin-bottom: 30px;
+			text-align: center;
 			color: var(--font-color);
 		}
-		
+
 		.cta-button {
-			display: inline-block;
+			margin: 20px auto auto auto;
+			width: 100px;
+			display: block;
 			background-color: rgb(239, 79, 95);
 			color: #fff;
 			padding: 10px 20px;
@@ -273,39 +269,43 @@
 			box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 			text-decoration: none;
 			font-weight: bold;
+			text-align: center;
 			transition: background-color 0.3s;
 		}
-		
-		
+
+
 		.cta-button:hover {
 			background-color: rgb(164, 0, 4);
 		}
-		
-		/* slider */
-		
-		/* How It Works section styles */
-		
-		.how-it-works {
-			max-width: 1200px;
-			margin: 0px auto;
-			padding: 50px 20px;
-		}
 
-		.steps {
-			display: flex;
-			justify-content: space-between;
-			margin: 40px auto;
+		/* slider */
+
+		/* How It Works section styles */
+
+		.how-it-works {
+			width: 60%;
+			margin: 0px auto;
+			
 		}
 
 		#stepsHeading {
 			text-align: center;
+			width: 100%;
+		}
+
+		.steps {
+			width: 100%;
+			display: flex;
+			justify-content: space-evenly;
+			margin: 40px auto;
+
 		}
 
 		.step {
 			background-color: #fff;
 			border-radius: 10px;
 			box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-			width: 300px;
+			width: 270px;
 			padding: 20px;
 			text-align: center;
 			font-weight: lighter;
@@ -318,15 +318,65 @@
 			margin-bottom: 20px;
 			color: var(--font-color);
 		}
+
 		.steps_description {
 			font-size: 15px;
 			font-weight: bold;
 			color: rgb(155, 155, 155);
 		}
+
 		.step img {
 			max-width: 100px;
 			margin-bottom: 10px;
 		}
+
+		/* categories style */
+
+		#suggestions {
+			width: 60%;
+			height: 600px;
+			padding: 0px;
+			margin: auto;
+			border: 1px solid red;
+		}
+
+		#Categories_heading {
+			text-align: center;
+		}
+
+		#category_card_holder {
+			margin: 20px auto;
+			width: 100%;
+			height: 500px;
+			display: flex;
+			justify-content: space-evenly;
+			flex-flow: row wrap;
+			
+		}
+
+		.category_card {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+			width: 150px;
+			height: 220px;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.category_card img {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+		}
+
+		.category_title {
+			text-align: center;
+			font-size: 18px;
+			margin-top: 10px;
+			color: #333;
+		}
+
 
 		/* Footer styles */
 		footer {
@@ -334,50 +384,6 @@
 			color: #fff;
 			text-align: center;
 			padding: 20px 0;
-		}
-
-		/* product style */
-		.product-card {
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-			width: 300px;
-			margin: 100Px auto;
-			padding: 20px;
-			text-align: center;
-		}
-
-		.product-card img {
-			max-width: 100%;
-		}
-
-		.product-title {
-			font-size: 18px;
-			margin-top: 10px;
-			color: #333;
-		}
-
-		.product-price {
-			font-size: 16px;
-			color: #f39c12;
-			margin-top: 5px;
-		}
-
-		.buy-button {
-			color: #fff;
-			border: none;
-			border-radius: 3px;
-			padding: 10px 20px;
-			font-size: 16px;
-			margin-top: 15px;
-			cursor: pointer;
-			overflow: hidden;
-			background-color: #fc8019;
-			transition: all .7s ease;
-		}
-
-		.buy-button:hover {
-			transform: scale(1.1);
 		}
 	</style>
 </head>
@@ -407,12 +413,24 @@
 		<div class="slider_container">
 			<!--slider-->
 			<div id="items_for_auto_slider">
-				<div class="item-1"><h1> Discover the best food & drinks in your city </h1></div>
-				<div class="item-2"><h1> Restaurants in your pocket </h1></div>
-				<div class="item-3"><h1> Late night at office? </h1></div>
-				<div class="item-4"><h1> Track on the go, with the all-new app </h1></div>
-				<div class="item-5"><h1> Cooking gone wrong? </h1></div>
-				<div class="item-6"><h1> Movie marathon? </h1></div>
+				<div class="item-1">
+					<h1> Discover the best food & drinks in your city </h1>
+				</div>
+				<div class="item-2">
+					<h1> Restaurants in your pocket </h1>
+				</div>
+				<div class="item-3">
+					<h1> Late night at office? </h1>
+				</div>
+				<div class="item-4">
+					<h1> Track on the go, with the all-new app </h1>
+				</div>
+				<div class="item-5">
+					<h1> Cooking gone wrong? </h1>
+				</div>
+				<div class="item-6">
+					<h1> Movie marathon? </h1>
+				</div>
 			</div>
 			<p id="pTag_below_auto_slider">Stay home and order to your doorstep</p>
 			<a href="#" class="cta-button">Order Now</a>
@@ -426,29 +444,37 @@
 				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_210,h_398/4x_-_No_min_order_x0bxuf"
 					alt="Step 1">
 				<p class="steps_title">No Minimum Order</p>
-				<p class="steps_description">Order in for yourself or for the group, with no restrictions on order value</p>
+				<p class="steps_description">Order in for yourself or for the group, with no restrictions on order value
+				</p>
 			</div>
 			<div class="step">
 				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_224,h_412/4x_Live_order_zzotwy"
 					alt="Step 2">
 				<p class="steps_title">Live Order Tracking</p>
-				<p class="steps_description">Know where your order is at all times, from the restaurant to your doorstep</p>
+				<p class="steps_description">Know where your order is at all times, from the restaurant to your doorstep
+				</p>
 			</div>
 			<div class="step">
 				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
 					alt="Step 3">
 				<p class="steps_title">Lightning-Fast Delivery</p>
-				<p class="steps_description">Experience Swiggy's superfast delivery for food delivered fresh & on time</p>
+				<p class="steps_description">Experience Swiggy's superfast delivery for food delivered fresh & on time
+				</p>
 			</div>
 		</div>
-
-		<div class="product-card">
-			<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Product">
-			<h2 class="product-title">Product Name</h2>
-			<button class="buy-button">Order</button>
-		</div>
-
 	</section>
+
+	<section id="suggestions">
+		<h2 id="categories_heading">Inspiration for your order</h2>
+		<div id="category_card_holder">
+			<div class="category_card">
+				<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+					alt="Product">
+				<h2 class="category_title">Product Name</h2>
+			</div>
+		</div>
+	</section>
+
 
 	<footer>
 		<p>&copy; 2023 Cars24. All rights reserved.</p>
@@ -458,3 +484,34 @@
 </body>
 
 </html>
+
+<script>
+
+	populateCategories();
+
+	async function populateCategories() {
+
+		const response = await fetch('http://localhost:8080/mavenProject/Categories');
+
+		const json = await response.json();
+
+		let jsonString = JSON.stringify(json);
+
+		const categories = JSON.parse(jsonString);
+
+		console.log(typeof categories);
+
+		categories.forEach((elem, index, arr) => {
+
+			let category_card = document.createElement("div");
+			category_card.className = "category_card";
+			category_card.innerHTML = `<img src="${elem.imageURL}" alt="category_image">
+										<h2 class="category_title">${elem.name}</h2>`;
+			document.getElementById("category_card_holder").append(category_card);
+
+		});
+
+
+
+	}
+</script>

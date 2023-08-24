@@ -32,5 +32,14 @@
 		<servlet-name>Passwords</servlet-name>
 		<url-pattern>/Passwords</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Categories</servlet-name>
+		<servlet-class>com.desh.java.Categories</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Categories</servlet-name>
+		<url-pattern>/Categories</url-pattern>
+	</servlet-mapping>
 
 </web-app>

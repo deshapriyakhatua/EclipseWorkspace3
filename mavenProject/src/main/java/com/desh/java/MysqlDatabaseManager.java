@@ -186,6 +186,51 @@ public class MysqlDatabaseManager {
 		}
 
 	}
+	
+public ArrayList<Category> showCategories() throws Exception {
+		
+		ArrayList<Category> list = new ArrayList<>();
+
+		try {
+			// connecting to database
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/java_backend";
+
+			Connection con = DriverManager.getConnection(url, "root", "1036");
+
+			if (con.isClosed()) {
+				System.out.println(" DB connection closed showCategories");
+			} else {
+				System.out.println(" DB connection created showCategories");
+			}
+
+			// Accessing Data from table
+			Statement stmt = con.createStatement();
+			ResultSet set = stmt.executeQuery("select * from food_categories");
+		
+			while (set.next()) {
+				
+				list.add(new Category(set.getString(1), set.getString(2),set.getString(3)));
+				System.out.println("category id: " + set.getString(1) + " | name: " + set.getString(2) + " | imageURL: " + set.getString(3));
+			}
+
+			con.close();
+
+			return list;
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return list;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return list;
+
+		}
+
+	}
 
 
 }

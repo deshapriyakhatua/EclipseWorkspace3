@@ -11,20 +11,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Customers extends HttpServlet {
-	
+public class Categories extends HttpServlet{
+
 	private static final long serialVersionUID = 1L;
 
-    public Customers() {
-        
-    }
+	public Categories() {
+		super();
+	}
 
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		MysqlDatabaseManager dbManager = new MysqlDatabaseManager();
-		ArrayList<Employee> list;
+		ArrayList<Category> list;
 		try {
-			list = dbManager.showCustomers();
+			list = dbManager.showCategories();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			list = new ArrayList<>();
@@ -42,10 +43,11 @@ public class Customers extends HttpServlet {
         
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		doGet(request, response);
+		doGet(req, resp);
 	}
-
+	
+	
 }
