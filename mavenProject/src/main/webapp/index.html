@@ -4,8 +4,9 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>mavenProject</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap">
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 	</style>
 
 	<style>
@@ -34,7 +35,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			max-width: 1200px;
+			max-width: 60%;
 			margin: 0 auto;
 			background-color: rgb(255, 255, 255);
 		}
@@ -63,7 +64,7 @@
 		.section_slider_holder {
 			width: 60%;
 			margin: auto;
-			
+
 		}
 
 		.slider_container {
@@ -285,7 +286,7 @@
 		.how-it-works {
 			width: 60%;
 			margin: 0px auto;
-			
+
 		}
 
 		#stepsHeading {
@@ -337,37 +338,93 @@
 			height: 600px;
 			padding: 0px;
 			margin: auto;
-			border: 1px solid red;
 		}
 
-		#Categories_heading {
+		#categories_heading {
 			text-align: center;
 		}
 
-		#category_card_holder {
-			margin: 20px auto;
-			width: 100%;
-			height: 500px;
+		/* slider2 */
+
+		.categories_holder_parent {
+			margin: 30px auto;
 			display: flex;
-			justify-content: space-evenly;
-			flex-flow: row wrap;
-			
+			max-width: 100%;
+			position: relative;
 		}
 
-		.category_card {
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-			width: 150px;
-			height: 220px;
-			margin: 0px;
-			padding: 0px;
+		.categories_holder_parent i {
+			top: 50%;
+			height: 44px;
+			width: 44px;
+			color: #000000;
+			cursor: pointer;
+			font-size: 1.15rem;
+			position: absolute;
+			text-align: center;
+			line-height: 44px;
+			background: #fff;
+			border-radius: 50%;
+			transform: translateY(-50%);
+			transition: transform 0.1s linear;
 		}
+
+		.categories_holder_parent i:active {
+			transform: translateY(-50%) scale(0.9);
+		}
+
+		.categories_holder_parent i:hover {
+			background: #f2f2f2;
+		}
+
+		.categories_holder_parent i:first-child {
+			left: -22px;
+			display: none;
+		}
+
+		.categories_holder_parent i:last-child {
+			right: -22px;
+		}
+
+		.categories_holder_parent .category_card_holder {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			cursor: pointer;
+			overflow: hidden;
+			white-space: nowrap;
+			scroll-behavior: smooth;
+		}
+
+		.category_card_holder .category_card {
+			height: 220px;
+			object-fit: cover;
+			user-select: none;
+			margin-left: 14px;
+		}
+
+		.category_card_holder .category_card:first-child {
+			margin-left: 0px;
+		}
+
+		@media screen and (max-width: 900px) {
+			.category_card_holder .category_card {
+				width: calc(100% / 2);
+			}
+		}
+
+		@media screen and (max-width: 550px) {
+			.category_card_holder .category_card {
+				width: 100%;
+			}
+		}
+
 
 		.category_card img {
 			width: 150px;
 			height: 150px;
 			border-radius: 50%;
+			box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
 		}
 
 		.category_title {
@@ -383,6 +440,7 @@
 			background-color: #333;
 			color: #fff;
 			text-align: center;
+			margin-top: 20px;
 			padding: 20px 0;
 		}
 	</style>
@@ -458,7 +516,7 @@
 				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
 					alt="Step 3">
 				<p class="steps_title">Lightning-Fast Delivery</p>
-				<p class="steps_description">Experience Swiggy's superfast delivery for food delivered fresh & on time
+				<p class="steps_description">Experience our superfast delivery for food delivered fresh & on time
 				</p>
 			</div>
 		</div>
@@ -466,14 +524,70 @@
 
 	<section id="suggestions">
 		<h2 id="categories_heading">Inspiration for your order</h2>
-		<div id="category_card_holder">
-			<div class="category_card">
-				<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-					alt="Product">
-				<h2 class="category_title">Product Name</h2>
+		<div class="categories_holder_parent">
+			<i id="left" class="material-icons">chevron_left</i>
+			<div class="category_card_holder">
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+				<div class="category_card">
+					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+						alt="Product">
+					<h2 class="category_title">Product Name</h2>
+				</div>
+
 			</div>
+			<i id="right" class="material-icons">chevron_right</i>
 		</div>
 	</section>
+
 
 
 	<footer>
@@ -511,7 +625,29 @@
 
 		});
 
-
-
 	}
+
+	const category_card_holder = document.querySelector(".category_card_holder");
+	const firstImg = category_card_holder.querySelectorAll(".category_card")[0];
+	const arrowIcons = document.querySelectorAll(".categories_holder_parent i");
+
+
+	const showHideIcons = () => {
+		// showing and hiding prev/next icon according to category_card_holder scroll left value
+		let scrollWidth = category_card_holder.scrollWidth - category_card_holder.clientWidth; // getting max scrollable width
+		arrowIcons[0].style.display = category_card_holder.scrollLeft == 0 ? "none" : "block";
+		arrowIcons[1].style.display = category_card_holder.scrollLeft == scrollWidth ? "none" : "block";
+	}
+
+	arrowIcons.forEach(icon => {
+		icon.addEventListener("click", () => {
+			let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+			// if clicked icon is left, reduce width value from the category_card_holder scroll left else add to it
+			category_card_holder.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+			setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
+		});
+	});
+
+
+
 </script>
