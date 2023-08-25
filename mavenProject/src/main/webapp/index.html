@@ -27,8 +27,15 @@
 
 		/* Header styles */
 		.header {
-			padding: 20px 50px;
+			padding: 5px 10px;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			background-color: rgb(255, 255, 255, 0.9);
+			z-index: 100;
+
 		}
 
 		.navbar {
@@ -37,11 +44,11 @@
 			align-items: center;
 			max-width: 60%;
 			margin: 0 auto;
-			background-color: rgb(255, 255, 255);
 		}
 
-		.logo {
-			font-size: 24px;
+		.logo svg{
+			width: 125%;
+			height: 125%;
 		}
 
 		.nav-links {
@@ -60,10 +67,14 @@
 			text-decoration: none;
 		}
 
+		.content_body {
+			margin-top: 150px;
+		}
+
 		/* section_slider_holder section styles */
 		.section_slider_holder {
 			width: 60%;
-			margin: auto;
+			margin: 50px auto;
 
 		}
 
@@ -285,7 +296,7 @@
 
 		.how-it-works {
 			width: 60%;
-			margin: 0px auto;
+			margin: 100px auto;
 
 		}
 
@@ -347,7 +358,7 @@
 		/* slider2 */
 
 		.categories_holder_parent {
-			margin: 30px auto;
+			margin: 60px auto;
 			display: flex;
 			max-width: 100%;
 			position: relative;
@@ -365,6 +376,7 @@
 			line-height: 44px;
 			background: #fff;
 			border-radius: 50%;
+			box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 			transform: translateY(-50%);
 			transition: transform 0.1s linear;
 		}
@@ -451,7 +463,87 @@
 	<header class="header">
 		<nav class="navbar">
 			<section>
-				<div class="logo"><a href="#">Food24</a></div>
+				<div class="logo"><a href="#"><svg viewBox="300 125 35 145" data-background-color="#ffffff"
+							preserveAspectRatio="xMidYMid meet" height="40" width="150"
+							xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							
+							<g id="tight-bounds" transform="matrix(1,0,0,1,122.24000000000001,162.282488855481)"><svg
+									viewBox="0 0 395.52 75.43502228903802" height="75.43502228903802" width="395.52">
+									<g><svg viewBox="0 0 542.0686498991588 103.38531727177333"
+											height="75.43502228903802" width="395.52">
+											<g>
+												<rect width="6.746305792486211" height="75.18252088142705"
+													x="413.180486367765" y="14.10139819517314" fill="#ee3e38"
+													opacity="1" stroke-width="0" stroke="transparent" fill-opacity="1"
+													class="rect-o-0" data-fill-palette-color="primary" rx="1%" id="o-0"
+													data-palette-color="#ee3e38"></rect>
+											</g>
+											<g transform="matrix(1,0,0,1,0,14.288419391395593)"><svg
+													viewBox="0 0 395.52000000000004 74.80847848898215"
+													height="74.80847848898215" width="395.52000000000004">
+													<g id="textblocktransform"><svg
+															viewBox="0 0 395.52000000000004 74.80847848898215"
+															height="74.80847848898215" width="395.52000000000004"
+															id="textblock">
+															<g><svg viewBox="0 0 395.52000000000004 74.80847848898215"
+																	height="74.80847848898215"
+																	width="395.52000000000004">
+																	<g transform="matrix(1,0,0,1,0,0)"><svg
+																			width="395.52000000000004"
+																			viewBox="4.800000190734863 -35.650001525878906 191.69000244140625 36.05000305175781"
+																			height="74.80847848898215"
+																			data-palette-color="#ee3e38">
+																			<g class="wordmark-text-0"
+																				data-fill-palette-color="primary"
+																				id="text-0">
+																				<path
+																					d="M6.85 0L4.8 0 4.8-35.25 25.5-35.25 25.5-33.3 6.85-33.3 6.85-18.85 24.5-18.85 24.5-16.95 6.85-16.95 6.85 0ZM46.15 0.4Q41.45 0.4 37.97-1.78 34.5-3.95 32.62-8.03 30.75-12.1 30.75-17.6L30.75-17.6Q30.75-23.15 32.6-27.23 34.45-31.3 37.92-33.48 41.4-35.65 46.15-35.65L46.15-35.65Q50.9-35.65 54.4-33.48 57.9-31.3 59.75-27.25 61.6-23.2 61.6-17.65L61.6-17.65Q61.6-12.1 59.72-8.03 57.85-3.95 54.37-1.78 50.9 0.4 46.15 0.4L46.15 0.4ZM46.15-1.65Q52.45-1.65 55.9-5.85 59.35-10.05 59.35-17.65L59.35-17.65Q59.35-25.25 55.92-29.43 52.5-33.6 46.15-33.6L46.15-33.6Q39.9-33.6 36.45-29.43 33-25.25 33-17.65L33-17.65Q33-10.05 36.45-5.85 39.9-1.65 46.15-1.65L46.15-1.65ZM83.7 0.4Q79 0.4 75.52-1.78 72.05-3.95 70.17-8.03 68.3-12.1 68.3-17.6L68.3-17.6Q68.3-23.15 70.15-27.23 72-31.3 75.47-33.48 78.95-35.65 83.7-35.65L83.7-35.65Q88.45-35.65 91.95-33.48 95.45-31.3 97.3-27.25 99.15-23.2 99.15-17.65L99.15-17.65Q99.15-12.1 97.27-8.03 95.4-3.95 91.92-1.78 88.45 0.4 83.7 0.4L83.7 0.4ZM83.7-1.65Q90-1.65 93.45-5.85 96.9-10.05 96.9-17.65L96.9-17.65Q96.9-25.25 93.47-29.43 90.05-33.6 83.7-33.6L83.7-33.6Q77.45-33.6 74-29.43 70.55-25.25 70.55-17.65L70.55-17.65Q70.55-10.05 74-5.85 77.45-1.65 83.7-1.65L83.7-1.65ZM107.29 0L107.29-35.25 118.14-35.25Q126.44-35.25 130.92-30.7 135.39-26.15 135.39-17.65L135.39-17.65Q135.39-9.2 130.89-4.6 126.39 0 118.14 0L118.14 0 107.29 0ZM109.34-1.9L118.09-1.9Q125.54-1.9 129.34-5.88 133.14-9.85 133.14-17.65L133.14-17.65Q133.14-25.45 129.37-29.4 125.59-33.35 118.09-33.35L118.09-33.35 109.34-33.35 109.34-1.9ZM146.44-1.9L165.34-1.9 165.34 0 143.49 0 143.49-1.6 156.19-15.9Q159.04-19.15 160.29-21.63 161.54-24.1 161.54-26.65L161.54-26.65Q161.54-30 159.59-31.83 157.64-33.65 154.09-33.65L154.09-33.65Q151.29-33.65 148.77-32.58 146.24-31.5 143.74-29.25L143.74-29.25 142.69-31Q144.79-33.1 147.87-34.38 150.94-35.65 153.99-35.65L153.99-35.65Q158.49-35.65 161.09-33.25 163.69-30.85 163.69-26.7L163.69-26.7Q163.69-23.65 162.27-20.73 160.84-17.8 157.59-14.2L157.59-14.2 146.44-1.9ZM190.94-10.25L196.49-10.25 196.49-8.3 190.94-8.3 190.94 0 188.84 0 188.84-8.3 173.04-8.3 172.99-8.2 172.99-8.3 171.74-8.3 171.74-9.95 189.19-35.25 190.94-35.25 190.94-10.25ZM188.84-31.15L174.39-10.25 188.84-10.25 188.84-31.15Z"
+																					fill="#ee3e38"
+																					data-fill-palette-color="primary">
+																				</path>
+																			</g>
+																		</svg></g>
+																</svg></g>
+														</svg></g>
+												</svg></g>
+											<g transform="matrix(1,0,0,1,437.5872785280162,0)"><svg
+													viewBox="0 0 104.48137137114266 103.38531727177333"
+													height="103.38531727177333" width="104.48137137114266">
+													<g><svg xmlns="http://www.w3.org/2000/svg"
+															xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+															x="0" y="0"
+															viewBox="0.0010000000474974513 0.5270006656646729 99.99700927734375 98.947998046875"
+															enable-background="new 0 0 100 100" xml:space="preserve"
+															height="103.38531727177333" width="104.48137137114266"
+															class="icon-icon-0" data-fill-palette-color="accent"
+															id="icon-0">
+															<g fill="#ff4136" data-fill-palette-color="accent">
+																<path
+																	d="M78.033 58.904c-0.055 0.009-0.098 0.051-0.105 0.105-0.23 1.538 0.285 3.108 1.379 4.202 0.91 0.91 2.178 1.432 3.477 1.432 0.242 0 0.486-0.018 0.725-0.053 0.055-0.009 0.098-0.052 0.105-0.105 0.227-1.539-0.289-3.109-1.381-4.201C81.15 59.205 79.553 58.681 78.033 58.904z"
+																	fill="#ff4136" data-fill-palette-color="accent">
+																</path>
+																<path
+																	d="M65.66 58.904c-1.521-0.224-3.119 0.301-4.201 1.38-1.092 1.092-1.607 2.662-1.381 4.201 0.01 0.054 0.051 0.097 0.105 0.105 0.24 0.035 0.484 0.053 0.727 0.053 1.299 0 2.564-0.521 3.477-1.432 1.092-1.094 1.607-2.664 1.379-4.202C65.756 58.955 65.715 58.913 65.66 58.904z"
+																	fill="#ff4136" data-fill-palette-color="accent">
+																</path>
+																<path
+																	d="M69.109 47.36c-0.055 0.008-0.098 0.051-0.105 0.105-0.23 1.538 0.285 3.109 1.379 4.203 0.91 0.911 2.178 1.433 3.477 1.433 0.242 0 0.486-0.018 0.725-0.053 0.055-0.009 0.098-0.052 0.105-0.106 0.227-1.539-0.289-3.11-1.381-4.201C72.229 47.66 70.629 47.133 69.109 47.36z"
+																	fill="#ff4136" data-fill-palette-color="accent">
+																</path>
+																<path
+																	d="M96.459 72.522C95.789 55.84 84.701 44.822 66 41.625V19.474H32.751v-9.408l24.45-5.642-0.9-3.897-26 6c-0.908 0.209-1.55 1.018-1.55 1.949v10.999H0.001v22h3.83l7.151 58h70.07c7.598 0 13.258-5.31 14.895-13.383 2.416-1.379 4.051-3.975 4.051-6.949C99.998 76.385 98.588 73.961 96.459 72.522zM4.001 23.474H62v14H4.001V23.474zM14.52 95.474l-6.658-54h50.279l-6.658 54H14.52zM81.053 95.474H55.514l1.027-8.332H91.57C89.938 92.291 86.115 95.474 81.053 95.474zM58.389 72.145l3.338-27.069c12.479 1.401 29.652 6.993 30.719 27.069H58.389z"
+																	fill="#ff4136" data-fill-palette-color="accent">
+																</path>
+															</g>
+														</svg></g>
+												</svg></g>
+										</svg></g>
+									<defs></defs>
+								</svg>
+								<rect width="395.52" height="75.43502228903802" fill="none" stroke="none"
+									visibility="hidden"></rect>
+							</g>
+						</svg></a></div>
 			</section>
 			<section>
 				<ul class="nav-links">
@@ -467,127 +559,82 @@
 		</nav>
 	</header>
 
-	<section class="section_slider_holder">
-		<div class="slider_container">
-			<!--slider-->
-			<div id="items_for_auto_slider">
-				<div class="item-1">
-					<h1> Discover the best food & drinks in your city </h1>
+	<section class="content_body">
+
+		<section class="section_slider_holder">
+			<div class="slider_container">
+				<!--slider-->
+				<div id="items_for_auto_slider">
+					<div class="item-1">
+						<h1> Discover the best food & drinks in your city </h1>
+					</div>
+					<div class="item-2">
+						<h1> Restaurants in your pocket </h1>
+					</div>
+					<div class="item-3">
+						<h1> Late night at office? </h1>
+					</div>
+					<div class="item-4">
+						<h1> Track on the go, with the all-new app </h1>
+					</div>
+					<div class="item-5">
+						<h1> Cooking gone wrong? </h1>
+					</div>
+					<div class="item-6">
+						<h1> Movie marathon? </h1>
+					</div>
 				</div>
-				<div class="item-2">
-					<h1> Restaurants in your pocket </h1>
+				<p id="pTag_below_auto_slider">Stay home and order to your doorstep</p>
+				<a href="#" class="cta-button">Order Now</a>
+			</div>
+		</section>
+
+		<section class="how-it-works">
+			<h2 id="stepsHeading">How It Works</h2>
+			<div class="steps">
+				<div class="step">
+					<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_210,h_398/4x_-_No_min_order_x0bxuf"
+						alt="Step 1">
+					<p class="steps_title">No Minimum Order</p>
+					<p class="steps_description">Order in for yourself or for the group, with no restrictions on order
+						value
+					</p>
 				</div>
-				<div class="item-3">
-					<h1> Late night at office? </h1>
+				<div class="step">
+					<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_224,h_412/4x_Live_order_zzotwy"
+						alt="Step 2">
+					<p class="steps_title">Live Order Tracking</p>
+					<p class="steps_description">Know where your order is at all times, from the restaurant to your
+						doorstep
+					</p>
 				</div>
-				<div class="item-4">
-					<h1> Track on the go, with the all-new app </h1>
-				</div>
-				<div class="item-5">
-					<h1> Cooking gone wrong? </h1>
-				</div>
-				<div class="item-6">
-					<h1> Movie marathon? </h1>
+				<div class="step">
+					<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
+						alt="Step 3">
+					<p class="steps_title">Lightning-Fast Delivery</p>
+					<p class="steps_description">Experience our superfast delivery for food delivered fresh & on time
+					</p>
 				</div>
 			</div>
-			<p id="pTag_below_auto_slider">Stay home and order to your doorstep</p>
-			<a href="#" class="cta-button">Order Now</a>
-		</div>
+		</section>
+
+		<section id="suggestions">
+			<h2 id="categories_heading">Inspiration for your order</h2>
+			<div class="categories_holder_parent">
+				<i id="left" class="material-icons">chevron_left</i>
+				<div id="category_card_holder" class="category_card_holder">
+					<div class="category_card">
+						<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+							alt="Product">
+						<h2 class="category_title">Frouits</h2>
+					</div>
+
+				</div>
+				<i id="right" class="material-icons">chevron_right</i>
+			</div>
+		</section>
+
 	</section>
-
-	<section class="how-it-works">
-		<h2 id="stepsHeading">How It Works</h2>
-		<div class="steps">
-			<div class="step">
-				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_210,h_398/4x_-_No_min_order_x0bxuf"
-					alt="Step 1">
-				<p class="steps_title">No Minimum Order</p>
-				<p class="steps_description">Order in for yourself or for the group, with no restrictions on order value
-				</p>
-			</div>
-			<div class="step">
-				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_224,h_412/4x_Live_order_zzotwy"
-					alt="Step 2">
-				<p class="steps_title">Live Order Tracking</p>
-				<p class="steps_description">Know where your order is at all times, from the restaurant to your doorstep
-				</p>
-			</div>
-			<div class="step">
-				<img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_248,h_376/4x_-_Super_fast_delivery_awv7sn"
-					alt="Step 3">
-				<p class="steps_title">Lightning-Fast Delivery</p>
-				<p class="steps_description">Experience our superfast delivery for food delivered fresh & on time
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<section id="suggestions">
-		<h2 id="categories_heading">Inspiration for your order</h2>
-		<div class="categories_holder_parent">
-			<i id="left" class="material-icons">chevron_left</i>
-			<div class="category_card_holder">
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-				<div class="category_card">
-					<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-						alt="Product">
-					<h2 class="category_title">Product Name</h2>
-				</div>
-
-			</div>
-			<i id="right" class="material-icons">chevron_right</i>
-		</div>
-	</section>
-
 
 
 	<footer>
