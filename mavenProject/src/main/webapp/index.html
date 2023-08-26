@@ -23,6 +23,8 @@
 		body {
 			font-family: 'Montserrat', sans-serif;
 			--font-color: rgb(116, 116, 116);
+			--theme-color-pink: rgb(239, 79, 95);
+			user-select: none;
 		}
 
 		/* Header styles */
@@ -46,7 +48,7 @@
 			margin: 0 auto;
 		}
 
-		.logo svg{
+		.logo svg {
 			width: 125%;
 			height: 125%;
 		}
@@ -379,6 +381,7 @@
 			box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 			transform: translateY(-50%);
 			transition: transform 0.1s linear;
+
 		}
 
 		.categories_holder_parent i:active {
@@ -466,7 +469,7 @@
 				<div class="logo"><a href="#"><svg viewBox="300 125 35 145" data-background-color="#ffffff"
 							preserveAspectRatio="xMidYMid meet" height="40" width="150"
 							xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-							
+
 							<g id="tight-bounds" transform="matrix(1,0,0,1,122.24000000000001,162.282488855481)"><svg
 									viewBox="0 0 395.52 75.43502228903802" height="75.43502228903802" width="395.52">
 									<g><svg viewBox="0 0 542.0686498991588 103.38531727177333"
@@ -554,7 +557,7 @@
 				</ul>
 			</section>
 			<section>
-				<div class="account"><a href="#">&#128100; Account</a></div>
+				<div class="account" id="login_account_nav"><a href="#">&#128100; Account</a></div>
 			</section>
 		</nav>
 	</header>
@@ -642,6 +645,153 @@
 	</footer>
 
 
+	<style>
+		#login_signup_parent {
+			margin: 0;
+			padding: 0;
+			background-color: rgb(255, 255, 255);
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 150;
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			visibility: hidden;
+		}
+
+		#login_signup_close_icon {
+			position: absolute;
+			top: 5%;
+			right: 5%;
+			cursor: pointer;
+		}
+
+		#login_signup {
+			position: relative;
+			height: 40%;
+			border: 2px solid var(--theme-color-pink);
+			width: 30%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+
+		#login_signup form {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			width: 60%;
+			height: 70%;
+			border: 0px solid green;
+		}
+
+		#login_signup div {
+			width: 80%;
+		}
+
+		#phone_no_input {
+			width: 300px;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+
+		#Phone_no_label {
+			position: absolute;
+			left: 20px;
+			bottom: 18px;
+			padding: 0 5px;
+			background-color: white;
+			color: rgb(255, 128, 0);
+			font-weight: bold;
+			transition: .2s ease;
+		}
+
+		#mobile_no_input_tag {
+			height: 50px;
+			width: 300px;
+			border: 2px solid rgb(159, 159, 159);
+			outline: none;
+			padding: 0px 10px;
+			color: rgb(77, 77, 77);
+			font-size: 20px;
+			font-weight: 100;
+			letter-spacing: 10px;
+			text-align: center;
+		}
+
+		#mobile_no_input_tag:focus {
+			border: 2px solid var(--theme-color-pink);
+		}
+
+		#mobile_no_input_tag:hover {
+			border-color: var(--theme-color-pink);
+		}
+
+		#mobile_no_input_tag:focus~#Phone_no_label,
+		#mobile_no_input_tag:not(:placeholder-shown)#mobile_no_input_tag:not(:focus)~#Phone_no_label {
+			transform: translateY(-30px);
+			font-size: 15px;
+			color: var(--theme-color-pink);
+		}
+
+		#wrong_phone_no {
+			font-weight: bold;
+			text-align: center;
+			color: orange;
+		}
+
+		#login_signup_button {
+			background-color: var(--theme-color-pink);
+			border: none;
+			border-radius: 3px;
+			color: white;
+			padding: 16px 32px;
+			text-decoration: none;
+			margin: 4px 2px;
+			cursor: pointer;
+			font-size: 100%;
+			transition: .2s ease;
+		}
+
+		#login_signup_button:hover {
+			background-color: red;
+		}
+
+		#terms_and_conditions_div {
+			color: rgb(128, 64, 64);
+			font-size: 14px;
+			font-weight: bold;
+			text-align: center;
+		}
+	</style>
+
+	<div id="login_signup_parent">
+		<div id="login_signup">
+			<i class="material-icons" id="login_signup_close_icon">close</i>
+			<h3 id="login_signup_header_tag"> Log in to your account or create one </h3>
+			<form>
+				<div id="phone_no_input">
+					<input placeholder=" " type="tel" name="mobile" id="mobile_no_input_tag" tabindex="1" maxlength="10"
+						autocomplete="off" value="">
+					<label id="Phone_no_label" for="mobile">Phone</label>
+				</div>
+				<div id="wrong_phone_no">wrong phone no!</div>
+				<input id="login_signup_button" type="submit" value="Login/Signup">
+				<div id="terms_and_conditions_div">By clicking on Login, I accept the <a class="IBw2l"
+						href="/terms-and-conditions">Terms &amp; Conditions</a> &amp; <a class="IBw2l"
+						href="/privacy-policy">Privacy Policy</a></div>
+			</form>
+		</div>
+	</div>
+
 </body>
 
 </html>
@@ -695,6 +845,21 @@
 		});
 	});
 
+	// login functionality
+
+	document.getElementById("login_account_nav").addEventListener("click", () => {
+
+		document.body.style.overflow = "hidden";
+		document.getElementById("login_signup_parent").style.visibility = "visible";
+
+	});
+
+	document.getElementById("login_signup_close_icon").addEventListener("click", () => {
+
+		document.body.style.overflow = "scroll";
+		document.getElementById("login_signup_parent").style.visibility = "hidden";
+
+	});
 
 
 </script>
