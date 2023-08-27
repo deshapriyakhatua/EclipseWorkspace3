@@ -22,7 +22,7 @@ public class Customers extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		MysqlDatabaseManager dbManager = new MysqlDatabaseManager();
-		ArrayList<Employee> list;
+		ArrayList<Customer> list;
 		try {
 			list = dbManager.showCustomers();
 		} catch (Exception e) {

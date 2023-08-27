@@ -1,19 +1,25 @@
 package com.desh.java;
 
-public class Employee {
+public class Customer {
 
 	String id;
 	String name;
-	long phone;
+	Long phone;
 	String email;
 	
-	public Employee(String id, String name, long phone, String email) {
-		super();
+	public Customer(String id, String name, Long phone, String email) {
+
 		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
 	}
+	
+
+	public Customer() {
+		
+	}
+
 
 	public String getId() {
 		return id;

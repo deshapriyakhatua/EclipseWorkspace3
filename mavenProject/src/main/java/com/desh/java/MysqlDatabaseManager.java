@@ -28,14 +28,15 @@ public class MysqlDatabaseManager {
 			}
 
 			// adding new row to the table
-			PreparedStatement ptst = con.prepareStatement("insert into customers (id, name, phone, email) values (?, ?, ?, ?)");
-			
+			PreparedStatement ptst = con
+					.prepareStatement("insert into customers (id, name, phone, email) values (?, ?, ?, ?)");
+
 			ptst.setString(1, id);
 			ptst.setString(2, name);
 			ptst.setLong(3, phone);
 			ptst.setString(4, email);
 			ptst.executeUpdate();
-			
+
 			con.close();
 
 			return true;
@@ -54,9 +55,9 @@ public class MysqlDatabaseManager {
 
 	}
 
-	public ArrayList<Employee> showCustomers() throws Exception {
-		
-		ArrayList<Employee> list = new ArrayList<>();
+	public ArrayList<Customer> showCustomers() throws Exception {
+
+		ArrayList<Customer> list = new ArrayList<>();
 
 		try {
 			// connecting to database
@@ -74,11 +75,13 @@ public class MysqlDatabaseManager {
 			// Accessing Data from table
 			Statement stmt = con.createStatement();
 			ResultSet set = stmt.executeQuery("select * from customers");
-		
+
 			while (set.next()) {
-				
-				list.add(new Employee(set.getString(1), set.getString(2), Long.parseLong(set.getString(3)), set.getString(4)));
-				System.out.println("user id: " + set.getString(1) + " | name: " + set.getString(2) + " | phone: " + set.getString(3) + " | email: " + set.getString(4));
+
+				list.add(new Customer(set.getString(1), set.getString(2), Long.parseLong(set.getString(3)),
+						set.getString(4)));
+				System.out.println("user id: " + set.getString(1) + " | name: " + set.getString(2) + " | phone: "
+						+ set.getString(3) + " | email: " + set.getString(4));
 			}
 
 			con.close();
@@ -98,7 +101,7 @@ public class MysqlDatabaseManager {
 		}
 
 	}
-	
+
 	public boolean registerCustomerPassword(String id, String password) throws Exception {
 
 		try {
@@ -118,12 +121,12 @@ public class MysqlDatabaseManager {
 
 			// adding new row to the table
 			PreparedStatement ptst = con.prepareStatement("insert into user_passwords (id, password) values (?, ?)");
-			
+
 			ptst.setString(1, id);
 			ptst.setString(2, password);
-			
+
 			ptst.executeUpdate();
-			
+
 			con.close();
 
 			return true;
@@ -143,7 +146,7 @@ public class MysqlDatabaseManager {
 	}
 
 	public ArrayList<UserPassword> showUserPasswords() throws Exception {
-		
+
 		ArrayList<UserPassword> list = new ArrayList<>();
 
 		try {
@@ -162,9 +165,9 @@ public class MysqlDatabaseManager {
 			// Accessing Data from table
 			Statement stmt = con.createStatement();
 			ResultSet set = stmt.executeQuery("select * from user_passwords");
-		
+
 			while (set.next()) {
-				
+
 				list.add(new UserPassword(set.getString(1), set.getString(2)));
 				System.out.println("user id: " + set.getString(1) + " | password: " + set.getString(2));
 			}
@@ -186,9 +189,9 @@ public class MysqlDatabaseManager {
 		}
 
 	}
-	
-public ArrayList<Category> showCategories() throws Exception {
-		
+
+	public ArrayList<Category> showCategories() throws Exception {
+
 		ArrayList<Category> list = new ArrayList<>();
 
 		try {
@@ -207,11 +210,12 @@ public ArrayList<Category> showCategories() throws Exception {
 			// Accessing Data from table
 			Statement stmt = con.createStatement();
 			ResultSet set = stmt.executeQuery("select * from food_categories");
-		
+
 			while (set.next()) {
-				
-				list.add(new Category(set.getString(1), set.getString(2),set.getString(3)));
-				System.out.println("category id: " + set.getString(1) + " | name: " + set.getString(2) + " | imageURL: " + set.getString(3));
+
+				list.add(new Category(set.getString(1), set.getString(2), set.getString(3)));
+				System.out.println("category id: " + set.getString(1) + " | name: " + set.getString(2) + " | imageURL: "
+						+ set.getString(3));
 			}
 
 			con.close();
@@ -232,5 +236,54 @@ public ArrayList<Category> showCategories() throws Exception {
 
 	}
 
+	public Customer isRegisteredUser(String phone) {
+
+		Customer customer = new Customer();
+		try {
+			// connecting to database
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/java_backend";
+
+			Connection con = DriverManager.getConnection(url, "root", "1036");
+
+			if (con.isClosed()) {
+				System.out.println(" DB connection closed isRegisteredUser");
+			} else {
+				System.out.println(" DB connection created isRegisteredUser");
+			}
+
+			// Accessing Data from table
+			Statement stmt = con.createStatement();
+			ResultSet set = stmt.executeQuery("select * from customers");
+
+			while (set.next()) {
+
+				if( phone.equals(set.getString(3))) { 
+					customer.setId(set.getString(1));
+					customer.setName(set.getString(2));
+					customer.setPhone(set.getLong(3));
+					customer.setEmail(set.getString(4));
+					return customer;
+				}
+				
+			}
+
+			con.close();
+
+			return customer;
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return customer;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return customer;
+
+		}
+		
+	}
 
 }
