@@ -3,16 +3,14 @@ package com.desh.java;
 public class Customer {
 
 	String id;
-	String name;
-	Long phone;
-	String email;
+	String phone;
+	String password;
 	
-	public Customer(String id, String name, Long phone, String email) {
+	public Customer(String id, String phone, String password) {
 
 		this.id = id;
-		this.name = name;
 		this.phone = phone;
-		this.email = email;
+		this.password = password;
 	}
 	
 
@@ -25,33 +23,32 @@ public class Customer {
 		return id;
 	}
 
+
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(long phone) {
+
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public String getEmail() {
-		return email;
+
+	public String getPassword() {
+		return phone;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+
 
 	
 	

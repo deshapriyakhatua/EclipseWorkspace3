@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MysqlDatabaseManager {
 
-	public boolean registerCustomerDetails(String id, String name, Long phone, String email) throws Exception {
+	public boolean registerCustomerDetails(String id, String phone, String password) throws Exception {
 
 		try {
 			// connecting to database
@@ -29,12 +29,11 @@ public class MysqlDatabaseManager {
 
 			// adding new row to the table
 			PreparedStatement ptst = con
-					.prepareStatement("insert into customers (id, name, phone, email) values (?, ?, ?, ?)");
+					.prepareStatement("insert into customers (id, phone, password) values (?, ?, ?)");
 
 			ptst.setString(1, id);
-			ptst.setString(2, name);
-			ptst.setLong(3, phone);
-			ptst.setString(4, email);
+			ptst.setString(2, phone);
+			ptst.setString(3, password);
 			ptst.executeUpdate();
 
 			con.close();
@@ -78,10 +77,8 @@ public class MysqlDatabaseManager {
 
 			while (set.next()) {
 
-				list.add(new Customer(set.getString(1), set.getString(2), Long.parseLong(set.getString(3)),
-						set.getString(4)));
-				System.out.println("user id: " + set.getString(1) + " | name: " + set.getString(2) + " | phone: "
-						+ set.getString(3) + " | email: " + set.getString(4));
+				list.add(new Customer(set.getString(1), set.getString(2), set.getString(3)));
+				System.out.println("user id: " + set.getString(1) + " | phone: " + set.getString(2) + " | password: " + set.getString(3));
 			}
 
 			con.close();
@@ -258,11 +255,10 @@ public class MysqlDatabaseManager {
 
 			while (set.next()) {
 
-				if( phone.equals(set.getString(3))) { 
+				if( phone.equals(set.getString(2))) { 
 					customer.setId(set.getString(1));
-					customer.setName(set.getString(2));
-					customer.setPhone(set.getLong(3));
-					customer.setEmail(set.getString(4));
+					customer.setPhone(set.getString(2));
+					customer.setPassword(set.getString(3));
 					return customer;
 				}
 				
