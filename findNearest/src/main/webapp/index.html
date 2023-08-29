@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>find Distance</title>
+	<style>
+		form {
+			width: 50%;
+			height: 20vh;
+			margin: auto;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			
+		}
+
+		input {
+			height: 30px;
+			width: 200px;
+			font-size: 15px;
+			padding-left: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<form action="calculateDistance" method="post">
+		<div>
+			<input type="text" name="latFrom" placeholder="latFrom">
+			
+			<input type="text" name="lonFrom" placeholder="lonFrom">
+		</div>
+
+		<div>
+			<input type="text" name="latTo" placeholder="latTo">
+			
+			<input type="text" name="lonTo" placeholder="lonTo">
+		</div>
+		<input type="submit" value="Submit">
+	</form>
+
+</body>
+
+</html>
