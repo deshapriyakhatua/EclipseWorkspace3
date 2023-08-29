@@ -7,12 +7,22 @@
 
 	<servlet>
 		<servlet-name>calculateDistance</servlet-name>
-		<servlet-class>findNearest.CalculateDistance</servlet-class>
+		<servlet-class>servlets.CalculateDistance</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>calculateDistance</servlet-name>
 		<url-pattern>/calculateDistance</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Users</servlet-name>
+		<servlet-class>servlets.Users</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Users</servlet-name>
+		<url-pattern>/users</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>
 

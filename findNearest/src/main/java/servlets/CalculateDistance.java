@@ -1,4 +1,4 @@
-package findNearest;
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import objects.Distances;
 
 public class CalculateDistance extends HttpServlet {
 
@@ -17,30 +18,38 @@ public class CalculateDistance extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		double lat1, lat2, lon1, lon2, el1, el2;
+		try {
+			double lat1, lat2, lon1, lon2, el1, el2;
 
-		lat1 = Double.parseDouble(req.getParameter("latFrom"));
-		lat2 = Double.parseDouble(req.getParameter("latTo"));
-		lon1 = Double.parseDouble(req.getParameter("lonFrom"));
-		lon2 = Double.parseDouble(req.getParameter("lonTo"));
+			lat1 = Double.parseDouble(req.getParameter("latFrom"));
+			lat2 = Double.parseDouble(req.getParameter("latTo"));
+			lon1 = Double.parseDouble(req.getParameter("lonFrom"));
+			lon2 = Double.parseDouble(req.getParameter("lonTo"));
 
-		el1 = 0.0;
-		el2 = 0.0;
+			el1 = 0.0;
+			el2 = 0.0;
 
-		double meter = getDistance(lat1, lat2, lon1, lon2, el1, el2); 
-		double feet = 3.281 * meter;
-		double miles = meter * 0.00062137119;
-		
-		Distances dist = new Distances(meter, feet, miles);
+			double meter = getDistance(lat1, lat2, lon1, lon2, el1, el2); 
+			double feet = 3.281 * meter;
+			double miles = meter * 0.00062137119;
+			
+			Distances dist = new Distances(meter, feet, miles);
 
-		String employeeJsonString = new Gson().toJson(dist);
+			String employeeJsonString = new Gson().toJson(dist);
 
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		resp.setCharacterEncoding("UTF-8");
-		out.print(employeeJsonString);
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("application/json");
+			resp.setCharacterEncoding("UTF-8");
+			out.print(employeeJsonString);
 
-		out.close();
+			out.close();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

@@ -1,4 +1,4 @@
-package findNearest;
+package objects;
 
 public class Distances {
 	
