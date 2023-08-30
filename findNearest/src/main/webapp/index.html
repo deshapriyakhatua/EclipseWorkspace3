@@ -5,6 +5,123 @@
 	<meta charset="ISO-8859-1">
 	<title>find Distance</title>
 	<style>
+		
+		#user-section {
+			width: 100%;
+			height: auto;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+
+		#input-for-user {
+			width: 750px;
+			height: 220px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+
+		#user-profile {
+			width: 750px;
+			height: 220px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#select-user, #choose-distance, #select-profession, #user-input-button {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			padding-left: 10px;
+			width: 300px;
+			height: 30px;
+			border-width: 1px;
+		}
+
+		#user-input-button {
+			background-color: rgb(244, 235, 235);
+			transition: all 0.3s;
+		}
+
+		#user-input-button:hover {
+			background-color: rgb(244, 202, 202);
+		}
+
+		#user-input-button:focus {
+			background-color: rgb(244, 148, 148);
+			border-color: rgb(244, 148, 148);
+		}
+
+		.profile-division {
+			margin: 10px 0px;
+			width: 600px;
+			height: 180px;
+			box-sizing: border-box;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid rgb(0, 0, 0);
+		}
+
+		.profile-top, .profile-bottom {
+			width: 100%;
+			height: 50%;
+		}
+
+		.profile-top {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.name-phone {
+			height: 100%;
+			width: 80%;
+		}
+		.profile-image {
+			height: 100%;
+			width: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.name-phone p {
+			margin: 1px;
+			padding-left: 10px;
+			padding-top: 5px;
+		}
+
+		.image-icon {
+			margin: 0;
+			text-align: center;
+			font-size: 70px;
+		}
+
+		.address, .distance {
+			margin: 1px;
+			padding-left: 10px;
+			padding-top: 5px;
+		}
+
+		/* output-section */
+
+		#output-section {
+			margin-top: 50px;
+			box-sizing: border-box;
+			width: 100%;
+			height: auto;
+			display: flex;
+			justify-content: space-evenly;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
 		form {
 			width: 50%;
 			height: 20vh;
@@ -12,29 +129,140 @@
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
-			
+			display: none;
 		}
 
-		input {
-			height: 30px;
-			width: 200px;
-			font-size: 15px;
-			padding-left: 10px;
-		}
 	</style>
 </head>
 
 <body>
+	<section id="user-section">
+		<div id="input-for-user">
+			<select name="" id="select-user">
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+				<option value="1234567890">1234567890</option>
+			</select>
+			<input type="number" id="choose-distance" placeholder="Distance (km)">
+			<select name="profession" id="select-profession">
+				<option value="teacher">Teacher</option>
+				<option value="artist">Artist</option>
+				<option value="engineer">Engineer</option>
+				<option value="doctor">Doctor</option>
+				<option value="student">Student</option>
+			</select>
+			<button id="user-input-button">SUBMIT</button>
+		</div>
+		<div id="user-profile">
+			<div class="profile-division">
+				<div class="profile-top">
+					<div class="name-phone">
+						<p class="name">Name: Deshapriya Khatua</p>
+						<p class="phone">Phone: 9091494739</p>
+						<p class="profession">Profession: Student</p>
+					</div>
+					<div class="profile-image">
+						<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
+					</div>
+				</div>
+				<div class="profile-bottom">
+
+					<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
+					<p class="distance">Distance: Not calculated</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="output-section">
+
+		<div class="profile-division">
+			<div class="profile-top">
+				<div class="name-phone">
+					<p class="name">Name: Deshapriya Khatua</p>
+					<p class="phone">Phone: 9091494739</p>
+					<p class="profession">Profession: Student</p>
+				</div>
+				<div class="profile-image">
+					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
+				</div>
+			</div>
+			<div class="profile-bottom">
+
+				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
+				<p class="distance">Distance: Not calculated</p>
+			</div>
+		</div>
+		<div class="profile-division">
+			<div class="profile-top">
+				<div class="name-phone">
+					<p class="name">Name: Deshapriya Khatua</p>
+					<p class="phone">Phone: 9091494739</p>
+					<p class="profession">Profession: Student</p>
+				</div>
+				<div class="profile-image">
+					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
+				</div>
+			</div>
+			<div class="profile-bottom">
+
+				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
+				<p class="distance">Distance: Not calculated</p>
+			</div>
+		</div>
+		<div class="profile-division">
+			<div class="profile-top">
+				<div class="name-phone">
+					<p class="name">Name: Deshapriya Khatua</p>
+					<p class="phone">Phone: 9091494739</p>
+					<p class="profession">Profession: Student</p>
+				</div>
+				<div class="profile-image">
+					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
+				</div>
+			</div>
+			<div class="profile-bottom">
+
+				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
+				<p class="distance">Distance: Not calculated</p>
+			</div>
+		</div>
+		<div class="profile-division">
+			<div class="profile-top">
+				<div class="name-phone">
+					<p class="name">Name: Deshapriya Khatua</p>
+					<p class="phone">Phone: 9091494739</p>
+					<p class="profession">Profession: Student</p>
+				</div>
+				<div class="profile-image">
+					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
+				</div>
+			</div>
+			<div class="profile-bottom">
+
+				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
+				<p class="distance">Distance: Not calculated</p>
+			</div>
+		</div>
+
+	</section>
+
+
 	<form action="calculateDistance" method="post">
 		<div>
 			<input type="text" name="latFrom" placeholder="latFrom">
-			
+
 			<input type="text" name="lonFrom" placeholder="lonFrom">
 		</div>
 
 		<div>
 			<input type="text" name="latTo" placeholder="latTo">
-			
+
 			<input type="text" name="lonTo" placeholder="lonTo">
 		</div>
 		<input type="submit" value="Submit">
