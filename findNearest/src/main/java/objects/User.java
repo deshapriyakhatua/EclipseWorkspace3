@@ -4,7 +4,7 @@ public class User {
 
 	String id;
 	String name;
-	String adderess;
+	String address;
 	String pin;
 	String phone;
 	String gender;
@@ -16,12 +16,12 @@ public class User {
 		
 	}
 
-	public User(String id, String name, String adderess, String pin, String phone, String gender, String latitude,
+	public User(String id, String name, String address, String pin, String phone, String gender, String latitude,
 			String longitude, String profession) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.adderess = adderess;
+		this.address = address;
 		this.pin = pin;
 		this.phone = phone;
 		this.gender = gender;
@@ -46,12 +46,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getAdderess() {
-		return adderess;
+	public String getaddress() {
+		return address;
 	}
 
-	public void setAdderess(String adderess) {
-		this.adderess = adderess;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 
 	public String getPin() {

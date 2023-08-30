@@ -2,14 +2,16 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
+import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.Distances;
+import objects.User;
 
 public class CalculateDistance extends HttpServlet {
 
@@ -19,23 +21,50 @@ public class CalculateDistance extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
-			double lat1, lat2, lon1, lon2, el1, el2;
-
-			lat1 = Double.parseDouble(req.getParameter("latFrom"));
-			lat2 = Double.parseDouble(req.getParameter("latTo"));
-			lon1 = Double.parseDouble(req.getParameter("lonFrom"));
-			lon2 = Double.parseDouble(req.getParameter("lonTo"));
-
-			el1 = 0.0;
-			el2 = 0.0;
-
-			double meter = getDistance(lat1, lat2, lon1, lon2, el1, el2); 
-			double feet = 3.281 * meter;
-			double miles = meter * 0.00062137119;
 			
-			Distances dist = new Distances(meter, feet, miles);
+			System.out.println(req.getParameter("userLat"));
+			System.out.println(req.getParameter("userLon"));
+			System.out.println(req.getParameter("distance"));
+			System.out.println(req.getParameter("profession"));
+			System.out.println(req.getParameter("gender"));
+			
+			double userLat = Double.parseDouble(req.getParameter("userLat").trim());
+			double userLon = Double.parseDouble(req.getParameter("userLon").trim());
+			long distance = Long.parseLong(req.getParameter("distance").trim())*1000;
+			String profession = req.getParameter("profession").trim();
+			String gender = req.getParameter("gender").trim();
+			
+			ArrayList<User> list = new ArrayList<>();
+			DatabaseConnect dbConnect = new DatabaseConnect();
+			try {
+				list = dbConnect.showUsers();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			ArrayList<User> outList = new ArrayList<>();
+			
+			for(int i=0; i<list.size(); i++) {
+				
+				double lat1, lat2, lon1, lon2, el1, el2;
 
-			String employeeJsonString = new Gson().toJson(dist);
+				lat1 = userLat;
+				lat2 = Double.parseDouble(list.get(i).getLatitude());
+				lon1 = userLon;
+				lon2 = Double.parseDouble(list.get(i).getLongitude());
+
+				el1 = 0.0;
+				el2 = 0.0;
+				
+				double meter = getDistance(lat1, lat2, lon1, lon2, el1, el2);
+				
+				if( meter <= distance && ( profession.equals("all") || list.get(i).getProfession().equals(profession) ) && ( gender.equals("all") || list.get(i).getGender().equals(gender) ) ) {
+					outList.add(list.get(i));
+				}
+				
+			}
+
+			String employeeJsonString = new Gson().toJson(outList);
 
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("application/json");
@@ -43,11 +72,10 @@ public class CalculateDistance extends HttpServlet {
 			out.print(employeeJsonString);
 
 			out.close();
+			
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -5,7 +5,10 @@
 	<meta charset="ISO-8859-1">
 	<title>find Distance</title>
 	<style>
-		
+		body {
+			background-color: rgb(255, 255, 255);
+		}
+
 		#user-section {
 			width: 100%;
 			height: auto;
@@ -32,7 +35,11 @@
 			align-items: center;
 		}
 
-		#select-user, #choose-distance, #select-profession, #user-input-button {
+		#select-user,
+		#choose-distance,
+		#select-profession,
+		#user-input-button,
+		#select-gender {
 			box-sizing: border-box;
 			margin: 0;
 			padding: 0;
@@ -68,7 +75,8 @@
 			border: 1px solid rgb(0, 0, 0);
 		}
 
-		.profile-top, .profile-bottom {
+		.profile-top,
+		.profile-bottom {
 			width: 100%;
 			height: 50%;
 		}
@@ -83,6 +91,7 @@
 			height: 100%;
 			width: 80%;
 		}
+
 		.profile-image {
 			height: 100%;
 			width: 20%;
@@ -100,10 +109,12 @@
 		.image-icon {
 			margin: 0;
 			text-align: center;
-			font-size: 70px;
+			font-size: 60px;
+			border: 0px solid red;
 		}
 
-		.address, .distance {
+		.address,
+		.distance {
 			margin: 1px;
 			padding-left: 10px;
 			padding-top: 5px;
@@ -121,17 +132,6 @@
 			flex-direction: row;
 			flex-wrap: wrap;
 		}
-
-		form {
-			width: 50%;
-			height: 20vh;
-			margin: auto;
-			display: flex;
-			justify-content: space-evenly;
-			align-items: center;
-			display: none;
-		}
-
 	</style>
 </head>
 
@@ -139,135 +139,201 @@
 	<section id="user-section">
 		<div id="input-for-user">
 			<select name="" id="select-user">
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
-				<option value="1234567890">1234567890</option>
+
 			</select>
-			<input type="number" id="choose-distance" placeholder="Distance (km)">
+			<input type="hidden" id="user-lat" name="userLat" value="21.935273">
+			<input type="hidden" id="user-lon" name="userLon" value="87.350206">
+			<input type="number" id="choose-distance" placeholder="Distance (km)" value="10">
 			<select name="profession" id="select-profession">
+				<option value="all">All</option>
 				<option value="teacher">Teacher</option>
 				<option value="artist">Artist</option>
 				<option value="engineer">Engineer</option>
 				<option value="doctor">Doctor</option>
 				<option value="student">Student</option>
 			</select>
+			<select name="gender" id="select-gender">
+				<option value="all">All</option>
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
 			<button id="user-input-button">SUBMIT</button>
 		</div>
 		<div id="user-profile">
-			<div class="profile-division">
-				<div class="profile-top">
-					<div class="name-phone">
-						<p class="name">Name: Deshapriya Khatua</p>
-						<p class="phone">Phone: 9091494739</p>
-						<p class="profession">Profession: Student</p>
-					</div>
-					<div class="profile-image">
-						<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
-					</div>
-				</div>
-				<div class="profile-bottom">
-
-					<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
-					<p class="distance">Distance: Not calculated</p>
-				</div>
-			</div>
 		</div>
 	</section>
 
 	<section id="output-section">
 
-		<div class="profile-division">
-			<div class="profile-top">
-				<div class="name-phone">
-					<p class="name">Name: Deshapriya Khatua</p>
-					<p class="phone">Phone: 9091494739</p>
-					<p class="profession">Profession: Student</p>
-				</div>
-				<div class="profile-image">
-					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
-				</div>
-			</div>
-			<div class="profile-bottom">
-
-				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
-				<p class="distance">Distance: Not calculated</p>
-			</div>
-		</div>
-		<div class="profile-division">
-			<div class="profile-top">
-				<div class="name-phone">
-					<p class="name">Name: Deshapriya Khatua</p>
-					<p class="phone">Phone: 9091494739</p>
-					<p class="profession">Profession: Student</p>
-				</div>
-				<div class="profile-image">
-					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
-				</div>
-			</div>
-			<div class="profile-bottom">
-
-				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
-				<p class="distance">Distance: Not calculated</p>
-			</div>
-		</div>
-		<div class="profile-division">
-			<div class="profile-top">
-				<div class="name-phone">
-					<p class="name">Name: Deshapriya Khatua</p>
-					<p class="phone">Phone: 9091494739</p>
-					<p class="profession">Profession: Student</p>
-				</div>
-				<div class="profile-image">
-					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
-				</div>
-			</div>
-			<div class="profile-bottom">
-
-				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
-				<p class="distance">Distance: Not calculated</p>
-			</div>
-		</div>
-		<div class="profile-division">
-			<div class="profile-top">
-				<div class="name-phone">
-					<p class="name">Name: Deshapriya Khatua</p>
-					<p class="phone">Phone: 9091494739</p>
-					<p class="profession">Profession: Student</p>
-				</div>
-				<div class="profile-image">
-					<p class="image-icon">👨‍💼</p> <!-- 👩‍💼👨‍💼 -->
-				</div>
-			</div>
-			<div class="profile-bottom">
-
-				<p class="address"> Address: Menkapur, Dantan, Paschim Medinipur, West Bengal</p>
-				<p class="distance">Distance: Not calculated</p>
-			</div>
-		</div>
-
 	</section>
 
 
-	<form action="calculateDistance" method="post">
-		<div>
-			<input type="text" name="latFrom" placeholder="latFrom">
 
-			<input type="text" name="lonFrom" placeholder="lonFrom">
-		</div>
-
-		<div>
-			<input type="text" name="latTo" placeholder="latTo">
-
-			<input type="text" name="lonTo" placeholder="lonTo">
-		</div>
-		<input type="submit" value="Submit">
-	</form>
 
 </body>
 
 </html>
+<script>
+
+	let outList = [];
+	let select = document.getElementById("select-user");
+
+	getUser();
+	async function getUser() {
+		console.log("getUser called");
+		try {
+
+			console.log("Fetch Process Initiated...");
+			let res = await fetch("http://localhost:8080/findNearest/users", {
+				"headers": {
+					"content-type": "application/x-www-form-urlencoded"
+				},
+				"body": "",
+				"method": "POST"
+			});
+
+			let data = await res.text();
+			console.log("Users : " + data);
+			outList = JSON.parse(data);
+			
+			// append id in select tag
+			for (let i = 0; i < outList.length; i++) {
+
+				let option = document.createElement("option");
+				option.value = outList[i].id;
+				option.innerHTML = outList[i].id;
+				select.append(option);
+
+			}
+			populateUser();
+
+		}
+		catch (err) {
+			console.log(err);
+		}
+
+	}
+
+	select.addEventListener("change", populateUser);
+
+	function populateUser() {
+
+		let selectId = select.options[select.selectedIndex].value;
+
+		let profileDiv = document.getElementById("user-profile");
+		profileDiv.innerHTML = "";
+
+		// append in user profile
+		for (let i = 0; i < outList.length; i++) {
+
+			if (selectId === outList[i].id) {
+				let profileDivision = document.createElement("div");
+				profileDivision.className = "profile-division";
+
+				profileDivision.innerHTML = `<div class="profile-top">
+													<div class="name-phone">
+														<p class="name">Name: ${outList[i].name}</p>
+														<p class="phone">Phone: ${outList[i].phone}</p>
+														<p class="profession">Profession: ${outList[i].profession}</p>
+													</div>
+													<div class="profile-image">
+														<p class="image-icon"></p> <!-- 👩‍💼👨‍💼 -->
+													</div>
+												</div>
+												<div class="profile-bottom">
+									
+													<p class="address"> Address: ${outList[i].address}</p>
+													<p class="distance">Gender: ${outList[i].gender}</p>
+												</div>`;
+
+				profileDiv.append(profileDivision);
+				
+				document.getElementById("user-lat").value = outList[i].latitude;
+				document.getElementById("user-lon").value = outList[i].longitude;
+				
+			}
+
+		}
+
+	}
+
+
+</script>
+<script>
+	document.getElementById("user-input-button").addEventListener("click", fetchAndPopulate);
+
+	function fetchAndPopulate() {
+		console.log("button pressed");
+
+		let userLat = document.getElementById("user-lat").value;
+
+		let userLon = document.getElementById("user-lon").value;
+
+		let distance = document.getElementById("choose-distance").value;
+
+		let selectProfession = document.getElementById("select-profession");
+		let profession = selectProfession.options[selectProfession.selectedIndex].value;
+
+		let selectGender = document.getElementById("select-gender");
+		let gender = selectGender.options[selectGender.selectedIndex].value;
+
+		console.log(userLat, userLon, distance, profession, gender);
+		getData();
+		async function getData() {
+			console.log("getData called");
+			try {
+
+				console.log("Fetch Process Initiated...");
+				let res = await fetch("http://localhost:8080/findNearest/calculateDistance", {
+					"headers": {
+						"content-type": "application/x-www-form-urlencoded"
+					},
+					"body": `userLat=${userLat}&userLon=${userLon}&distance=${distance}&profession=${profession}&gender=${gender}`,
+					"method": "POST"
+				});
+
+				let data = await res.text();
+				console.log("Users : " + data);
+				let outList = JSON.parse(data);
+
+				let outputSection = document.getElementById("output-section");
+				outputSection.innerHTML = "";
+
+				for (let i = 0; i < outList.length; i++) {
+
+					let profileDivision = document.createElement("div");
+					profileDivision.className = "profile-division";
+
+					profileDivision.innerHTML = `<div class="profile-top">
+													<div class="name-phone">
+														<p class="name">Name: ${outList[i].name}</p>
+														<p class="phone">Phone: ${outList[i].phone}</p>
+														<p class="profession">Profession: ${outList[i].profession}</p>
+													</div>
+													<div class="profile-image">
+														<p class="image-icon"></p> <!-- 👩‍💼👨‍💼 -->
+													</div>
+												</div>
+												<div class="profile-bottom">
+									
+													<p class="address"> Address: ${outList[i].address}</p>
+													<p class="distance">Gender: ${outList[i].gender}</p>
+												</div>`;
+
+					outputSection.append(profileDivision);
+
+
+				}
+
+			}
+			catch (err) {
+				console.log(err);
+			}
+
+		}
+
+
+	}
+
+
+</script>

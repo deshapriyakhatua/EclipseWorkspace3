@@ -22,7 +22,7 @@
     <fullyQualifiedTypeName name="findNearest.CalculateDistance"/>
     <fullyQualifiedTypeName name="findNearest.Distances"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServlet"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="databaseConnector.DatabaseConnect"/>
     <fullyQualifiedTypeName name="objects.User"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
