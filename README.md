@@ -111,8 +111,7 @@ Explain any configuration files that need to be set up, environment variables th
 ### Authentication
 Authentication is required to access certain endpoints. You need to include an authentication token in the headers of your requests.
 
-```
-    http
+```http
     Authorization: Bearer YOUR_AUTH_TOKEN
 ```
 
@@ -127,9 +126,7 @@ Authentication is required to access certain endpoints. You need to include an a
    - Description: Register a new user with their basic information.
 
    - Request:
-     ```
-       
-        json
+     ```json
         {
           "username": "new_user",
           "email": "newuser@example.com",
@@ -139,8 +136,7 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
        
     - Response:
-      ```
-        json
+      ```json
         {
           "message": "User registered successfully",
           "user_id": "123456"
@@ -155,8 +151,7 @@ Authentication is required to access certain endpoints. You need to include an a
    - Description: Log in an existing user.
     
    - Request:
-     ```   
-        json
+     ```json
         {
           "email": "user@example.com",
           "password": "password123"
@@ -164,8 +159,7 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
      
    - Response:
-     ```
-        json
+     ```json
         {
           "message": "Login successful",
           "user_id": "123456",
@@ -181,8 +175,7 @@ Authentication is required to access certain endpoints. You need to include an a
    - Description: Update a user's profile information.
     
    - Request:
-     ```
-        json
+     ```json
         {
           "bio": "Hello, I'm a foodie and traveler!",
           "interests": ["food", "travel"]
@@ -190,8 +183,7 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
      
    - Response:
-     ```
-        json
+     ```json
         {
           "message": "Profile updated successfully"
         }
@@ -205,14 +197,12 @@ Authentication is required to access certain endpoints. You need to include an a
    - Description: Get a list of nearby friends based on the user's location.
     
    - Request:
-     ```
-        http
+     ```http
         GET /api/nearby?latitude=12.345&longitude=67.890
      ```
      
    - Response:
-     ```
-        json
+     ```json
         {
           "message": "Nearby friends retrieved successfully",
           "nearby_friends": [
@@ -238,8 +228,7 @@ Authentication is required to access certain endpoints. You need to include an a
    - Description: Send a message to a friend.
     
    - Request:
-     ```
-        json
+     ```json
         {
           "recipient_id": "789012",
           "message": "Hey, let's meet up for coffee!"
@@ -247,8 +236,7 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
      
    - Response:
-     ```
-        json
+     ```json
         {
           "message": "Message sent successfully"
         }
@@ -256,8 +244,7 @@ Authentication is required to access certain endpoints. You need to include an a
      
 ### Error Handling
  The API returns appropriate error responses in case of invalid requests or other errors. For example:
- ```
-    json
+ ```json
     {
       "error": "Invalid credentials",
       "message": "Please check your email and password"
