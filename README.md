@@ -33,8 +33,6 @@ Whether you're new to an area, looking to expand your social network, or simply 
 
 ## Technologies Used
 
-List the technologies, frameworks, and libraries that your backend project relies on. For example:
-
 - Java
 - MySQL
 - JavaScript
@@ -105,7 +103,151 @@ Explain any configuration files that need to be set up, environment variables th
 
 ## API Documentation
 
-If your backend exposes APIs, provide a brief overview of the available endpoints and how to use them. You can also include a link to more detailed API documentation if you have it.
+ This documentation provides an overview of the endpoints and functionalities that the API offers for discovering and connecting with new friends in close proximity.
+  Base URL
+  https://api.findfriendsnearby.com
+Authentication
+Authentication is required to access certain endpoints. You need to include an authentication token in the headers of your requests.
+
+http
+Copy code
+Authorization: Bearer YOUR_AUTH_TOKEN
+Endpoints
+1. User Registration
+Endpoint: /api/register
+
+Method: POST
+
+Description: Register a new user with their basic information.
+
+Request:
+
+json
+Copy code
+{
+  "username": "new_user",
+  "email": "newuser@example.com",
+  "password": "password123"
+}
+Response:
+
+json
+Copy code
+{
+  "message": "User registered successfully",
+  "user_id": "123456"
+}
+2. User Login
+Endpoint: /api/login
+
+Method: POST
+
+Description: Log in an existing user.
+
+Request:
+
+json
+Copy code
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+Response:
+
+json
+Copy code
+{
+  "message": "Login successful",
+  "user_id": "123456",
+  "access_token": "YOUR_ACCESS_TOKEN"
+}
+3. Update User Profile
+Endpoint: /api/profile
+
+Method: PUT
+
+Description: Update a user's profile information.
+
+Request:
+
+json
+Copy code
+{
+  "bio": "Hello, I'm a foodie and traveler!",
+  "interests": ["food", "travel"]
+}
+Response:
+
+json
+Copy code
+{
+  "message": "Profile updated successfully"
+}
+4. Get Nearby Friends
+Endpoint: /api/nearby
+
+Method: GET
+
+Description: Get a list of nearby friends based on the user's location.
+
+Request:
+
+http
+Copy code
+GET /api/nearby?latitude=12.345&longitude=67.890
+Response:
+
+json
+Copy code
+{
+  "message": "Nearby friends retrieved successfully",
+  "nearby_friends": [
+    {
+      "user_id": "789012",
+      "username": "friend1",
+      "distance": 0.3
+    },
+    {
+      "user_id": "345678",
+      "username": "friend2",
+      "distance": 1.2
+    }
+  ]
+}
+5. Send Message
+Endpoint: /api/message
+
+Method: POST
+
+Description: Send a message to a friend.
+
+Request:
+
+json
+Copy code
+{
+  "recipient_id": "789012",
+  "message": "Hey, let's meet up for coffee!"
+}
+Response:
+
+json
+Copy code
+{
+  "message": "Message sent successfully"
+}
+Error Handling
+The API returns appropriate error responses in case of invalid requests or other errors. For example:
+
+json
+Copy code
+{
+  "error": "Invalid credentials",
+  "message": "Please check your email and password"
+}
+Conclusion
+This API documentation provides a comprehensive overview of the endpoints and functionalities available in the "Find Friends Nearby" project. Use these endpoints to register users, authenticate, update profiles, discover nearby friends, and send messages. If you have any questions or need further assistance, please contact our support team at support@findfriendsnearby.com.
+ 
 
 ## Usage
 
