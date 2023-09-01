@@ -119,16 +119,15 @@ Authentication is required to access certain endpoints. You need to include an a
 
 1. User Registration
 
-   - Endpoint: `/api/register`
+   - Endpoint: ` /signup `
 
    - Method: ` POST `
 
-   - Description: Register a new user with their basic information.
+   - Description: -
 
    - Request:
      ```json
         {
-          "username": "new_user",
           "email": "newuser@example.com",
           "password": "password123"
         }
@@ -139,16 +138,16 @@ Authentication is required to access certain endpoints. You need to include an a
       ```json
         {
           "message": "User registered successfully",
-          "user_id": "123456"
+          "user_id": "1234567890"
         }
       ```
       
 2. User Login
-   - Endpoint: ` /api/login `
+   - Endpoint: ` /login `
     
    - Method: ` POST `
     
-   - Description: Log in an existing user.
+   - Description: -
     
    - Request:
      ```json
@@ -162,23 +161,23 @@ Authentication is required to access certain endpoints. You need to include an a
      ```json
         {
           "message": "Login successful",
-          "user_id": "123456",
-          "access_token": "YOUR_ACCESS_TOKEN"
+          "user_id": "1234567890",
+          "access_token": "f756c8-k6dh89-67kjh8-9i"
         }
      ```
      
 3. Update User Profile
-   - Endpoint: /api/profile
+   - Endpoint: /updateUserDetails
     
-   - Method: PUT
+   - Method: ` POST `
     
-   - Description: Update a user's profile information.
+   - Description: -
     
    - Request:
      ```json
         {
-          "bio": "Hello, I'm a foodie and traveler!",
-          "interests": ["food", "travel"]
+          "name": "Firstname Lastname",
+          "phone": "9876543210"
         }
      ```
      
