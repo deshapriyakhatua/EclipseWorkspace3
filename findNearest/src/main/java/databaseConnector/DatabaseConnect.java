@@ -2,6 +2,7 @@ package databaseConnector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -43,17 +44,145 @@ public class DatabaseConnect {
 			return list;
 
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return list;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return list;
 
 		}
 
+	}
+
+	public boolean updateUserDetails(String id, String name, String address, String pin, String phone, String gender, String latitude,
+			String longitude, String profession) {
+		
+		try {
+			// connecting to database
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/findnearest";
+
+			Connection con = DriverManager.getConnection(url, "root", "1036");
+
+			if (con.isClosed()) {
+				System.out.println(" DB connection closed registerUser");
+			} else {
+				System.out.println(" DB connection created registerUser");
+			}
+
+			// Accessing Data from table
+			PreparedStatement ptst = con.prepareStatement("insert into users values(?,?,?,?,?,?,?,?,?)");
+
+			ptst.setString(1, id);
+			ptst.setString(2, name);
+			ptst.setString(3, address);
+			ptst.setString(4, pin);
+			ptst.setString(5, phone);
+			ptst.setString(6, gender);
+			ptst.setString(7, latitude);
+			ptst.setString(8, longitude);
+			ptst.setString(9, profession);
+			ptst.executeUpdate();
+
+			con.close();
+
+			return true;
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+
+		}
+		
+	}
+
+	public Object logIn(String userId, String password) {
+		
+		try {
+			// connecting to database
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/findnearest";
+
+			Connection con = DriverManager.getConnection(url, "root", "1036");
+
+			if (con.isClosed()) {
+				System.out.println(" DB connection closed logIn");
+			} else {
+				System.out.println(" DB connection created logIn");
+			}
+
+			// Accessing Data from table
+			Statement stmt = con.createStatement();
+			ResultSet set = stmt.executeQuery("select id from users");
+
+			while (set.next()) {
+
+				if(set.getString(1).equals(userId)) {
+					return true;
+				}
+				System.out.println("user id: " + set.getString(1)+" "+ userId);
+			}
+
+			con.close();
+
+			return false;
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+
+		}
+
+	}
+
+	public boolean signUp(String userUID, String password, String name, String phone, String email) {
+		
+		try {
+			// connecting to database
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/findnearest";
+
+			Connection con = DriverManager.getConnection(url, "root", "1036");
+
+			if (con.isClosed()) {
+				System.out.println(" DB connection closed signUp");
+			} else {
+				System.out.println(" DB connection created signUp");
+			}
+
+			// Accessing Data from table
+			PreparedStatement ptst = con.prepareStatement("insert into users(useruid, password, name, phone, email) values(?,?,?,?,?)");
+
+			ptst.setString(1, userUID);
+			ptst.setString(2, password);
+			ptst.setString(3, name);
+			ptst.setString(4, phone);
+			ptst.setString(5, email);
+			ptst.executeUpdate();
+
+			con.close();
+
+			return true;
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+
+		}
+		
 	}
 	
 }

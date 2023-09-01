@@ -30,7 +30,7 @@ public class CalculateDistance extends HttpServlet {
 			
 			double userLat = Double.parseDouble(req.getParameter("userLat").trim());
 			double userLon = Double.parseDouble(req.getParameter("userLon").trim());
-			long distance = Long.parseLong(req.getParameter("distance").trim())*1000;
+			long distance = (long)( Double.parseDouble(req.getParameter("distance").trim())*1000 );
 			String profession = req.getParameter("profession").trim();
 			String gender = req.getParameter("gender").trim();
 			
