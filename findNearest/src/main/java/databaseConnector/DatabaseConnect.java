@@ -55,8 +55,8 @@ public class DatabaseConnect {
 
 	}
 
-	public boolean updateUserDetails(String id, String name, String address, String pin, String phone, String gender, String latitude,
-			String longitude, String profession) {
+	public boolean updateUserDetails(String name, String phone, String email, String gender, String latitude,
+			String longitude, String profession, String address) {
 		
 		try {
 			// connecting to database
@@ -72,17 +72,16 @@ public class DatabaseConnect {
 			}
 
 			// Accessing Data from table
-			PreparedStatement ptst = con.prepareStatement("insert into users values(?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ptst = con.prepareStatement("insert into users(name, phone, email, gender, latitude, longitude, profession, address) values(?,?,?,?,?,?,?,?)");
 
-			ptst.setString(1, id);
-			ptst.setString(2, name);
-			ptst.setString(3, address);
-			ptst.setString(4, pin);
-			ptst.setString(5, phone);
-			ptst.setString(6, gender);
-			ptst.setString(7, latitude);
-			ptst.setString(8, longitude);
-			ptst.setString(9, profession);
+			ptst.setString(1, name);
+			ptst.setString(2, phone);
+			ptst.setString(3, email);
+			ptst.setString(4, gender);
+			ptst.setString(5, latitude);
+			ptst.setString(6, longitude);
+			ptst.setString(7, profession);
+			ptst.setString(8, address);
 			ptst.executeUpdate();
 
 			con.close();

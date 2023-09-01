@@ -11,25 +11,24 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class RegisterUser extends HttpServlet{
+public class UpdateUserDetails extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String id = req.getParameter("id");
 		String name = req.getParameter("name");
-		String address = req.getParameter("address");
-		String pin = req.getParameter("pin");
 		String phone = req.getParameter("phone");
+		String email = req.getParameter("email");
 		String gender = req.getParameter("gender");
 		String latitude = req.getParameter("latitude");
 		String longitude = req.getParameter("longitude");
 		String profession = req.getParameter("profession");
+		String address = req.getParameter("address");
 		
 		DatabaseConnect db = new DatabaseConnect();
-		boolean bool = db.updateUserDetails(id, name, address, pin, phone, gender, latitude, longitude, profession);
+		boolean bool = db.updateUserDetails(name, phone, email, gender, latitude, longitude, profession, address);
 		
 		String registerJsonStatus = new Gson().toJson(bool);
 

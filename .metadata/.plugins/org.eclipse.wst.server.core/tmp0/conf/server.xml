@@ -140,7 +140,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="F:\EclipseWorkspace3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="F:\EclipseWorkspace3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\findNearest" path="/findNearest" reloadable="true" source="org.eclipse.jst.j2ee.server:findNearest"/></Host>
+      <Context docBase="F:\EclipseWorkspace3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="F:\EclipseWorkspace3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\findNearest" path="/findNearest" reloadable="true" source="org.eclipse.jst.j2ee.server:findNearest"/><Context docBase="F:\EclipseWorkspace3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\mavenProject" path="/mavenProject" reloadable="true" source="org.eclipse.jst.j2ee.server:mavenProject"/></Host>
     </Engine>
   </Service>
 </Server>

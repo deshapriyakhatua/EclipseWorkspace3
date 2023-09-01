@@ -27,25 +27,27 @@
 </head>
 
 <body>
-	<form action="registerUser" method="post">
-		<input name="id" id="id" type="text" placeholder="id" />
+	<form action="updateUserDetails" method="post">
+		
 		<input name="name" id="name" type="text" placeholder="Name" />
-		<input name="address" id="address" type="text" placeholder="Address" />
-		<input name="pin" id="pin" type="text" placeholder="Pin" />
 		<input name="phone" id="phone" type="text" placeholder="Phone" />
+		<input name="email" id="email" type="email" placeholder="Email" />
 		<input name="gender" id="gender" type="text" placeholder="Gender" />
 		<input name="latitude" id="latitude" type="text" placeholder="Latitude" />
 		<input name="longitude" id="longitude" type="text" placeholder="Longitude" />
 		<input name="profession" id="profession" type="text" placeholder="Profession" />
+		<input name="address" id="address" type="text" placeholder="Address" />
 		<input type="submit"/>
 	</form>
 
-	<div id="map"></div>
+	
 	<br>
 	<button id="confirmPosition">Confirm Position</button>
 	<br>
 	<p>On idle position: <span id="onIdlePositionView"></span></p>
 	<p>On click position: <span id="onClickPositionView"></span></p>
+	
+	<div id="map"></div>
 	<script>
 		// Get element references
 		var confirmBtn = document.getElementById('confirmPosition');

@@ -26,11 +26,11 @@
 	
 	<servlet>
 		<servlet-name>registerUser</servlet-name>
-		<servlet-class>servlets.RegisterUser</servlet-class>
+		<servlet-class>servlets.UpdateUserDetails</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>registerUser</servlet-name>
-		<url-pattern>/registerUser</url-pattern>
+		<url-pattern>/updateUserDetails</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
