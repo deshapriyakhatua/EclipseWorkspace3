@@ -100,7 +100,7 @@ public class DatabaseConnect {
 		
 	}
 
-	public Object logIn(String userId, String password) {
+	public boolean logIn(String userId, String password) {
 		
 		try {
 			// connecting to database
