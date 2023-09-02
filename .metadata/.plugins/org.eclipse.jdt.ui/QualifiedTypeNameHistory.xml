@@ -26,4 +26,9 @@
     <fullyQualifiedTypeName name="databaseConnector.DatabaseConnect"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.Cookie"/>
+    <fullyQualifiedTypeName name="objects.LoginResponse"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
+    <fullyQualifiedTypeName name="databaseConnector.LoginTokenValidation"/>
+    <fullyQualifiedTypeName name="objects.LoginTokenValidationResponse"/>
 </qualifiedTypeNameHistroy>
