@@ -28,6 +28,12 @@ public class LoginTokenValidator implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 
+		// exclude login page
+		System.out.println(req.getRequestURI());
+		if(req.getRequestURI().startsWith("/findNearest/login")) {
+			chain.doFilter(req, resp);
+		}
+		
 		LoginTokenValidationResponse tokenValidationResponse = new LoginTokenValidationResponse("", "");
 
 		Cookie[] cookies = req.getCookies();
