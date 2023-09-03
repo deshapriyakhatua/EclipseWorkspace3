@@ -50,5 +50,14 @@
 		<servlet-name>signup</servlet-name>
 		<url-pattern>/signup</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>logintoken</servlet-name>
+		<servlet-class>filter.LoginTokenValidation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logintoken</servlet-name>
+		<url-pattern>/logintoken</url-pattern>
+	</servlet-mapping>
 
 </web-app>

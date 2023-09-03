@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import com.google.gson.Gson;
@@ -21,25 +22,19 @@ public class Login extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String userId = req.getParameter("userId");
+		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		System.out.println(userId+" "+password);
+		System.out.println(email + " " + password);
 		DatabaseConnect dbConnect = new DatabaseConnect();
 		
-		boolean loginStatus = dbConnect.logIn(userId, password);
-		LoginResponse loginResponse;
+		LoginResponse loginResponse = dbConnect.logIn(email, password);
 		
-		if(loginStatus) {
+		if(loginResponse.getMessage().equals("Login Successful") && loginResponse.getUserid().length() > 0) {
 			
-			String loginToken = UUID.randomUUID().toString();
-			Cookie cookie = new Cookie("loginToken", loginToken);
+			Cookie cookie = new Cookie("loginToken", loginResponse.getAccessToken());
 			cookie.setMaxAge(24*60*60);
 			resp.addCookie(cookie);
-			loginResponse = new LoginResponse("Login Successful", userId, loginToken);
 			
-		}
-		else {
-			loginResponse = new LoginResponse("Login Failed", "", "");
 		}
 		
 		String registerJsonStatus = new Gson().toJson(loginResponse);

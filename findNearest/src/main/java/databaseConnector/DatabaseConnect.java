@@ -6,8 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.UUID;
 
+import objects.LoginResponse;
 import objects.User;
 
 public class DatabaseConnect {
@@ -100,9 +103,12 @@ public class DatabaseConnect {
 		
 	}
 
-	public boolean logIn(String userId, String password) {
+	public LoginResponse logIn(String email, String password) {
+		
+		LoginResponse loginResponse = new LoginResponse("", "", "");
 		
 		try {
+			
 			// connecting to database
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/findnearest";
@@ -115,33 +121,64 @@ public class DatabaseConnect {
 				System.out.println(" DB connection created logIn");
 			}
 
-			// Accessing Data from table
+			// Accessing Data from users table
 			Statement stmt = con.createStatement();
-			ResultSet set = stmt.executeQuery("select id from users");
+			ResultSet set = stmt.executeQuery("select useruid, email, password from users");
 
 			while (set.next()) {
 
-				if(set.getString(1).equals(userId)) {
-					return true;
+				System.out.println("email: " + set.getString(2)+" password" + set.getString(3));
+				
+				if( set.getString(2).equals(email) && set.getString(3).equals(password) ) {
+					
+					System.out.println("user is registered");
+					System.out.println("updating/inserting access token to database");
+					
+					String loginToken = UUID.randomUUID().toString();
+					String userid = set.getString(1);
+					Timestamp currTime = new Timestamp(System.currentTimeMillis());
+					
+					// Inserting Data to login_token table
+					PreparedStatement ptst = con.prepareStatement("replace into login_token(tokenid, useruid, validity) values(?,?,?)");
+
+					ptst.setString(1, loginToken);
+					ptst.setString(2, userid);
+					ptst.setTimestamp(3, currTime);
+					ptst.executeUpdate();
+
+					System.out.println("updated/inserted access token to database");
+					
+					loginResponse.setMessage("Login Successful");
+					loginResponse.setUserid(set.getString(1));
+					loginResponse.setAccessToken(loginToken);
+					
+					return loginResponse;
+					
 				}
-				System.out.println("user id: " + set.getString(1)+" "+ userId);
+				
 			}
 
 			con.close();
 
-			return false;
+			loginResponse.setMessage("Login Failed: User is not registered");
+			
+			return loginResponse;
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			return false;
+			loginResponse.setMessage("Login Failed: " + e);
+			return loginResponse;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			loginResponse.setMessage("Login Failed: " + e);
+			return loginResponse;
 
 		}
 
 	}
+	
+
 
 	public boolean signUp(String userUID, String password, String name, String phone, String email) {
 		
