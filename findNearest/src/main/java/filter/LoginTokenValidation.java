@@ -19,14 +19,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import objects.LoginTokenValidationResponse;
 
-public class LoginTokenValidation extends HttpServlet{
+public class LoginTokenValidation extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		LoginTokenValidationResponse tokenValidationResponse = new LoginTokenValidationResponse("", "");
 		
 		Cookie[] cookies = req.getCookies();
+		if (cookies == null) {
+			// go for login
+			tokenValidationResponse.setMessage("Token not available in your device, Login now");
+		}
+		
 		String loginToken = null;
-		LoginTokenValidationResponse tokenValidationResponse = new LoginTokenValidationResponse("", "");
 
 		for (Cookie c : cookies) {
 
@@ -38,55 +46,69 @@ public class LoginTokenValidation extends HttpServlet{
 		}
 
 		if (loginToken == null) {
-			tokenValidationResponse = new LoginTokenValidationResponse("", "");
-		}
+			// go for login
+			tokenValidationResponse.setMessage("Token not available in your device, Login now");
+		} else {
+			System.out.println(loginToken);
+			try {
+				// connecting to database
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				String url = "jdbc:mysql://localhost:3306/findnearest";
 
-		try {
-			// connecting to database
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/findnearest";
+				Connection con = DriverManager.getConnection(url, "root", "1036");
 
-			Connection con = DriverManager.getConnection(url, "root", "1036");
+				if (con.isClosed()) {
+					System.out.println("DB connection closed isValidLoginToken");
+				} else {
+					System.out.println("DB connection created isValidLoginToken");
+				}
 
-			if (con.isClosed()) {
-				System.out.println(" DB connection closed isValidLoginToken");
-			} else {
-				System.out.println(" DB connection created isValidLoginToken");
-			}
+				// Accessing Data from table
+				Statement stmt = con.createStatement();
+				ResultSet set = stmt.executeQuery("select * from login_token");
+				
+				while (set.next()) {
 
-			// Accessing Data from table
-			Statement stmt = con.createStatement();
-			ResultSet set = stmt.executeQuery("select * from login_token");
-
-			while (set.next()) {
-
-				if(set.getString(1).equals(loginToken)) {
+					System.out.println("login token: " + set.getString(1) + " | userid: " + set.getString(2) + " | time: "
+							+ set.getString(3));
 					
-					Timestamp timeStamp = set.getTimestamp(2);
-					Timestamp currTimestamp = new Timestamp(System.currentTimeMillis());
-					long tokenAge = ( currTimestamp.getTime() - timeStamp.getTime() ) / ( 1000*60 ); //in minute
-					
-					if(tokenAge < (5 * 1)) {
-						tokenValidationResponse = new LoginTokenValidationResponse("","");
+					if (set.getString(1).equals(loginToken)) {
+						
+						Timestamp timeStamp = set.getTimestamp(3);
+						Timestamp currTimestamp = new Timestamp(System.currentTimeMillis());
+						long tokenAge = (currTimestamp.getTime() - timeStamp.getTime()) / (1000 * 60); // in minute
+						
+						if (tokenAge < (5 * 1)) {
+							tokenValidationResponse.setMessage("user cookie is correct");
+							tokenValidationResponse.setUserid(set.getString(2));
+						}
+						else {
+							tokenValidationResponse.setMessage("user cookie is expired, Login");
+						}
+						
+						break;
+
 					}
 					
 				}
 				
-				System.out.println("user id: " + set.getString(1) + " | name: " + set.getString(2) + " | address: "
-						+ set.getString(3));
+				if(tokenValidationResponse.getMessage().length() == 0) tokenValidationResponse.setMessage("Token not available in database, Login now");
+
+				con.close();
+
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				tokenValidationResponse.setMessage(e+"");
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				tokenValidationResponse.setMessage(e+"");
 			}
 
-			con.close();
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-
 		}
-		tokenValidationResponse = new LoginTokenValidationResponse("","");
+
 		
+
 		String tokenValidationResponseStatus = new Gson().toJson(tokenValidationResponse);
 
 		PrintWriter out = resp.getWriter();
@@ -95,10 +117,7 @@ public class LoginTokenValidation extends HttpServlet{
 		out.print(tokenValidationResponseStatus);
 
 		out.close();
-		
-		
-	}
 
-	
+	}
 
 }
