@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,9 +10,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-import com.google.gson.Gson;
-
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -28,12 +24,12 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String getDestinationURL = req.getParameter("getDestinationURL").substring(13);
+		System.out.println("login servlet started running...");
+
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		
-		System.out.println("input email: " + email + " input password: " + password + " getDestinationURL: " + getDestinationURL);
-		System.out.println(req.getAttribute("LoginTokenValidationResponse"));
+
+		System.out.println("input email: " + email + " input password: " + password);
 
 		// connecting to Database
 
@@ -61,7 +57,8 @@ public class Login extends HttpServlet {
 
 				System.out.println("DBemail: " + set.getString(2) + " DBpassword: " + set.getString(3));
 
-				if (set.getString(2).equals(email) && set.getString(3).equals(password)) {
+				if (email != null && set.getString(2).equals(email) && password != null
+						&& set.getString(3).equals(password)) {
 
 					System.out.println("user is registered");
 					System.out.println("updating/inserting access token to database");
@@ -84,16 +81,14 @@ public class Login extends HttpServlet {
 					loginResponse.setMessage("Login Successful");
 					loginResponse.setUserid(set.getString(1));
 					loginResponse.setAccessToken(loginToken);
-					
+
 					Cookie cookie = new Cookie("loginToken", loginResponse.getAccessToken());
 					cookie.setMaxAge(24 * 60 * 60);
 					resp.addCookie(cookie);
-					
-					RequestDispatcher rDispatcher = req.getRequestDispatcher(getDestinationURL);
-					rDispatcher.forward(req, resp);
-					
-					return;
 
+					con.close();
+					resp.sendRedirect("/findNearest");
+					return;
 
 				}
 
@@ -101,27 +96,20 @@ public class Login extends HttpServlet {
 
 			con.close();
 
-			if(loginResponse.getUserid().length() == 0) { loginResponse.setMessage("Login Failed: User not found/registered in database"); }
+			loginResponse.setMessage("Login Failed: User not found/registered in database");
+			resp.sendRedirect("login.jsp");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			loginResponse.setMessage("Login Failed: " + e);
+			resp.sendRedirect("login.jsp");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			loginResponse.setMessage("Login Failed: " + e);
+			resp.sendRedirect("login.jsp");
 
 		}
-
-
-		String registerJsonStatus = new Gson().toJson(loginResponse);
-
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		resp.setCharacterEncoding("UTF-8");
-		out.print(registerJsonStatus);
-
-		out.close();
 
 	}
 

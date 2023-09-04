@@ -10,12 +10,9 @@
 </head>
 <body>
 	<%
-	LoginTokenValidationResponse loginTokenValidationResponse = (LoginTokenValidationResponse) request.getAttribute("LoginTokenValidationResponse");
-	out.println(loginTokenValidationResponse.getMessage());
-	out.print(loginTokenValidationResponse.getDestinationURL());
+		System.out.println("login.jsp started running...");
 	%>
 	<form action="login" method="post">
-		<input type="hidden" name="getDestinationURL" value="<%= loginTokenValidationResponse.getDestinationURL() %>" />
 		<input name="email" id="email" type="email" placeholder="Email" >
 		<input name="password" id="password" type="password" placeholder="Password" >
 		<input name="submit" id="submit" type="submit" placeholder="SUBMIT" >
