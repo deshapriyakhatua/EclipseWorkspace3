@@ -30,11 +30,14 @@ public class LoginTokenValidator implements Filter {
 
 		// exclude login page
 		System.out.println(req.getRequestURI());
+		System.out.println(req.getAttribute("LoginTokenValidationResponse"));
 		if(req.getRequestURI().startsWith("/findNearest/login")) {
 			chain.doFilter(req, resp);
+			return;
 		}
 		
-		LoginTokenValidationResponse tokenValidationResponse = new LoginTokenValidationResponse("", "");
+		LoginTokenValidationResponse tokenValidationResponse = new LoginTokenValidationResponse("", "", "");
+		tokenValidationResponse.setDestinationURL(req.getRequestURI());
 
 		Cookie[] cookies = req.getCookies();
 		if (cookies == null) {
@@ -43,9 +46,9 @@ public class LoginTokenValidator implements Filter {
 			tokenValidationResponse.setMessage("Token not available in your device, Login now");
 			System.out.println(tokenValidationResponse.getMessage());
 			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
-			RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+			RequestDispatcher rDispatcher = req.getRequestDispatcher("login.jsp");
 			rDispatcher.forward(req, resp);
-			
+			return;
 		}
 
 		String loginToken = null;
@@ -65,12 +68,13 @@ public class LoginTokenValidator implements Filter {
 			tokenValidationResponse.setMessage("Token not available in your device, Login now");
 			System.out.println(tokenValidationResponse.getMessage());
 			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
-			RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+			RequestDispatcher rDispatcher = req.getRequestDispatcher("login.jsp");
 			rDispatcher.forward(req, resp);
+			return;
 			
 		} else {
 			
-			System.out.println(loginToken);
+			System.out.println("loginToken: " + loginToken);
 			try {
 				// connecting to database
 				Class.forName("com.mysql.cj.jdbc.Driver");
@@ -99,25 +103,26 @@ public class LoginTokenValidator implements Filter {
 						Timestamp currTimestamp = new Timestamp(System.currentTimeMillis());
 						long tokenAge = (currTimestamp.getTime() - timeStamp.getTime()) / (1000 * 60); // in minute
 
-						if (tokenAge < (5 * 1)) {
+						if (tokenAge < (2 * 1)) {
 							
 							tokenValidationResponse.setMessage("user cookie is correct");
 							tokenValidationResponse.setUserid(set.getString(2));
 							System.out.println(tokenValidationResponse.getMessage());
 							req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
 							chain.doFilter(req, resp);
+							return;
 							
 						} else {
 							
 							tokenValidationResponse.setMessage("user cookie is expired, Login");
 							req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
 							System.out.println(tokenValidationResponse.getMessage());
-							RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+							RequestDispatcher rDispatcher = req.getRequestDispatcher("login.jsp");
 							rDispatcher.forward(req, resp);
+							return;
 							
 						}
 
-						break;
 
 					}
 
@@ -128,8 +133,9 @@ public class LoginTokenValidator implements Filter {
 					tokenValidationResponse.setMessage("Token not available in database, Login now");
 					System.out.println(tokenValidationResponse.getMessage());
 					req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
-					RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+					RequestDispatcher rDispatcher = req.getRequestDispatcher("login.jsp");
 					rDispatcher.forward(req, resp);
+					return;
 					
 				}
 					
@@ -142,8 +148,9 @@ public class LoginTokenValidator implements Filter {
 				tokenValidationResponse.setMessage(e + "");
 				System.out.println(tokenValidationResponse.getMessage());
 				req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
-				RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+				RequestDispatcher rDispatcher = req.getRequestDispatcher("login.jsp");
 				rDispatcher.forward(req, resp);
+				return;
 				
 
 			} catch (SQLException e) {
@@ -152,8 +159,9 @@ public class LoginTokenValidator implements Filter {
 				tokenValidationResponse.setMessage(e + "");
 				System.out.println(tokenValidationResponse.getMessage());
 				req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
-				RequestDispatcher rDispatcher = req.getRequestDispatcher("login.html");
+				RequestDispatcher rDispatcher = req.getRequestDispatcher("login.jsp");
 				rDispatcher.forward(req, resp);
+				return;
 				
 			}
 

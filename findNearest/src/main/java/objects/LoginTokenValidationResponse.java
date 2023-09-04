@@ -4,10 +4,20 @@ public class LoginTokenValidationResponse {
 
 	String message;
 	String userid;
+	String destinationURL;
 	
-	public LoginTokenValidationResponse(String message, String userid) {
+	public LoginTokenValidationResponse(String message, String userid, String destinationURL) {
 		this.message = message;
 		this.userid = userid;
+		this.destinationURL = destinationURL;
+	}
+
+	public String getDestinationURL() {
+		return destinationURL;
+	}
+
+	public void setDestinationURL(String destinationURL) {
+		this.destinationURL = destinationURL;
 	}
 
 	public String getMessage() {
