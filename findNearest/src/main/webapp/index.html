@@ -113,7 +113,7 @@
 		}
 
 		.address,
-		.distance,
+		.gender,
 		.email {
 			margin: 1px;
 			padding-left: 10px;
@@ -153,9 +153,6 @@
 
 	<section id="user-section">
 		<div id="input-for-user">
-
-			<input type="hidden" id="user-lat" name="userLat" value="21.935273">
-			<input type="hidden" id="user-lon" name="userLon" value="87.350206">
 			<input type="number" min="0" step="0.1" id="choose-distance" placeholder="Distance (km)" value="10">
 			<select name="profession" id="select-profession">
 				<option value="all">All</option>
@@ -184,6 +181,7 @@
 
 	<section id="register">
 		<a href="profile.jsp"><button id="registerButton" type="submit">profile</button></a>
+		<a href="logout"><button id="logoutButton" type="submit">Logout</button></a>
 	</section>
 
 </body>
@@ -214,6 +212,7 @@
 			let data = await res.text();
 			console.log("Users : " + data);
 			user = JSON.parse(data);
+			sessionStorage.setItem("user", user);
 
 			populateUser();
 
@@ -237,25 +236,25 @@
 			profileDivision.className = "profile-division";
 
 			profileDivision.innerHTML = `<div class="profile-top">
-													<div class="name-phone">
-														<p class="name">Name: ${user.name}</p>
-														<p class="phone">Phone: ${user.phone}</p>
-														<p class="profession">Profession: ${user.profession}</p>
-													</div>
-													<div class="profile-image">
-														<p class="image-icon"></p>
-													</div>
-												</div>
-												<div class="profile-bottom">
-													<p class="email"> Email: ${user.email} </p>
-													<p class="distance"> Gender: ${user.gender} </p>
-													<p class="address"> Address: ${user.address} </p>
-												</div>`;
+											<div class="name-phone">
+												<p class="name">Name: ${user.name}</p>
+												<p class="phone">Phone: ${user.phone}</p>
+												<p class="profession">Profession: ${user.profession}</p>
+											</div>
+											<div class="profile-image">
+												<p class="image-icon"></p>
+											</div>
+										</div>
+										<div class="profile-bottom">
+											<p class="email"> Email: ${user.email} </p>
+											<p class="gender"> Gender: ${user.gender} </p>
+											<p class="address"> Address: ${user.address} </p>
+											<input type="hidden" class="user-lat" name="userLat" value="${user.latitude}">
+											<input type="hidden" class="user-lon" name="userLon" value="${user.longitude}">
+										</div>`;
 
 			profileDiv.append(profileDivision);
 
-			document.getElementById("user-lat").value = user.latitude;
-			document.getElementById("user-lon").value = user.longitude;
 
 		}
 
@@ -265,14 +264,16 @@
 
 </script>
 <script>
+	
 	document.getElementById("user-input-button").addEventListener("click", fetchAndPopulate);
+	let userData = sessionStorage.getItem("user");
 
 	function fetchAndPopulate() {
 		console.log("button pressed");
 
-		let userLat = document.getElementById("user-lat").value;
+		let userLat = userData.latitude;
 
-		let userLon = document.getElementById("user-lon").value;
+		let userLon = userData.longitude;
 
 		let distance = document.getElementById("choose-distance").value;
 
@@ -283,12 +284,17 @@
 		let gender = selectGender.options[selectGender.selectedIndex].value;
 
 		console.log(userLat, userLon, distance, profession, gender);
+		
 		getData();
+		
 		async function getData() {
+			
 			console.log("getData called");
+			
 			try {
 
 				console.log("Fetch Process Initiated...");
+				
 				let res = await fetch("http://localhost:8080/findNearest/calculateDistance", {
 					"headers": {
 						"content-type": "application/x-www-form-urlencoded"
@@ -311,18 +317,18 @@
 
 					profileDivision.innerHTML = `<div class="profile-top">
 													<div class="name-phone">
-														<p class="name">Name: ${user.name}</p>
-														<p class="phone">Phone: ${user.phone}</p>
-														<p class="profession">Profession: ${user.profession}</p>
+														<p class="name">Name: ${outList[i].name}</p>
+														<p class="phone">Phone: ${outList[i].phone}</p>
+														<p class="profession">Profession: ${outList[i].profession}</p>
 													</div>
 													<div class="profile-image">
-														<p class="image-icon"></p> <!-- 👩‍💼👨‍💼 -->
+														<p class="image-icon"></p>
 													</div>
 												</div>
 												<div class="profile-bottom">
-									
-													<p class="address"> Address: ${user.address}</p>
-													<p class="distance">Gender: ${user.gender}</p>
+													<p class="email"> Email: ${outList[i].email} </p>
+													<p class="gender">Gender: ${outList[i].gender}</p>
+													<p class="address"> Address: ${outList[i].address}</p>
 												</div>`;
 
 					outputSection.append(profileDivision);

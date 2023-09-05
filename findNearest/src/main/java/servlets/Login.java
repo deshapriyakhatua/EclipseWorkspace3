@@ -15,7 +15,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.LoginResponse;
 
 public class Login extends HttpServlet {
 
@@ -33,7 +32,6 @@ public class Login extends HttpServlet {
 
 		// connecting to Database
 
-		LoginResponse loginResponse = new LoginResponse("", "", "");
 
 		try {
 
@@ -78,14 +76,11 @@ public class Login extends HttpServlet {
 
 					System.out.println("updated/inserted access token to database");
 
-					loginResponse.setMessage("Login Successful");
-					loginResponse.setUserid(set.getString(1));
-					loginResponse.setAccessToken(loginToken);
 
-					Cookie cookie1 = new Cookie("loginToken", loginResponse.getAccessToken());
+					Cookie cookie1 = new Cookie("loginToken", loginToken);
 					cookie1.setMaxAge(24 * 60 * 60);
 					resp.addCookie(cookie1);
-					Cookie cookie2 = new Cookie("userid", loginResponse.getUserid());
+					Cookie cookie2 = new Cookie("userid", userid);
 					cookie2.setMaxAge(24 * 60 * 60);
 					resp.addCookie(cookie2);
 
@@ -100,19 +95,16 @@ public class Login extends HttpServlet {
 
 			con.close();
 
-			loginResponse.setMessage("Login Failed: User not found/registered in database");
 			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			loginResponse.setMessage("Login Failed: " + e);
 			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			loginResponse.setMessage("Login Failed: " + e);
 			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 

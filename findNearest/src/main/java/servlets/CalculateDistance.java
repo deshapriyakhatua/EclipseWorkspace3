@@ -20,6 +20,9 @@ public class CalculateDistance extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		System.out.println("calculateDistance servlet started running...");
+		ArrayList<User> outList = new ArrayList<>();
+		
 		try {
 			
 			System.out.println(req.getParameter("userLat"));
@@ -34,6 +37,7 @@ public class CalculateDistance extends HttpServlet {
 			String profession = req.getParameter("profession").trim();
 			String gender = req.getParameter("gender").trim();
 			
+
 			ArrayList<User> list = new ArrayList<>();
 			DatabaseConnect dbConnect = new DatabaseConnect();
 			try {
@@ -42,7 +46,6 @@ public class CalculateDistance extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			ArrayList<User> outList = new ArrayList<>();
 			
 			for(int i=0; i<list.size(); i++) {
 				
@@ -64,26 +67,27 @@ public class CalculateDistance extends HttpServlet {
 				
 			}
 
-			String employeeJsonString = new Gson().toJson(outList);
-
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
-			out.print(employeeJsonString);
-
-			out.close();
+			System.out.println("calculateDistance servlet finished work...");
+			
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			System.out.println("calculateDistance servlet stopped running...");
+		} 
+		
+		String employeeJsonString = new Gson().toJson(outList);
 
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		out.print(employeeJsonString);
+		out.close();
+		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(req, resp);
 	}
 

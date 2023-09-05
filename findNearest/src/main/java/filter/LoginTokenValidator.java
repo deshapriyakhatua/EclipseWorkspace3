@@ -24,14 +24,16 @@ public class LoginTokenValidator implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
+		System.out.println("Login token validator filter started running...");
+		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 
-		System.out.println("Login token validator filter started running...");
 
 		// exclude login servlet
 
 		System.out.println("Requested URI: " + req.getRequestURI());
+		
 		if (req.getRequestURI().endsWith("/login") || req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup") || req.getRequestURI().endsWith("/signup.jsp")) {
 			System.out.println("Login token validator filter redirected...");
 			chain.doFilter(req, resp);
