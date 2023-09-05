@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>login</title>
 </head>
 <body>
 	<%
@@ -17,5 +17,6 @@
 		<input name="password" id="password" type="password" placeholder="Password" >
 		<input name="submit" id="submit" type="submit" placeholder="SUBMIT" >
 	</form>
+	<a href="signup.jsp"><button >Sign up</button></a>
 </body>
 </html>

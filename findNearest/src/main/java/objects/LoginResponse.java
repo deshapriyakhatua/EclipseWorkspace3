@@ -6,6 +6,10 @@ public class LoginResponse {
 	String userid;
 	String accessToken;
 	
+	public LoginResponse() {
+		
+	}
+	
 	public LoginResponse(String message, String userid, String accessToken) {
 		this.message = message;
 		this.userid = userid;

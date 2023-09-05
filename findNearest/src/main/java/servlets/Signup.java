@@ -1,44 +1,70 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.UUID;
 
-import com.google.gson.Gson;
-
-import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class Signup extends HttpServlet{
+public class Signup extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
+		System.out.println("signup servlet started running...");
 		String userUID = UUID.randomUUID().toString();
-		String password = req.getParameter("password");
-		String name = req.getParameter("name");
-		String phone = req.getParameter("phone");
 		String email = req.getParameter("email");
-		System.out.println(userUID);
-		DatabaseConnect db = new DatabaseConnect();
-		boolean bool = db.signUp(userUID, password, name, phone, email);
-		
-		String registerJsonStatus = new Gson().toJson(bool);
+		String password = req.getParameter("password");
+		System.out.println( "input: userid: " + userUID + " email: " + email + " password: " + password );
 
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		resp.setCharacterEncoding("UTF-8");
-		out.print(registerJsonStatus);
+		try {
+			// connecting to database
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/findnearest";
 
-		out.close();
-		
+			Connection con = DriverManager.getConnection(url, "root", "1036");
+
+			if (con.isClosed()) {
+				System.out.println(" DB connection closed signUp");
+			} else {
+				System.out.println(" DB connection created signUp");
+			}
+
+			// Accessing Data from table
+			PreparedStatement ptst = con
+					.prepareStatement("insert into users(useruid, email, password) values(?,?,?)");
+
+			ptst.setString(1, userUID);
+			ptst.setString(2, email);
+			ptst.setString(3, password);
+			ptst.executeUpdate();
+
+			con.close();
+			System.out.println("signup servlet redirected...");
+			resp.sendRedirect("login.jsp");
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			System.out.println(e);
+			System.out.println("signup servlet redirected...");
+			resp.sendRedirect("signup.jsp");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e);
+			System.out.println("signup servlet redirected...");
+			resp.sendRedirect("signup.jsp");
+
+		}
+
 	}
-	
-	
 
 }

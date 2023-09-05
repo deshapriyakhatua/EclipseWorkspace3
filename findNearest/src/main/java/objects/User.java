@@ -2,40 +2,48 @@ package objects;
 
 public class User {
 
-	String id;
+	String userid;
+	String email;
 	String name;
-	String address;
-	String pin;
 	String phone;
 	String gender;
 	String latitude;
 	String longitude;
 	String profession;
+	String address;
 	
 	public User() {
 		
 	}
 
-	public User(String id, String name, String address, String pin, String phone, String gender, String latitude,
-			String longitude, String profession) {
+	public User(String userid, String email, String name, String phone, String gender, String latitude,
+			String longitude, String profession, String address) {
 		super();
-		this.id = id;
+		this.userid = userid;
+		this.email = email;
 		this.name = name;
-		this.address = address;
-		this.pin = pin;
 		this.phone = phone;
 		this.gender = gender;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.profession = profession;
+		this.address = address;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getName() {
@@ -44,22 +52,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getaddress() {
-		return address;
-	}
-
-	public void setaddress(String address) {
-		this.address = address;
-	}
-
-	public String getPin() {
-		return pin;
-	}
-
-	public void setPin(String pin) {
-		this.pin = pin;
 	}
 
 	public String getPhone() {
@@ -101,6 +93,16 @@ public class User {
 	public void setProfession(String profession) {
 		this.profession = profession;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
 	
 	
 }

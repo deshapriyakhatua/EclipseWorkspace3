@@ -32,7 +32,7 @@
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="objects.LoginResponse"/>
-    <fullyQualifiedTypeName name="objects.LoginTokenValidationResponse"/>
     <fullyQualifiedTypeName name="jakarta.servlet.Filter"/>
     <fullyQualifiedTypeName name="jakarta.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="objects.LoginTokenValidationResponse"/>
 </qualifiedTypeNameHistroy>

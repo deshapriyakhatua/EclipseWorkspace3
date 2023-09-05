@@ -82,11 +82,15 @@ public class Login extends HttpServlet {
 					loginResponse.setUserid(set.getString(1));
 					loginResponse.setAccessToken(loginToken);
 
-					Cookie cookie = new Cookie("loginToken", loginResponse.getAccessToken());
-					cookie.setMaxAge(24 * 60 * 60);
-					resp.addCookie(cookie);
+					Cookie cookie1 = new Cookie("loginToken", loginResponse.getAccessToken());
+					cookie1.setMaxAge(24 * 60 * 60);
+					resp.addCookie(cookie1);
+					Cookie cookie2 = new Cookie("userid", loginResponse.getUserid());
+					cookie2.setMaxAge(24 * 60 * 60);
+					resp.addCookie(cookie2);
 
 					con.close();
+					System.out.println("Login servlet redirected...");
 					resp.sendRedirect("/findNearest");
 					return;
 
@@ -97,16 +101,19 @@ public class Login extends HttpServlet {
 			con.close();
 
 			loginResponse.setMessage("Login Failed: User not found/registered in database");
+			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			loginResponse.setMessage("Login Failed: " + e);
+			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			loginResponse.setMessage("Login Failed: " + e);
+			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		}

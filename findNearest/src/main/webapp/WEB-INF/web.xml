@@ -25,12 +25,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>Users</servlet-name>
-		<servlet-class>servlets.Users</servlet-class>
+		<servlet-name>GetUserDetails</servlet-name>
+		<servlet-class>servlets.GetUserDetails</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Users</servlet-name>
-		<url-pattern>/users</url-pattern>
+		<servlet-name>GetUserDetails</servlet-name>
+		<url-pattern>/getUserDetails</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
