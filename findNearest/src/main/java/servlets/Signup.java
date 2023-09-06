@@ -2,11 +2,11 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,10 +27,8 @@ public class Signup extends HttpServlet {
 
 		try {
 			// connecting to database
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/findnearest";
-
-			Connection con = DriverManager.getConnection(url, "root", "1036");
+			
+			Connection con = DatabaseConnect.getConnection();
 
 			if (con.isClosed()) {
 				System.out.println(" DB connection closed signUp");
@@ -50,12 +48,6 @@ public class Signup extends HttpServlet {
 			con.close();
 			System.out.println("signup servlet redirected...");
 			resp.sendRedirect("login.jsp");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			System.out.println(e);
-			System.out.println("signup servlet redirected...");
-			resp.sendRedirect("signup.jsp");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -83,6 +83,8 @@ body {
 	padding-left: 10px;
 	padding-top: 5px;
 }
+
+
 </style>
 
 </head>
@@ -103,17 +105,21 @@ body {
 					</div>
 				</div>
 				<div id="profile-bottom">
-					<p id="gender">Gender: - </p>
-					<p id="address">Address: - </p>
-					<p id="email">Email: - </p>
+					<p id="gender">Gender: -</p>
+					<p id="address">Address: -</p>
+					<p id="email">Email: -</p>
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<section id="register">
-		<a href="UpdateUserDetails.html"><button id="registerButton" type="submit">Update profile</button></a>
+		<a href="UpdateUserDetails.html"><button id="registerButton"
+				type="submit">Update profile</button></a> <a href="logout"><button
+				id="logoutButton" type="submit">Logout</button></a>
 	</section>
+
+
 </body>
 
 
@@ -139,7 +145,8 @@ body {
 				"method" : "POST"
 			});
 
-			let data = await res.text();
+			let data = await
+			res.text();
 			console.log(typeof data);
 			user = JSON.parse(data);
 			console.log("Users : " + user.name);
@@ -153,14 +160,16 @@ body {
 	}
 
 	function populateUser() {
-		
+
 		document.getElementById("name").innerText = "Name: " + user.name;
 		document.getElementById("phone").innerText = "Phone: " + user.phone;
-		document.getElementById("profession").innerText = "Profession: " + user.profession;
+		document.getElementById("profession").innerText = "Profession: "
+				+ user.profession;
 		document.getElementById("gender").innerText = "Gender: " + user.gender;
-		document.getElementById("address").innerText = "Adderss: " + user.address;
+		document.getElementById("address").innerText = "Adderss: "
+				+ user.address;
 		document.getElementById("email").innerText = "Email: " + user.email;
-		
+
 	}
 </script>
 

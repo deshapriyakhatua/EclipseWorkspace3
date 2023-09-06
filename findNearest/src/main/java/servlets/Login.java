@@ -2,14 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
@@ -30,16 +29,18 @@ public class Login extends HttpServlet {
 
 		System.out.println("input email: " + email + " input password: " + password);
 
+		if (email == null || password == null) {
+			System.out.println("email/password is null ");
+			System.out.println("Login servlet redirected...");
+			resp.sendRedirect("login.jsp");
+		}
 		// connecting to Database
-
 
 		try {
 
 			// connecting to database
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/findnearest";
 
-			Connection con = DriverManager.getConnection(url, "root", "1036");
+			Connection con = DatabaseConnect.getConnection();
 
 			if (con.isClosed()) {
 				System.out.println(" DB connection closed logIn");
@@ -48,58 +49,49 @@ public class Login extends HttpServlet {
 			}
 
 			// Accessing Data from users table
-			Statement stmt = con.createStatement();
-			ResultSet set = stmt.executeQuery("select useruid, email, password from users");
+			PreparedStatement stmt = con
+					.prepareStatement("select useruid, email, password from users where email = ? and password = ?");
+			stmt.setString(1, email);
+			stmt.setString(2, password);
+			ResultSet set = stmt.executeQuery();
 
-			while (set.next()) {
+			if (set.next()) {
 
 				System.out.println("DBemail: " + set.getString(2) + " DBpassword: " + set.getString(3));
+				System.out.println("user is registered");
+				System.out.println("updating/inserting access token to database");
 
-				if (email != null && set.getString(2).equals(email) && password != null
-						&& set.getString(3).equals(password)) {
+				String loginToken = UUID.randomUUID().toString();
+				String userid = set.getString(1);
+				Timestamp currTime = new Timestamp(System.currentTimeMillis());
 
-					System.out.println("user is registered");
-					System.out.println("updating/inserting access token to database");
+				// Inserting Data to login_token table
+				PreparedStatement ptst = con
+						.prepareStatement("replace into login_token(tokenid, useruid, validity) values(?,?,?)");
 
-					String loginToken = UUID.randomUUID().toString();
-					String userid = set.getString(1);
-					Timestamp currTime = new Timestamp(System.currentTimeMillis());
+				ptst.setString(1, loginToken);
+				ptst.setString(2, userid);
+				ptst.setTimestamp(3, currTime);
+				ptst.executeUpdate();
 
-					// Inserting Data to login_token table
-					PreparedStatement ptst = con
-							.prepareStatement("replace into login_token(tokenid, useruid, validity) values(?,?,?)");
+				System.out.println("updated/inserted access token to database");
 
-					ptst.setString(1, loginToken);
-					ptst.setString(2, userid);
-					ptst.setTimestamp(3, currTime);
-					ptst.executeUpdate();
+				Cookie cookie1 = new Cookie("loginToken", loginToken);
+				cookie1.setMaxAge(24 * 60 * 60);
+				resp.addCookie(cookie1);
+				Cookie cookie2 = new Cookie("userid", userid);
+				cookie2.setMaxAge(24 * 60 * 60);
+				resp.addCookie(cookie2);
 
-					System.out.println("updated/inserted access token to database");
-
-
-					Cookie cookie1 = new Cookie("loginToken", loginToken);
-					cookie1.setMaxAge(24 * 60 * 60);
-					resp.addCookie(cookie1);
-					Cookie cookie2 = new Cookie("userid", userid);
-					cookie2.setMaxAge(24 * 60 * 60);
-					resp.addCookie(cookie2);
-
-					con.close();
-					System.out.println("Login servlet redirected...");
-					resp.sendRedirect("/findNearest");
-					return;
-
-				}
+				con.close();
+				System.out.println("Login servlet redirected...");
+				resp.sendRedirect("/findNearest");
+				return;
 
 			}
 
 			con.close();
 
-			System.out.println("Login servlet redirected...");
-			resp.sendRedirect("login.jsp");
-
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 			System.out.println("Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 

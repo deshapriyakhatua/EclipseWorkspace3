@@ -2,6 +2,9 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -39,9 +42,43 @@ public class CalculateDistance extends HttpServlet {
 			
 
 			ArrayList<User> list = new ArrayList<>();
-			DatabaseConnect dbConnect = new DatabaseConnect();
+			
 			try {
-				list = dbConnect.showUsers();
+				
+				Connection con = DatabaseConnect.getConnection();
+
+				if (con.isClosed()) {
+					System.out.println(" DB connection closed showUsers");
+				} else {
+					System.out.println(" DB connection created showUsers");
+				}
+
+				// Accessing Data from table
+				Statement stmt = con.createStatement();
+				ResultSet set = stmt.executeQuery("select * from users");
+
+				while (set.next()) {
+
+					User user = new User();
+					user.setUserid(set.getString(1));
+					user.setEmail(set.getString(2));
+					user.setName(set.getString(4));
+					user.setPhone(set.getString(5));
+					user.setGender(set.getString(6));
+					user.setLatitude(set.getString(7));
+					user.setLongitude(set.getString(8));
+					user.setProfession(set.getString(9));
+					user.setAddress(set.getString(10));
+					list.add(user);
+					
+					System.out.println("Database: user id: " + set.getString(1) + " | Email: " + set.getString(2) + " | name: "
+							+ set.getString(4));
+					
+				}
+
+				con.close();
+				System.out.println("All users data collected from database...");
+			
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

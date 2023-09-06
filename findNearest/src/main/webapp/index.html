@@ -249,8 +249,9 @@
 											<p class="email"> Email: ${user.email} </p>
 											<p class="gender"> Gender: ${user.gender} </p>
 											<p class="address"> Address: ${user.address} </p>
-											<input type="hidden" class="user-lat" name="userLat" value="${user.latitude}">
-											<input type="hidden" class="user-lon" name="userLon" value="${user.longitude}">
+											<input type="hidden" id="user-lat" name="userLat" value="${user.latitude}">
+											<input type="hidden" id="user-lon" name="userLon" value="${user.longitude}">
+											<input type="hidden" id="userid" name="userid" value="${user.userid}">
 										</div>`;
 
 			profileDiv.append(profileDivision);
@@ -271,9 +272,9 @@
 	function fetchAndPopulate() {
 		console.log("button pressed");
 
-		let userLat = userData.latitude;
+		let userLat = document.getElementById("user-lat").value;
 
-		let userLon = userData.longitude;
+		let userLon = document.getElementById("user-lon").value;
 
 		let distance = document.getElementById("choose-distance").value;
 
@@ -312,6 +313,8 @@
 
 				for (let i = 0; i < outList.length; i++) {
 
+					if(document.getElementById("userid").value === outList[i].userid) continue;
+					
 					let profileDivision = document.createElement("div");
 					profileDivision.className = "profile-division";
 
