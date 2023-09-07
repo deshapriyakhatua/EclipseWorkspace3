@@ -23,7 +23,7 @@ public class GetUserDetails extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("get user details started running...");
+		System.out.println("-->>> Servlet: get user details started running...");
 
 		try {
 
@@ -39,6 +39,7 @@ public class GetUserDetails extends HttpServlet {
 
 			if (userid == null) {
 				System.out.println("userid is null");
+				System.out.println("-->>> Servlet: getUserDetails redirected...");
 				resp.sendRedirect("login.jsp");
 			}
 
@@ -83,13 +84,13 @@ public class GetUserDetails extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 			out.print(employeeJsonString);
-			System.out.println("get user details finished work...");
+			System.out.println("-->>> Servlet: get user details finished work...");
 			out.close();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
-			System.out.println("get user details stopped running...");
+			System.out.println("-->>> Servlet: get user details stopped running...");
 		}
 
 	}

@@ -19,7 +19,7 @@ public class UpdateUserDetails extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("UpdateUserDetails servlet running started...");
+		System.out.println("-->>> Servlet: UpdateUserDetails running started...");
 		String name = req.getParameter("name");
 		String phone = req.getParameter("phone");
 		String gender = req.getParameter("gender");
@@ -33,8 +33,9 @@ public class UpdateUserDetails extends HttpServlet {
 		
 		if(name == null || phone == null || gender == null || latitude == null || longitude == null || profession == null || address == null) {
 			System.out.println("null input found please refill");
-			System.out.println("UpdateUserDetails redirected...");
+			System.out.println("<<<-- Servlet: UpdateUserDetails redirected...");
 			resp.sendRedirect("UpdateUserDetails.html");
+			return;
 		}
 
 		try {
@@ -44,14 +45,18 @@ public class UpdateUserDetails extends HttpServlet {
 
 			if (loginTokenValidationResponse == null) {
 				System.out.println("LoginTokenValidationResponse is null");
+				System.out.println("<<<-- Servlet: UpdateUserDetails redirected...");
 				resp.sendRedirect("UpdateUserDetails.html");
+				return;
 			}
 
 			String userid = loginTokenValidationResponse.getUserid();
 
 			if (userid == null) {
 				System.out.println("userid is null");
+				System.out.println("<<<-- Servlet: UpdateUserDetails redirected...");
 				resp.sendRedirect("UpdateUserDetails.html");
+				return;
 			}
 			
 			System.out.println("userid: " + userid);
@@ -81,14 +86,16 @@ public class UpdateUserDetails extends HttpServlet {
 
 			con.close();
 			System.out.println("Successfully data updated");
-			System.out.println("UpdateUserDetails redirected...");
+			System.out.println("<<<-- Servlet: UpdateUserDetails redirected...");
 			resp.sendRedirect("profile.jsp");
+			return;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println(e);
-			System.out.println("UpdateUserDetails redirected...");
+			System.out.println("<<<-- Servlet: UpdateUserDetails redirected...");
 			resp.sendRedirect("UpdateUserDetails.html");
+			return;
 
 		}
 
