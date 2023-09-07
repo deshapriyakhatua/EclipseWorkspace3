@@ -4,9 +4,17 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>find Distance</title>
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
 	<style>
+		
+		@import url('https://fonts.googleapis.com/css?family=Abel');
+		
+		
 		body {
 			background-color: rgb(255, 255, 255);
+			font-family: Abel, Arial, Verdana, sans-serif;
 		}
 
 		#user-section {
@@ -132,6 +140,148 @@
 			flex-direction: row;
 			flex-wrap: wrap;
 		}
+		
+		.card {
+			width: 450px;
+			height: 250px;
+			background-color: #fff;
+			background: linear-gradient(#f8f8f8, #fff);
+			box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+			border-radius: 6px;
+			overflow: hidden;
+			position: relative;
+			margin: 1.5rem;
+		}
+		
+		.center {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+		
+		.card h1 {
+			text-align: center;
+		}
+
+		.card .additional {
+			position: absolute;
+			width: 150px;
+			height: 100%;
+			background: linear-gradient(#f53e78, #c24889);
+			transition: width 0.4s;
+			overflow: hidden;
+			z-index: 2;
+		}
+
+		.card:hover .additional {
+			width: 100%;
+			border-radius: 0 5px 5px 0;
+		}
+
+		.card .additional .user-card {
+			width: 150px;
+			height: 100%;
+			position: relative;
+			float: left;
+		}
+
+		.card .additional .user-card::after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 10%;
+			right: -2px;
+			height: 80%;
+			border-left: 2px solid rgba(0, 0, 0, 0.025);
+
+		}
+
+		.profile-img {
+			width: 80%;
+			border-radius: 50%;
+			border: 2px solid white;
+		}
+
+		.card .additional .more-info {
+			width: 300px;
+			float: left;
+			position: absolute;
+			left: 150px;
+			height: 100%;
+		}
+
+		.card .additional .more-info h1 {
+			color: #fff;
+			margin-bottom: 0;
+		}
+
+		.card .additional .more-info .chat {
+			position: absolute;
+			bottom: 2rem;
+			right: 2rem;
+			border-radius: 50%;
+			border: 2px solid rgb(255, 255, 255);
+			background-color: transparent;
+			color: #ffffff;
+			font-size: 1rem;
+			padding: 0.5rem;
+			cursor: pointer;
+			transition: all 0.4s;
+		}
+
+		.card .additional .more-info .like {
+			position: absolute;
+			bottom: 2rem;
+			right: 6rem;
+			border-radius: 50%;
+			border: 2px solid rgb(255, 255, 255);
+			background-color: transparent;
+			color: #ffffff;
+			font-size: 1rem;
+			padding: 0.5rem;
+			cursor: pointer;
+			transition: all 0.4s;
+		}
+
+		.card .additional .more-info i:hover {
+			background-color: white;
+			color: #020000;
+		}
+
+		.card .general .coords {
+			margin-left: 1rem;
+			margin-top: 0.5rem;
+			color: #020000;
+			font-size: 1rem;
+			text-align: left;
+		}
+
+		.card .general {
+			width: 300px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			box-sizing: border-box;
+			padding: 1rem;
+			padding-top: 0;
+		}
+
+		.card .general .more {
+			padding: 0 1rem;
+			position: absolute;
+			bottom: 1rem;
+			right: 2rem;
+			font-size: 0.9em;
+			font-weight: bold;
+			border-radius: 1rem;
+			border: 1px solid #f53e78;
+		}
+
+		/* output-section */
 
 		#register {
 			display: flex;
@@ -265,7 +415,7 @@
 
 </script>
 <script>
-	
+
 	document.getElementById("user-input-button").addEventListener("click", fetchAndPopulate);
 	let userData = sessionStorage.getItem("user");
 
@@ -285,17 +435,17 @@
 		let gender = selectGender.options[selectGender.selectedIndex].value;
 
 		console.log(userLat, userLon, distance, profession, gender);
-		
+
 		getData();
-		
+
 		async function getData() {
-			
+
 			console.log("getData called");
-			
+
 			try {
 
 				console.log("Fetch Process Initiated...");
-				
+
 				let res = await fetch("http://localhost:8080/findNearest/calculateDistance", {
 					"headers": {
 						"content-type": "application/x-www-form-urlencoded"
@@ -310,29 +460,46 @@
 
 				let outputSection = document.getElementById("output-section");
 				outputSection.innerHTML = "";
+				
+				let femaleImg = "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png";
+				let maleImg = "https://cdn-icons-png.flaticon.com/512/147/147133.png";
 
 				for (let i = 0; i < outList.length; i++) {
 
-					if(document.getElementById("userid").value === outList[i].userid) continue;
-					
-					let profileDivision = document.createElement("div");
-					profileDivision.className = "profile-division";
+					if (document.getElementById("userid").value === outList[i].userid) continue;
 
-					profileDivision.innerHTML = `<div class="profile-top">
-													<div class="name-phone">
-														<p class="name">Name: ${outList[i].name}</p>
-														<p class="phone">Phone: ${outList[i].phone}</p>
-														<p class="profession">Profession: ${outList[i].profession}</p>
+					let profileDivision = document.createElement("div");
+					profileDivision.className = "card";
+
+					profileDivision.innerHTML = `<div class="additional">
+														<div class="user-card">
+															<img class="profile-img center"
+																src="${outList[i].gender == "male" ?maleImg :femaleImg}"
+																alt="">
+														</div>
+														<div class="more-info">
+															<h1>${outList[i].name}</h1>
+															<i class="material-icons chat">chat</i>
+															<i class="material-icons like">thumb_up</i>
+														</div>
 													</div>
-													<div class="profile-image">
-														<p class="image-icon"></p>
-													</div>
-												</div>
-												<div class="profile-bottom">
-													<p class="email"> Email: ${outList[i].email} </p>
-													<p class="gender">Gender: ${outList[i].gender}</p>
-													<p class="address"> Address: ${outList[i].address}</p>
-												</div>`;
+													<div class="general">
+														<h1>${outList[i].name}</h1>
+														<div class="coords">
+															<span>${outList[i].profession}</span>
+														</div>
+														<div class="coords">
+															<span>${outList[i].address}</span>
+														</div>
+														<div class="coords">
+															<span>${outList[i].phone}</span>
+														</div>
+														<div class="coords">
+															<span>${outList[i].email}</span>
+														</div>
+														<span class="more">${outList[i].gender}</span>
+													</div>`;
+
 
 					outputSection.append(profileDivision);
 
