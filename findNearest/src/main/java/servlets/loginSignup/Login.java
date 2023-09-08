@@ -1,4 +1,4 @@
-package servlets;
+package servlets.loginSignup;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("login servlet started running...");
+		System.out.println("-->>> Servlet: login servlet started running...");
 
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
@@ -31,8 +31,9 @@ public class Login extends HttpServlet {
 
 		if (email == null || password == null) {
 			System.out.println("email/password is null ");
-			System.out.println("Login servlet redirected...");
+			System.out.println("<<<-- Servlet: Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
+			return;
 		}
 		// connecting to Database
 
@@ -84,7 +85,7 @@ public class Login extends HttpServlet {
 				resp.addCookie(cookie2);
 
 				con.close();
-				System.out.println("Login servlet redirected...");
+				System.out.println("<<<-- Servlet: Login servlet redirected...");
 				resp.sendRedirect("/findNearest");
 				return;
 
@@ -92,12 +93,12 @@ public class Login extends HttpServlet {
 
 			con.close();
 
-			System.out.println("Login servlet redirected...");
+			System.out.println("<<<-- Servlet: Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("Login servlet redirected...");
+			System.out.println("<<<-- Servlet: Login servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
 		}

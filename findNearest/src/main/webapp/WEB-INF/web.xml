@@ -16,17 +16,17 @@
 	</filter-mapping>
 
 	<servlet>
-		<servlet-name>calculateDistance</servlet-name>
-		<servlet-class>servlets.CalculateDistance</servlet-class>
+		<servlet-name>getOtherUsers</servlet-name>
+		<servlet-class>servlets.findOthersUsers.GetOtherUsers</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>calculateDistance</servlet-name>
-		<url-pattern>/calculateDistance</url-pattern>
+		<servlet-name>getOtherUsers</servlet-name>
+		<url-pattern>/getOtherUsers</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>GetUserDetails</servlet-name>
-		<servlet-class>servlets.GetUserDetails</servlet-class>
+		<servlet-class>servlets.userProfile.GetUserDetails</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetUserDetails</servlet-name>
@@ -35,7 +35,7 @@
 
 	<servlet>
 		<servlet-name>registerUser</servlet-name>
-		<servlet-class>servlets.UpdateUserDetails</servlet-class>
+		<servlet-class>servlets.userProfile.UpdateUserDetails</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>registerUser</servlet-name>
@@ -44,7 +44,7 @@
 
 	<servlet>
 		<servlet-name>login</servlet-name>
-		<servlet-class>servlets.Login</servlet-class>
+		<servlet-class>servlets.loginSignup.Login</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>login</servlet-name>
@@ -53,7 +53,7 @@
 
 	<servlet>
 		<servlet-name>signup</servlet-name>
-		<servlet-class>servlets.Signup</servlet-class>
+		<servlet-class>servlets.loginSignup.Signup</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>signup</servlet-name>
@@ -62,7 +62,7 @@
 
 	<servlet>
 		<servlet-name>logout</servlet-name>
-		<servlet-class>servlets.Logout</servlet-class>
+		<servlet-class>servlets.loginSignup.Logout</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>logout</servlet-name>

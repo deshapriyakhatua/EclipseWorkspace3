@@ -1,4 +1,4 @@
-package servlets;
+package servlets.findOthersUsers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,14 +16,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import objects.User;
 
-public class CalculateDistance extends HttpServlet {
+public class GetOtherUsers extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("calculateDistance servlet started running...");
+		System.out.println("-->>> Servlet: GetOtherUsers started running...");
 		ArrayList<User> outList = new ArrayList<>();
 		
 		try {
@@ -33,6 +33,11 @@ public class CalculateDistance extends HttpServlet {
 			System.out.println(req.getParameter("distance"));
 			System.out.println(req.getParameter("profession"));
 			System.out.println(req.getParameter("gender"));
+			
+			if(req.getParameter("userLat") == null || req.getParameter("userLon") == null || req.getParameter("distance") == null || req.getParameter("profession") == null || req.getParameter("gender") == null) {
+				System.out.println("input contains null value");
+				throw new NumberFormatException("input contains null value");
+			}
 			
 			double userLat = Double.parseDouble(req.getParameter("userLat").trim());
 			double userLon = Double.parseDouble(req.getParameter("userLon").trim());
@@ -104,12 +109,12 @@ public class CalculateDistance extends HttpServlet {
 				
 			}
 
-			System.out.println("calculateDistance servlet finished work...");
+			System.out.println("<<<-- Servlet: calculateDistance servlet finished work...");
 			
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			System.out.println("calculateDistance servlet stopped running...");
+			System.out.println("<<<-- Servlet: calculateDistance servlet stopped running...");
 		} 
 		
 		String employeeJsonString = new Gson().toJson(outList);

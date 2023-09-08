@@ -1,4 +1,4 @@
-package servlets;
+package servlets.userProfile;
 
 import java.io.IOException;
 import java.io.PrintWriter;

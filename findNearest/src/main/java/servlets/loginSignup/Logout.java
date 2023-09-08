@@ -1,4 +1,4 @@
-package servlets;
+package servlets.loginSignup;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,14 +18,14 @@ public class Logout extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("Logout servlet started running...");
+		System.out.println("-->>> Servlet: Logout servlet started running...");
 
 		try {
 			
 			Cookie[] cookies = req.getCookies();
 			if (cookies == null) {
 
-				System.out.println("Logout servlet redirected...");
+				System.out.println("<<<-- Servlet: Logout servlet redirected...");
 				resp.sendRedirect("profile.jsp");
 				return;
 
@@ -46,7 +46,7 @@ public class Logout extends HttpServlet {
 
 			if (loginToken == null || userid == null) {
 
-				System.out.println("Logout servlet redirected...");
+				System.out.println("<<<-- Servlet: Logout servlet redirected...");
 				resp.sendRedirect("profile.jsp");
 				return;
 
@@ -76,13 +76,13 @@ public class Logout extends HttpServlet {
 			resp.addCookie(cookie1);
 
 			System.out.println("logged out successfully");
-			System.out.println("Logout servlet redirected...");
+			System.out.println("<<<-- Servlet: Logout servlet redirected...");
 			resp.sendRedirect("login.jsp");
 			return;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Logout servlet redirected...");
+			System.out.println("<<<-- Servlet: Logout servlet redirected...");
 			resp.sendRedirect("profile.jsp");
 			return;
 		}

@@ -171,43 +171,43 @@
 <body>
 	
 	<div class="form-container">
-		<form id="myForm" action="updateUserDetails" method="post" class="form-horizontal" spellcheck="false">
+		<form id="myForm" action="updateUserDetails" method="post" class="form-horizontal" spellcheck="false"  onpaste="return false;" ondrop="return false;" >
 			<h3 class="title">Update Profile</h3>
 			<h4 class="sub-title">Personal Details</h4>
 			<div class="form-group">
 				<label>Name</label>
-				<input id="name" name="name" class="form-control" type="text" value="" disabled>
+				<input id="name" name="name" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Phone</label>
-				<input id="phone" name="phone" class="form-control" type="number" value="" disabled>
+				<input id="phone" name="phone" class="form-control" type="number" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Gender</label>
-				<input id="gender" name="gender" class="form-control" type="text" value="" disabled>
+				<input id="gender" name="gender" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Profession</label>
-				<input id="profession" name="profession" class="form-control" type="text" value="" disabled>
+				<input id="profession" name="profession" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<h4 class="sub-title">Address</h4>
 			<div class="form-group phone-no">
 				<label>Address</label>
-				<input id="address" name="address" class="form-control" type="text" value="" disabled>
+				<input id="address" name="address" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group age">
 				<label>Latitude</label>
-				<input id="latitude" name="latitude" class="form-control" type="number" step="0.00000000001" value="" disabled>
+				<input id="latitude" name="latitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group age">
 				<label>Longitude</label>
-				<input id="longitude" name="longitude" class="form-control" type="number" step="0.00000000001" value="" disabled>
+				<input id="longitude" name="longitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<input id="formSubmit" type="submit" class="btn" value="save changes" disabled>
@@ -236,7 +236,7 @@
 		}
 	});
 
-	// enable input on icon click
+	// //enable input on icon click
 	
 	enableInput();
 	
@@ -249,6 +249,8 @@
 				if(elem.target.className == "material-icons edit-icon"){
 					elem.target.className = "material-icons edit-icon clicked-icon";
 					elem.target.parentNode.children[1].disabled = false;
+					elem.target.parentNode.children[1].focus()
+					 
 				}else{
 					elem.target.className = "material-icons edit-icon";
 					elem.target.parentNode.children[1].disabled = true;
@@ -260,7 +262,7 @@
 
 	}
 	
-	// enable all input tags otherwise it will send null values
+	// //enable all input tags otherwise it will send null values
 	
 	document.getElementById("formSubmit").addEventListener("click", ()=>{
 		
@@ -271,7 +273,7 @@
 	});
 	
 
-	// get user data from database and set value to input tags
+	// //get user data from database and set value to input tags
 	
 	let user = {};
 
@@ -307,7 +309,7 @@
 
 	}
 
-	// set input tag values
+	// //set input tag values
 	
 	function populateUser() {
 
@@ -327,7 +329,7 @@
 
 	}
 
-	// saveButton enable/disable
+	// // saveButton enable/disable
 		
 	for(let inputTag of document.getElementsByClassName("form-control")){
 		
