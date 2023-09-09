@@ -16,7 +16,6 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.LoginTokenValidationResponse;
 
 public class LoginTokenValidator implements Filter {
 
@@ -40,8 +39,6 @@ public class LoginTokenValidator implements Filter {
 			return;
 		}
 
-		LoginTokenValidationResponse tokenValidationResponse = new LoginTokenValidationResponse("", "", "");
-		tokenValidationResponse.setDestinationURL(req.getRequestURI());
 
 		// validate access token from cookie
 
@@ -49,9 +46,8 @@ public class LoginTokenValidator implements Filter {
 		if (cookies == null) {
 
 			// go for login
-			tokenValidationResponse.setMessage("No cookies available in your device, Login now");
-			System.out.println(tokenValidationResponse.getMessage());
-			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
+			System.out.println("No cookies available in your device, Login now");
+			req.setAttribute("userid", null);
 			System.out.println("<<<-- Filter: Login token validator redirected...");
 			resp.sendRedirect("login.jsp");
 			return;
@@ -74,9 +70,8 @@ public class LoginTokenValidator implements Filter {
 		if (loginToken == null || userid == null) {
 
 			// go for login
-			tokenValidationResponse.setMessage("Token not available in your device, Login now");
-			System.out.println(tokenValidationResponse.getMessage());
-			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
+			System.out.println("Token not available in your device, Login now");
+			req.setAttribute("userid", null);
 			System.out.println("<<<-- Filter: Login token validator redirected...");
 			resp.sendRedirect("login.jsp");
 			return;
@@ -115,10 +110,9 @@ public class LoginTokenValidator implements Filter {
 
 				if (tokenAge < (20 * 1)) {
 
-					tokenValidationResponse.setMessage("user cookie is valid");
-					tokenValidationResponse.setUserid(userid);
-					System.out.println(tokenValidationResponse.getMessage());
-					req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
+					
+					System.out.println("user cookie is valid");
+					req.setAttribute("userid", userid);
 					con.close();
 					System.out.println("<<<-- Filter: Login token validator redirected...");
 					chain.doFilter(req, resp);
@@ -126,9 +120,8 @@ public class LoginTokenValidator implements Filter {
 
 				} else {
 
-					tokenValidationResponse.setMessage("user cookie is expired, Login");
-					req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
-					System.out.println(tokenValidationResponse.getMessage());
+					req.setAttribute("userid", null);
+					System.out.println("user cookie is expired, Login");
 					con.close();
 					System.out.println("<<<-- Filter: Login token validator redirected...");
 					resp.sendRedirect("login.jsp");
@@ -140,9 +133,8 @@ public class LoginTokenValidator implements Filter {
 
 			con.close();
 
-			tokenValidationResponse.setMessage("Token not available in database, Login now");
-			System.out.println(tokenValidationResponse.getMessage());
-			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
+			System.out.println("Token not available in database, Login now");
+			req.setAttribute("userid", null);
 			System.out.println("<<<-- Filter: Login token validator redirected...");
 			resp.sendRedirect("login.jsp");
 			return;
@@ -150,9 +142,8 @@ public class LoginTokenValidator implements Filter {
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();
-			tokenValidationResponse.setMessage(e + "");
-			System.out.println(tokenValidationResponse.getMessage());
-			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
+			System.out.println(e);
+			req.setAttribute("userid", null);
 			System.out.println("<<<-- Filter: Login token validator redirected...");
 			resp.sendRedirect("login.jsp");
 			return;
@@ -160,9 +151,8 @@ public class LoginTokenValidator implements Filter {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-			tokenValidationResponse.setMessage(e + "");
-			System.out.println(tokenValidationResponse.getMessage());
-			req.setAttribute("LoginTokenValidationResponse", tokenValidationResponse);
+			System.out.println(e);
+			req.setAttribute("userid", null);
 			System.out.println("<<<-- Filter: Login token validator redirected...");
 			resp.sendRedirect("login.jsp");
 			return;

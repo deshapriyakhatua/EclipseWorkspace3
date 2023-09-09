@@ -222,7 +222,7 @@ body {
 			</div>
 		</header>
 
-		<main class="msger-chat">
+		<main class="msger-chat" id="msger-chat">
 			
 		</main>
 
@@ -230,9 +230,9 @@ body {
 			<input type="hidden" id="groupid" value="<%= groupid %>">
 			<input type="hidden" id="userid" value="<%= userid %>">
 			<input type="hidden" id="receiverid" value="<%= receiverid %>">
-			<input type="text" class="msger-input"
+			<input type="text" class="msger-input" id="msger-input"
 				placeholder="Enter your message...">
-			<button type="submit" class="msger-send-btn">Send</button>
+			<button type="submit" class="msger-send-btn" id="msger-send-btn">Send</button>
 		</form>
 	</section>
 
@@ -241,44 +241,97 @@ body {
 
 <script type="text/javascript">
 
+chatUI();
+async function chatUI(){
+	
 	const msgerForm = get(".msger-inputarea");
 	const msgerInput = get(".msger-input");
 	const msgerChat = get(".msger-chat");
 
-	const BOT_MSGS = [
-		"Hi, how are you?",
-		"Ohh... I can't understand what you trying to say. Sorry!",
-		"I like to play games... But I don't know how to play!",
-		"Sorry if my answers are not relevant. :))",
-		"I feel sleepy! :("
-	];
-
+	
+	
 	// Icons made by Freepik from www.flaticon.com
-	const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
-	const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
-	const BOT_NAME = "BOT";
-	const PERSON_NAME = "Sajad";
+	const groupid = document.getElementById("groupid").value;
+	const userid = document.getElementById("userid").value;
+	const receiverid = document.getElementById("receiverid").value;
+	
+	const user = await getUserDetails(userid);
+	const receiver = await getUserDetails(receiverid);
+	
+	console.log("user: " + user," receiver: " + receiver);
+	
+	const userImg = "https://cdn-icons-png.flaticon.com/512/147/147133.png";
+	const receiverImg = "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png";
+	const receiverName = receiver.name;
+	const userName = user.name;
 
-	msgerForm.addEventListener("submit", event => {
+
+	getMessages(populateMessages);
+	
+	
+	msgerForm.addEventListener("submit", event => {	
 		
-		sendMessage(event);
+		event.preventDefault();
+		onMessageSend();
 		
 	});
 	
-	async function sendMessage(event){
-		
-		event.preventDefault();
-
+	async function onMessageSend(){
 		const msgText = msgerInput.value.trim();
-		if (msgText.length == 0) return;
+		if (msgText.length == 0) return;	
 		
-		const groupid = document.getElementById("groupid").value;
-		const userid = document.getElementById("userid").value;
-		const receiverid = document.getElementById("receiverid").value;
+		let isMessageSent =  await sendMessage(msgText);	
 		
+		if(isMessageSent) {
+			//appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+			
+			getMessages(populateMessages);
+			
+			msgerInput.value = "";
+		}
 		
-		console.log("sendMessage servlet called");
+		console.log(isMessageSent);
+	}
+	
+	async function getUserDetails( userid ){
+		
+		let user = {};
 
+		console.log("getUserDetails called");
+
+		try {
+
+			console.log("Fetch Process Initiated...");
+
+			let res = await fetch("http://localhost:8080/findNearest/getUserDetails", {
+				"headers": {
+					"content-type": "application/x-www-form-urlencoded"
+				},
+				"body": "userid=" + userid,
+				"method": "POST"
+			});
+
+			let data = await res.text();
+			console.log(userid+ " : " + data);
+			user = JSON.parse(data);
+			
+
+		}catch (err) {
+			
+			console.log(err);
+			
+		}
+		
+		return user;
+
+	}
+	
+	async function sendMessage(msgText){
+
+		console.log("sendMessage method called");
+		
+		let isMessageSent = false;
+				
 		try {
 
 			console.log("Fetch Process Initiated...");
@@ -292,23 +345,78 @@ body {
 			});
 
 			let data = await res.text();
-			console.log("Users : " + data);
-			user = JSON.parse(data);
+			console.log("responce : " + data);
+			isMessageSent = JSON.parse(data);
 			
-			appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-			msgerInput.value = "";
-
-			botResponse();
+			
 			
 			
 		}catch (err) {
 			console.log(err);
 		}
 		
+		return isMessageSent;
+		
+	}
+	
+	async function getMessages(callback){
+		
+		console.log("getMessages method called");
+		let messages = [];
+		
+		try {
+
+			console.log("Fetch Process Initiated...");
+
+			let res = await fetch("http://localhost:8080/findNearest/getMessages", {
+				"headers": {
+					"content-type": "application/x-www-form-urlencoded"
+				},
+				"body": `groupid=\${groupid}&userid=\${userid}&receiverid=\${receiverid}`,
+				"method": "POST"
+			});
+
+			let data = await res.text();
+			console.log("messages : " + data);
+			messages = JSON.parse(data);
+			
+			if(callback) callback(messages);
+			
+		}catch (err) {
+			console.log(err);
+		}
+				
+	}
+	
+	function populateMessages(messages){
+		
+		if(messages.length == 0) return;
+		msgerChat.innerHTML = "";
+		messages.forEach((elem, index, array) => {
+			
+			let name, img, side,text, time;
+			
+			text = elem.message;
+			time = elem.time;
+			
+			if(elem.senderid == userid){
+				name = userName;
+				side = "right";
+				img = userImg;
+			}
+			else{
+				name = receiverName;
+				side = "left";
+				img = receiverImg;
+			}
+			
+			appendMessage(name, img, side, text, time);
+			
+		});
 	}
 
-	function appendMessage(name, img, side, text) {
-		//   Simple solution for small apps
+	function appendMessage(name, img, side, text, time) {
+		
 		const msgHTML = `
 					    <div class="msg \${side}-msg">
 					      <div class="msg-img" style="background-image: url(\${img})"></div>
@@ -316,7 +424,7 @@ body {
 					      <div class="msg-bubble">
 					        <div class="msg-info">
 					          <div class="msg-info-name">\${name}</div>
-					          <div class="msg-info-time">\${formatDate(new Date())}</div>
+					          <div class="msg-info-time">\${formatDate(time)}</div>
 					        </div>
 					
 					        <div class="msg-text">\${text}</div>
@@ -328,31 +436,26 @@ body {
 		msgerChat.scrollTop += 500;
 	}
 
-	function botResponse() {
-		const r = random(0, BOT_MSGS.length - 1);
-		const msgText = BOT_MSGS[r];
-		const delay = msgText.split(" ").length * 100;
-
-		setTimeout(() => {
-			appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
-		}, delay);
-	}
 
 	// Utils
 	function get(selector, root = document) {
 		return root.querySelector(selector);
 	}
 
-	function formatDate(date) {
-		const h = "0" + date.getHours();
-		const m = "0" + date.getMinutes();
+	function formatDate(time) {
+		const day = time.slice(0,10);
+		const hours = time.slice(11, 13);
+		const minutes = time.slice(14, 16);
 
-		return `\${h.slice(-2)}:\${m.slice(-2)}`;
+		return `\${hours}:\${minutes}`;
 	}
 
 	function random(min, max) {
 		return Math.floor(Math.random() * (max - min) + min);
 	}
+	
+}
+	
 	
 </script>
 

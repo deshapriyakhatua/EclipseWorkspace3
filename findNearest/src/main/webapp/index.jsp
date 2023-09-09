@@ -1,3 +1,8 @@
+<%@page import="java.util.UUID"%>
+<%@page import="servlets.chat.StartChat"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	
 <!DOCTYPE html>
 <html>
 
@@ -301,6 +306,10 @@
 
 <body>
 
+	<% 
+		String userid = (String) request.getAttribute("userid");
+	%>
+
 	<section id="user-section">
 		<div id="input-for-user">
 			<input type="number" min="0" step="0.1" id="choose-distance" placeholder="Distance (km)" value="10">
@@ -334,17 +343,13 @@
 		<a href="logout"><button id="logoutButton" type="submit">Logout</button></a>
 	</section>
 	
-	<form id="startChat" action="startChat" method="post">
-		<input type="hidden" name="userid" value="e0afffa6-bd5a-45c1-b964-d5ba530b44eb">
-		<input type="hidden" name="receiverid" value="18c8c7d1-2c52-40cb-ada4-df919caf0413">
-		<input type="submit">
-	</form>
 
 </body>
 
 </html>
 <script>
 
+	let userid = "<%= request.getAttribute("userid") %>";
 	let user = {};
 
 	getUserDetails();
@@ -361,7 +366,7 @@
 				"headers": {
 					"content-type": "application/x-www-form-urlencoded"
 				},
-				"body": "",
+				"body": "userid="+userid,
 				"method": "POST"
 			});
 
@@ -393,21 +398,21 @@
 
 			profileDivision.innerHTML = `<div class="profile-top">
 											<div class="name-phone">
-												<p class="name">Name: ${user.name}</p>
-												<p class="phone">Phone: ${user.phone}</p>
-												<p class="profession">Profession: ${user.profession}</p>
+												<p class="name">Name: \${user.name}</p>
+												<p class="phone">Phone: \${user.phone}</p>
+												<p class="profession">Profession: \${user.profession}</p>
 											</div>
 											<div class="profile-image">
 												<p class="image-icon"></p>
 											</div>
 										</div>
 										<div class="profile-bottom">
-											<p class="email"> Email: ${user.email} </p>
-											<p class="gender"> Gender: ${user.gender} </p>
-											<p class="address"> Address: ${user.address} </p>
-											<input type="hidden" id="user-lat" name="userLat" value="${user.latitude}">
-											<input type="hidden" id="user-lon" name="userLon" value="${user.longitude}">
-											<input type="hidden" id="userid" name="userid" value="${user.userid}">
+											<p class="email"> Email: \${user.email} </p>
+											<p class="gender"> Gender: \${user.gender} </p>
+											<p class="address"> Address: \${user.address} </p>
+											<input type="hidden" id="user-lat" name="userLat" value="\${user.latitude}">
+											<input type="hidden" id="user-lon" name="userLon" value="\${user.longitude}">
+											<input type="hidden" id="userid" name="userid" value="\${user.userid}">
 										</div>`;
 
 			profileDiv.append(profileDivision);
@@ -456,7 +461,7 @@
 					"headers": {
 						"content-type": "application/x-www-form-urlencoded"
 					},
-					"body": `userLat=${userLat}&userLon=${userLon}&distance=${distance}&profession=${profession}&gender=${gender}`,
+					"body": `userLat=\${userLat}&userLon=\${userLon}&distance=\${distance}&profession=\${profession}&gender=\${gender}`,
 					"method": "POST"
 				});
 
@@ -480,14 +485,14 @@
 					profileDivision.innerHTML = `<div class="additional">
 														<div class="user-card">
 															<img class="profile-img center"
-																src="${outList[i].gender == "male" ?maleImg :femaleImg}"
+																src="\${outList[i].gender == "male" ?maleImg :femaleImg}"
 																alt="">
 														</div>
 														<div class="more-info">
-															<h1>${outList[i].name}</h1>
+															<h1>\${outList[i].name}</h1>
 															<form id="startChat" action="chatUI.jsp" method="post">
-																<input type="hidden" name="userid" value="e0afffa6-bd5a-45c1-b964-d5ba530b44eb">
-																<input type="hidden" name="receiverid" value="18c8c7d1-2c52-40cb-ada4-df919caf0413">
+																<input type="hidden" name="userid" value="\${ userid }">
+																<input type="hidden" name="receiverid" value="\${outList[i].userid}">
 																<input type="submit" class="material-icons chat" value="chat">
 															</form>
 															
@@ -495,20 +500,20 @@
 														</div>
 													</div>
 													<div class="general">
-														<h1>${outList[i].name}</h1>
+														<h1>\${outList[i].name}</h1>
 														<div class="coords">
-															<span>${outList[i].profession}</span>
+															<span>\${outList[i].profession}</span>
 														</div>
 														<div class="coords">
-															<span>${outList[i].address}</span>
+															<span>\${outList[i].address}</span>
 														</div>
 														<div class="coords">
-															<span>${outList[i].phone}</span>
+															<span>\${outList[i].phone}</span>
 														</div>
 														<div class="coords">
-															<span>${outList[i].email}</span>
+															<span>\${outList[i].email}</span>
 														</div>
-														<span class="more">${outList[i].gender}</span>
+														<span class="more">\${outList[i].gender}</span>
 													</div>`;
 
 

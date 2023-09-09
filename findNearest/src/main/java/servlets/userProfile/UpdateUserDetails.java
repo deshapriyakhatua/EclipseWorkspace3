@@ -10,7 +10,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.LoginTokenValidationResponse;
 
 public class UpdateUserDetails extends HttpServlet {
 
@@ -39,18 +38,10 @@ public class UpdateUserDetails extends HttpServlet {
 		}
 
 		try {
-			
-			LoginTokenValidationResponse loginTokenValidationResponse = (LoginTokenValidationResponse) req
-					.getAttribute("LoginTokenValidationResponse");
+		
 
-			if (loginTokenValidationResponse == null) {
-				System.out.println("LoginTokenValidationResponse is null");
-				System.out.println("<<<-- Servlet: UpdateUserDetails redirected...");
-				resp.sendRedirect("UpdateUserDetails.html");
-				return;
-			}
 
-			String userid = loginTokenValidationResponse.getUserid();
+			String userid = (String) req.getAttribute("userid");
 
 			if (userid == null) {
 				System.out.println("userid is null");

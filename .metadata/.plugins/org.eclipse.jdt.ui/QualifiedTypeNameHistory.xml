@@ -14,7 +14,6 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="findNearest.CalculateDistance"/>
     <fullyQualifiedTypeName name="findNearest.Distances"/>
-    <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
     <fullyQualifiedTypeName name="databaseConnector.LoginTokenValidation"/>
     <fullyQualifiedTypeName name="com.google.protobuf.Timestamp"/>
@@ -38,4 +37,5 @@
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.sun.tools.javac.api.Messages"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
 </qualifiedTypeNameHistroy>

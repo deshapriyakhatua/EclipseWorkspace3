@@ -13,7 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.LoginTokenValidationResponse;
 import objects.User;
 
 public class GetUserDetails extends HttpServlet {
@@ -24,26 +23,27 @@ public class GetUserDetails extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("-->>> Servlet: get user details started running...");
+		
+		User user = new User();
+		
+		String userid = req.getParameter("userid");
+
+		if (userid == null) {
+			
+			System.out.println("userid is null");
+			String employeeJsonString = new Gson().toJson(user);
+
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("application/json");
+			resp.setCharacterEncoding("UTF-8");
+			out.print(employeeJsonString);
+			System.out.println("-->>> Servlet: get user details finished work...");
+			out.close();
+			System.out.println("-->>> Servlet: get user details stopped running...");
+			return;
+		}
 
 		try {
-
-			LoginTokenValidationResponse loginTokenValidationResponse = (LoginTokenValidationResponse) req
-					.getAttribute("LoginTokenValidationResponse");
-
-			if (loginTokenValidationResponse == null) {
-				System.out.println("LoginTokenValidationResponse is null");
-				resp.sendRedirect("login.jsp");
-			}
-
-			String userid = loginTokenValidationResponse.getUserid();
-
-			if (userid == null) {
-				System.out.println("userid is null");
-				System.out.println("-->>> Servlet: getUserDetails redirected...");
-				resp.sendRedirect("login.jsp");
-			}
-
-			User user = new User();
 
 			// connecting to database
 
@@ -91,6 +91,16 @@ public class GetUserDetails extends HttpServlet {
 			e.printStackTrace();
 			System.out.println(e);
 			System.out.println("-->>> Servlet: get user details stopped running...");
+			String employeeJsonString = new Gson().toJson(user);
+
+			PrintWriter out = resp.getWriter();
+			resp.setContentType("application/json");
+			resp.setCharacterEncoding("UTF-8");
+			out.print(employeeJsonString);
+			System.out.println("-->>> Servlet: get user details finished work...");
+			out.close();
+			return;
+			
 		}
 
 	}
