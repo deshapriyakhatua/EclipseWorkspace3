@@ -109,12 +109,12 @@ public class GetOtherUsers extends HttpServlet {
 				
 			}
 
-			System.out.println("<<<-- Servlet: calculateDistance servlet finished work...");
+			System.out.println("<<<-- Servlet: GetOtherUsers servlet finished work...");
 			
 			
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			System.out.println("<<<-- Servlet: calculateDistance servlet stopped running...");
+			System.out.println("<<<-- Servlet: GetOtherUsers servlet stopped running...");
 		} 
 		
 		String employeeJsonString = new Gson().toJson(outList);
