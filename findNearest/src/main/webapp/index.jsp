@@ -346,7 +346,6 @@
 
 </body>
 
-</html>
 <script>
 
 	let userid = "<%= request.getAttribute("userid") %>";
@@ -485,7 +484,7 @@
 					profileDivision.innerHTML = `<div class="additional">
 														<div class="user-card">
 															<img class="profile-img center"
-																src="\${outList[i].gender == "male" ?maleImg :femaleImg}"
+																src="\${outList[i].gender.toUpperCase() == "MALE"  ?maleImg :femaleImg}"
 																alt="">
 														</div>
 														<div class="more-info">
@@ -534,3 +533,6 @@
 
 
 </script>
+
+
+</html>

@@ -8,14 +8,13 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
 :root {
-	--body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	--body-bg: #afedea;
 	--msger-bg: #fff;
 	--border: 2px solid #ddd;
 	--left-msg-bg: #ececec;
@@ -30,6 +29,7 @@ html {
 	margin: 0;
 	padding: 0;
 	box-sizing: inherit;
+	font-family: Abel, Arial, Verdana, sans-serif;
 }
 
 body {
@@ -37,8 +37,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	background-image: var(--body-bg);
-	font-family: Abel, Arial, Verdana, sans-serif;
+	background-color: var(--body-bg);
 }
 
 .msger {
@@ -60,8 +59,27 @@ body {
 	justify-content: space-between;
 	padding: 10px;
 	border-bottom: var(--border);
-	background: #eee;
-	color: #666;
+	background: #fff;
+	color: #000;
+}
+
+.msger-header-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+
+#recerverImgHeader {
+	box-sizing: border-box;
+	width: 30px;
+	height: auto;
+}
+
+#recerverNameHeader {
+	margin-left: 10px;
+	font-stretch:wider;
+	font-size: 20px;
 }
 
 .msger-chat {
@@ -120,6 +138,7 @@ body {
 .msg-info-name {
 	margin-right: 10px;
 	font-weight: bold;
+	letter-spacing: 0.5px;
 }
 
 .msg-info-time {
@@ -163,17 +182,41 @@ body {
 	background: #ddd;
 }
 
-.msger-send-btn {
-	margin-left: 10px;
-	background: rgb(0, 196, 65);
-	color: #fff;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background 0.23s;
+.msger-input:focus {
+	outline: none;
+	color: #000000;
+	border: 1px solid #f44177;
 }
 
-.msger-send-btn:hover {
-	background: rgb(0, 180, 50);
+.msger-send-btn {
+	box-sizing: border-box;
+	padding: 0;
+	margin-left: 10px;
+	background-color: #f44177;
+	color: #ffffff;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+
+#send-icon {
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	font-size: 18px;
+	line-height: 40px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: #f44177;
+	color: #ffffff;
+	transition: all 0.23s;
+}
+
+#send-icon:hover {
+	rotate: -30deg;
 }
 
 .msger-chat {
@@ -215,10 +258,11 @@ body {
 	<section class="msger">
 		<header class="msger-header">
 			<div class="msger-header-title">
-				<i class="fas fa-comment-alt"></i> SimpleChat
+				<img class="" id="recerverImgHeader"></img>
+				<div id="recerverNameHeader"></div>
 			</div>
 			<div class="msger-header-options">
-				<span><i class="fas fa-cog"></i></span>
+				<span><i class=""></i></span>
 			</div>
 		</header>
 
@@ -230,9 +274,9 @@ body {
 			<input type="hidden" id="groupid" value="<%= groupid %>">
 			<input type="hidden" id="userid" value="<%= userid %>">
 			<input type="hidden" id="receiverid" value="<%= receiverid %>">
-			<input type="text" class="msger-input" id="msger-input"
+			<input type="text" class="msger-input" autocomplete="off" id="msger-input"
 				placeholder="Enter your message...">
-			<button type="submit" class="msger-send-btn" id="msger-send-btn">Send</button>
+			<button type="submit" class="msger-send-btn" id="msger-send-btn"><span class="material-icons" id="send-icon">send</span></button>
 		</form>
 	</section>
 
@@ -260,13 +304,19 @@ async function chatUI(){
 	
 	console.log("user: " + user," receiver: " + receiver);
 	
-	const userImg = "https://cdn-icons-png.flaticon.com/512/147/147133.png";
-	const receiverImg = "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png";
+	const maleImg = "https://cdn-icons-png.flaticon.com/512/147/147133.png";
+	const femaleImg = "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png";
 	const receiverName = receiver.name;
 	const userName = user.name;
 
-
+	document.title = receiverName;
+	document.getElementById("recerverNameHeader").innerText = receiverName;
+	document.getElementById("recerverImgHeader").src = receiver.gender.toLowerCase() == "male" ?maleImg :femaleImg;
 	getMessages(populateMessages);
+	
+	//setInterval(() => {
+	//	getMessages(populateMessages);
+	//},2000);
 	
 	
 	msgerForm.addEventListener("submit", event => {	
@@ -402,12 +452,12 @@ async function chatUI(){
 			if(elem.senderid == userid){
 				name = userName;
 				side = "right";
-				img = userImg;
+				img = user.gender.toUpperCase() == 'MALE' ?maleImg :femaleImg;
 			}
 			else{
 				name = receiverName;
 				side = "left";
-				img = receiverImg;
+				img = receiver.gender.toUpperCase() == 'MALE' ?maleImg :femaleImg;
 			}
 			
 			appendMessage(name, img, side, text, time);
