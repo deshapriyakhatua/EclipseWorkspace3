@@ -86,7 +86,7 @@ public class Login extends HttpServlet {
 
 				con.close();
 				System.out.println("<<<-- Servlet: Login servlet redirected...");
-				resp.sendRedirect("/findNearest");
+				resp.sendRedirect("index.jsp");
 				return;
 
 			}

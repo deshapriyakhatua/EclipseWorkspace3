@@ -13,31 +13,29 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.User;
+import model.User;
 
 public class GetUserDetails extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("-->>> Servlet: get user details started running...");
 		
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		
 		User user = new User();
 		
-		String userid = req.getParameter("userid");
+		String userid = (String) req.getParameter("userid");
 
 		if (userid == null) {
 			
 			System.out.println("userid is null");
-			String employeeJsonString = new Gson().toJson(user);
-
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
-			out.print(employeeJsonString);
-			System.out.println("-->>> Servlet: get user details finished work...");
+			out.print(new Gson().toJson(user));
 			out.close();
 			System.out.println("-->>> Servlet: get user details stopped running...");
 			return;
@@ -72,43 +70,23 @@ public class GetUserDetails extends HttpServlet {
 				user.setProfession(set.getString(9));
 				user.setAddress(set.getString(10));
 
-				System.out.println("Database: user id: " + set.getString(1) + " | Email: " + set.getString(2)
-						+ " | name: " + set.getString(4));
+				System.out.println("Database: user ID: " + set.getString(1) + " | Email: " + set.getString(2)
+						+ " | Name: " + set.getString(4));
 			}
 
 			con.close();
-
-			String employeeJsonString = new Gson().toJson(user);
-
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
-			out.print(employeeJsonString);
 			System.out.println("-->>> Servlet: get user details finished work...");
-			out.close();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
-			System.out.println("-->>> Servlet: get user details stopped running...");
-			String employeeJsonString = new Gson().toJson(user);
-
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
-			out.print(employeeJsonString);
-			System.out.println("-->>> Servlet: get user details finished work...");
-			out.close();
-			return;
-			
+			System.out.println("-->>> Servlet: get user details stopped running...");			
 		}
+		
+		out.print(new Gson().toJson(user));
+		out.close();
 
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		doGet(req, resp);
-	}
 
 }

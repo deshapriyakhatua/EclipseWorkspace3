@@ -1,4 +1,4 @@
-package objects;
+package model;
 
 public class Distances {
 	
@@ -6,8 +6,10 @@ public class Distances {
 	double distFeet;
 	double distMiles;
 	
+	public Distances() {
+	}
+
 	public Distances(double distMeter, double distFeet, double distMiles) {
-		super();
 		this.distMeter = distMeter;
 		this.distFeet = distFeet;
 		this.distMiles = distMiles;

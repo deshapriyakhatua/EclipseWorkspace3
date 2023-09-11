@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -291,12 +294,12 @@
 				"headers": {
 					"content-type": "application/x-www-form-urlencoded"
 				},
-				"body": "",
+				"body": "userid=<%= request.getAttribute("userid") %>",
 				"method": "POST"
 			});
 
 			let data = await res.text();
-			console.log("Users : " + data);
+			console.log("User : " + data);
 			user = JSON.parse(data);
 			sessionStorage.setItem("user", user);
 

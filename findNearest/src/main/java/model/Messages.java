@@ -1,4 +1,4 @@
-package objects;
+package model;
 
 public class Messages {
 
@@ -6,6 +6,10 @@ public class Messages {
 	String senderid;
 	String message;
 	String time;
+
+	public Messages() {
+	
+	}
 	
 	public Messages(String groupid, String senderid, String message, String time) {
 		
@@ -13,10 +17,6 @@ public class Messages {
 		this.senderid = senderid;
 		this.message = message;
 		this.time = time;
-	}
-
-	public Messages() {
-		super();
 	}
 
 	public String getGroupid() {

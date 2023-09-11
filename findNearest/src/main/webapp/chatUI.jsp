@@ -7,6 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript" src="code.jquery.com_jquery-3.7.1.min.js"></script>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -284,6 +285,8 @@ body {
 </body>
 
 <script type="text/javascript">
+
+
 
 chatUI();
 async function chatUI(){

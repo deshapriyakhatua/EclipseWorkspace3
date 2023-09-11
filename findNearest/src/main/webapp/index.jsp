@@ -254,6 +254,11 @@
 			background-color: white;
 			color: #020000;
 		}
+		
+		.card .additional .more-info input:hover {
+			background-color: white;
+			color: #020000;
+		}
 
 		.card .general .coords {
 			margin-left: 1rem;

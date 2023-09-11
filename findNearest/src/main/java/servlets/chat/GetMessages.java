@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-import objects.Messages;
-
 import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Messages;
 
 public class GetMessages extends HttpServlet {
 

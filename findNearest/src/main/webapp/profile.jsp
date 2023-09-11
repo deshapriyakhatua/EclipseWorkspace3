@@ -90,6 +90,7 @@ body {
 </head>
 
 <body>
+	<%@ include file="card.html" %>
 	<section id="user-section">
 		<div id="user-profile">
 			<div id="profile-division">
@@ -114,7 +115,7 @@ body {
 	</section>
 
 	<section id="register">
-		<a href="UpdateUserDetails.html"><button id="registerButton"
+		<a href="UpdateUserDetails.jsp"><button id="registerButton"
 				type="submit">Update profile</button></a> <a href="logout"><button
 				id="logoutButton" type="submit">Logout</button></a>
 	</section>
@@ -141,7 +142,7 @@ body {
 				"headers" : {
 					"content-type" : "application/x-www-form-urlencoded"
 				},
-				"body" : "",
+				"body" : "userid=<%= (String)request.getAttribute("userid") %>",
 				"method" : "POST"
 			});
 

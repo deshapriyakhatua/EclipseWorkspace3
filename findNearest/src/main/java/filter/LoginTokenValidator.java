@@ -2,12 +2,12 @@ package filter;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
+import databaseConnector.DatabaseConnect;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -28,18 +28,6 @@ public class LoginTokenValidator implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
-		// exclude login servlet
-
-		System.out.println("Requested URI: " + req.getRequestURI());
-
-		if (req.getRequestURI().endsWith("/login") || req.getRequestURI().endsWith("/login.jsp")
-				|| req.getRequestURI().endsWith("/signup") || req.getRequestURI().endsWith("/signup.jsp")) {
-			System.out.println("<<<-- Filter: Login token validator redirected...");
-			chain.doFilter(req, resp);
-			return;
-		}
-
-
 		// validate access token from cookie
 
 		Cookie[] cookies = req.getCookies();
@@ -48,9 +36,18 @@ public class LoginTokenValidator implements Filter {
 			// go for login
 			System.out.println("No cookies available in your device, Login now");
 			req.setAttribute("userid", null);
-			System.out.println("<<<-- Filter: Login token validator redirected...");
-			resp.sendRedirect("login.jsp");
-			return;
+			
+			if (req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup.jsp") || req.getRequestURI().endsWith("/login") ||  req.getRequestURI().endsWith("/signup")) {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				chain.doFilter(req, resp);
+				return;
+			}
+			else {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				resp.sendRedirect("login.jsp");
+				return;
+			}
+			
 
 		}
 
@@ -72,9 +69,17 @@ public class LoginTokenValidator implements Filter {
 			// go for login
 			System.out.println("Token not available in your device, Login now");
 			req.setAttribute("userid", null);
-			System.out.println("<<<-- Filter: Login token validator redirected...");
-			resp.sendRedirect("login.jsp");
-			return;
+
+			if (req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup.jsp") || req.getRequestURI().endsWith("/login") ||  req.getRequestURI().endsWith("/signup")) {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				chain.doFilter(req, resp);
+				return;
+			}
+			else {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				resp.sendRedirect("login.jsp");
+				return;
+			}
 
 		}
 
@@ -83,10 +88,7 @@ public class LoginTokenValidator implements Filter {
 		try {
 
 			// connecting to database
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/findnearest";
-
-			Connection con = DriverManager.getConnection(url, "root", "1036");
+			Connection con = DatabaseConnect.getConnection();
 
 			if (con.isClosed()) {
 				System.out.println("DB connection closed isValidLoginToken");
@@ -114,18 +116,36 @@ public class LoginTokenValidator implements Filter {
 					System.out.println("user cookie is valid");
 					req.setAttribute("userid", userid);
 					con.close();
-					System.out.println("<<<-- Filter: Login token validator redirected...");
-					chain.doFilter(req, resp);
-					return;
+					
+					if (req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup.jsp") || req.getRequestURI().endsWith("/login") ||  req.getRequestURI().endsWith("/signup")) {
+						System.out.println("<<<-- Filter: Login token validator redirected...");
+						resp.sendRedirect("index.jsp");
+						return;
+					}
+					else {
+						System.out.println("<<<-- Filter: Login token validator redirected...");
+						chain.doFilter(req, resp);
+						return;
+					}
+					
+					
 
 				} else {
 
 					req.setAttribute("userid", null);
 					System.out.println("user cookie is expired, Login");
 					con.close();
-					System.out.println("<<<-- Filter: Login token validator redirected...");
-					resp.sendRedirect("login.jsp");
-					return;
+
+					if (req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup.jsp") || req.getRequestURI().endsWith("/login") ||  req.getRequestURI().endsWith("/signup")) {
+						System.out.println("<<<-- Filter: Login token validator redirected...");
+						chain.doFilter(req, resp);
+						return;
+					}
+					else {
+						System.out.println("<<<-- Filter: Login token validator redirected...");
+						resp.sendRedirect("login.jsp");
+						return;
+					}
 
 				}
 
@@ -135,27 +155,34 @@ public class LoginTokenValidator implements Filter {
 
 			System.out.println("Token not available in database, Login now");
 			req.setAttribute("userid", null);
-			System.out.println("<<<-- Filter: Login token validator redirected...");
-			resp.sendRedirect("login.jsp");
-			return;
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-			System.out.println(e);
-			req.setAttribute("userid", null);
-			System.out.println("<<<-- Filter: Login token validator redirected...");
-			resp.sendRedirect("login.jsp");
-			return;
+			if (req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup.jsp") || req.getRequestURI().endsWith("/login") ||  req.getRequestURI().endsWith("/signup")) {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				chain.doFilter(req, resp);
+				return;
+			}
+			else {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				resp.sendRedirect("login.jsp");
+				return;
+			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 			System.out.println(e);
 			req.setAttribute("userid", null);
-			System.out.println("<<<-- Filter: Login token validator redirected...");
-			resp.sendRedirect("login.jsp");
-			return;
+
+			if (req.getRequestURI().endsWith("/login.jsp") || req.getRequestURI().endsWith("/signup.jsp") || req.getRequestURI().endsWith("/login") ||  req.getRequestURI().endsWith("/signup")) {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				chain.doFilter(req, resp);
+				return;
+			}
+			else {
+				System.out.println("<<<-- Filter: Login token validator redirected...");
+				resp.sendRedirect("login.jsp");
+				return;
+			}
 
 		}
 

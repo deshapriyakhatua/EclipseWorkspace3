@@ -2,28 +2,30 @@ package servlets.findOthersUsers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-import databaseConnector.DatabaseConnect;
+import dao.GetAllUsers;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.User;
+import model.User;
 
 public class GetOtherUsers extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("-->>> Servlet: GetOtherUsers started running...");
+		
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		
 		ArrayList<User> outList = new ArrayList<>();
 		
 		try {
@@ -36,7 +38,9 @@ public class GetOtherUsers extends HttpServlet {
 			
 			if(req.getParameter("userLat") == null || req.getParameter("userLon") == null || req.getParameter("distance") == null || req.getParameter("profession") == null || req.getParameter("gender") == null) {
 				System.out.println("input contains null value");
-				throw new NumberFormatException("input contains null value");
+				out.print(new Gson().toJson(outList));
+				out.close();
+				return;
 			}
 			
 			double userLat = Double.parseDouble(req.getParameter("userLat").trim());
@@ -47,46 +51,8 @@ public class GetOtherUsers extends HttpServlet {
 			
 
 			ArrayList<User> list = new ArrayList<>();
-			
-			try {
-				
-				Connection con = DatabaseConnect.getConnection();
-
-				if (con.isClosed()) {
-					System.out.println(" DB connection closed showUsers");
-				} else {
-					System.out.println(" DB connection created showUsers");
-				}
-
-				// Accessing Data from table
-				Statement stmt = con.createStatement();
-				ResultSet set = stmt.executeQuery("select * from users");
-
-				while (set.next()) {
-
-					User user = new User();
-					user.setUserid(set.getString(1));
-					user.setEmail(set.getString(2));
-					user.setName(set.getString(4));
-					user.setPhone(set.getString(5));
-					user.setGender(set.getString(6));
-					user.setLatitude(set.getString(7));
-					user.setLongitude(set.getString(8));
-					user.setProfession(set.getString(9));
-					user.setAddress(set.getString(10));
-					list.add(user);
-					
-					System.out.println("Database: user id: " + set.getString(1) + " | Email: " + set.getString(2) + " | name: "
-							+ set.getString(4));
-					
-				}
-
-				con.close();
-				System.out.println("All users data collected from database...");
-			
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			GetAllUsers getAllUsers = new GetAllUsers();
+			list = getAllUsers.getAllUsers();
 			
 			
 			for(int i=0; i<list.size(); i++) {
@@ -115,23 +81,19 @@ public class GetOtherUsers extends HttpServlet {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			System.out.println("<<<-- Servlet: GetOtherUsers servlet stopped running...");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("<<<-- Servlet: GetOtherUsers servlet stopped running...");
 		} 
 		
-		String employeeJsonString = new Gson().toJson(outList);
 
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		resp.setCharacterEncoding("UTF-8");
-		out.print(employeeJsonString);
+		
+		out.print(new Gson().toJson(outList));
 		out.close();
 		
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		doGet(req, resp);
-	}
+	
 
 	public static double getDistance(double lat1, double lat2, double lon1, double lon2, double el1, double el2) {
 
