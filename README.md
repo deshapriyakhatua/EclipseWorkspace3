@@ -1,4 +1,4 @@
-# EclipseWorkspace3
+# EclipseWorkspace3 > findNearest
 <details>
     <summary><b>abc</b></summary><br/>
     Sample text
@@ -11,7 +11,7 @@ The "Find Friends Nearby" project is a social networking platform designed to he
 ## Table of Contents
 
 - [Project Description](#project-description)
-- [Technologies Used](#technologies-used)
+- [Languages & Technologies Used](#languages-and-technologies-used)
 - [Key Features](#key-features)
 - [How It Works](#how-it-works)
 - [Future Enhancements](#future-enhancements)
@@ -31,7 +31,7 @@ This project is designed to bridge the gap between online interactions and real-
 
 Whether you're new to an area, looking to expand your social network, or simply interested in meeting new people, the "Find Friends Nearby" project offers a user-friendly and innovative solution to connect with individuals who are nearby and share common interests.
 
-## Technologies Used
+## Languages and Technologies Used
 
 - Java
 - MySQL
@@ -135,11 +135,8 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
        
     - Response:
-      ```json
-        {
-          "message": "User registered successfully",
-          "user_id": "1234567890"
-        }
+      ```jsp
+        Login Page
       ```
       
 2. User Login
@@ -158,12 +155,8 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
      
    - Response:
-     ```json
-        {
-          "message": "Login successful",
-          "user_id": "1234567890",
-          "access_token": "f756c8-k6dh89-67kjh8-9i"
-        }
+     ```jsp
+         Home Page
      ```
      
 3. Update User Profile
@@ -182,53 +175,53 @@ Authentication is required to access certain endpoints. You need to include an a
      ```
      
    - Response:
-     ```json
-        {
-          "message": "Profile updated successfully"
-        }
+     ```jsp
+         Profile Page
      ```
      
 4. Get Nearby Friends
-   - Endpoint: /api/nearby
+   - Endpoint: /getOtherUsers
     
-   - Method: GET
+   - Method: ` post `
     
    - Description: Get a list of nearby friends based on the user's location.
     
    - Request:
-     ```http
-        GET /api/nearby?latitude=12.345&longitude=67.890
+     ```json
+        {
+            "userid": "0123456789-4587411-4874",
+             "distance": "24",
+             "gender": "male",
+             ...
+        }
      ```
      
    - Response:
      ```json
-        {
-          "message": "Nearby friends retrieved successfully",
-          "nearby_friends": [
+        [
             {
-              "user_id": "789012",
+              "user_id": "789012-251424-45824",
               "username": "friend1",
-              "distance": 0.3
+              ...
             },
             {
-              "user_id": "345678",
+              "user_id": "345678-548245-541525",
               "username": "friend2",
-              "distance": 1.2
-            }
-          ]
-        }
+              ...
+            },
+             ...
+       ]
      ```
      
 5. Send Message
-   - Endpoint: /api/message
+   - Endpoint: /sendMessage
     
-   - Method: POST
-    
-   - Description: Send a message to a friend.
+   - Method: ` POST `
     
    - Request:
      ```json
         {
+          "userid": "12548-458745-458745",
           "recipient_id": "789012",
           "message": "Hey, let's meet up for coffee!"
         }
@@ -236,18 +229,13 @@ Authentication is required to access certain endpoints. You need to include an a
      
    - Response:
      ```json
-        {
-          "message": "Message sent successfully"
-        }
+        true
      ```
      
 ### Error Handling
  The API returns appropriate error responses in case of invalid requests or other errors. For example:
- ```json
-    {
-      "error": "Invalid credentials",
-      "message": "Please check your email and password"
-    }
+ ```jsp
+    Login Page
  ```
  
 ### Conclusion
