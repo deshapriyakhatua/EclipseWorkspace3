@@ -71,20 +71,92 @@
 		}
 
 		/* input type range */
-
-		/* Special styling for WebKit/Blink */
-		input[type=range]::-webkit-slider-thumb {
+		
+			/*********** Baseline, reset styles ***********/
+		.profile-main-child:nth-child(2) input[type="range"] {
 			-webkit-appearance: none;
-			border: 5px solid #000000;
-			height: 56px;
-			width: 36px;
-			border-radius: 3px;
-			background: #ffffff;
+			appearance: none;
+			background: transparent;
 			cursor: pointer;
-			margin-top: -14px;
-			/* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-			box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-			/* Add cool effects to your sliders! */
+			width: 320px;
+			outline: none;
+		}
+
+		/* Removes default focus */
+		.profile-main-child:nth-child(2) input[type="range"]:focus {
+			outline: none;
+		}
+
+		/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+		/* slider track */
+		.profile-main-child:nth-child(2) input[type="range"]::-webkit-slider-runnable-track {
+			background-color: rgb(192, 192, 192);
+			border-radius: 0rem;
+			height: 0.5rem;
+		}
+
+		/* slider thumb */
+		.profile-main-child:nth-child(2) input[type="range"]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			/* Override default look */
+			appearance: none;
+			margin-top: 0px;
+			/* Centers thumb on the track */
+			background-color: #808080;
+			border-radius: 0rem;
+			height: 0.5rem;
+			width: 1rem;
+		}
+
+		/*********** Baseline, reset styles ***********/
+		.profile-main-child:nth-child(3) input[type="range"] {
+			-webkit-appearance: none;
+			appearance: none;
+			background: transparent;
+			cursor: pointer;
+			width: 320px;
+			outline: none;
+			overflow: hidden;
+			height: 1rem;
+		}
+
+		/* Removes default focus */
+		.profile-main-child:nth-child(3) input[type="range"]:focus {
+			outline: none;
+		}
+
+		/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+		/* slider track */
+		.profile-main-child:nth-child(3) input[type="range"]::-webkit-slider-runnable-track {
+			background-color: rgb(192, 192, 192);
+			border-radius: 0rem;
+		}
+
+		/* slider thumb */
+		.profile-main-child:nth-child(3) input[type="range"]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			/* Override default look */
+			appearance: none;
+			margin-top: 0px;
+			/* Centers thumb on the track */
+			background-color: #808080;
+			box-shadow: -160px 160px 0px 160px rgba(0,0,0,1);
+			border-radius: 0rem;
+			height: 0.5rem;
+			width: 0rem;
+		}
+
+
+		datalist {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 320px;
+			color: rgb(93, 93, 93);
+		}
+
+		option {
+			padding: 0;
 		}
 
 		/* input type range */
@@ -117,15 +189,54 @@
 			<div>
 				<h1>Personality</h1>
 				<div>
-					<div>
-						<span>Introvert</span>
-						<span>Extrovert</span>
-					</div>
-					<input type="range" id="vol" name="vol" min="0" max="50">
+					<input type="range" id="vol" list="markers" name="vol" min="0" max="50">
+					<datalist id="markers">
+						<option value="0" label="Introvert"></option>
+						<option value="100" label="Extrovert"></option>
+					</datalist>
+				</div>
+				<div>
+					<input type="range" id="vol" list="markers" name="vol" min="0" max="50">
+					<datalist id="markers">
+						<option value="0" label="Active"></option>
+						<option value="100" label="Passive"></option>
+					</datalist>
+				</div>
+				<div>
+					<input type="range" id="vol" list="markers" name="vol" min="0" max="50">
+					<datalist id="markers">
+						<option value="0" label="Analytical"></option>
+						<option value="100" label="Creative"></option>
+					</datalist>
 				</div>
 			</div>
 		</div>
-		<div class="profile-main-child"></div>
+		<div class="profile-main-child">
+			<div>
+				<h1>Personality</h1>
+				<div>
+					<input type="range" id="vol" list="markers" name="vol" min="0" max="50">
+					<datalist id="markers">
+						<option value="0" label="Introvert"></option>
+						<option value="100" label="Extrovert"></option>
+					</datalist>
+				</div>
+				<div>
+					<input type="range" id="vol" list="markers" name="vol" min="0" max="50">
+					<datalist id="markers">
+						<option value="0" label="Active"></option>
+						<option value="100" label="Passive"></option>
+					</datalist>
+				</div>
+				<div>
+					<input type="range" id="vol" list="markers" name="vol" min="0" max="50">
+					<datalist id="markers">
+						<option value="0" label="Analytical"></option>
+						<option value="100" label="Creative"></option>
+					</datalist>
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
 
