@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-import dao.GetAllUsers;
+import dao.GetUser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,29 +30,31 @@ public class GetOtherUsers extends HttpServlet {
 		
 		try {
 			
-			System.out.println(req.getParameter("userLat"));
-			System.out.println(req.getParameter("userLon"));
+			System.out.println(req.getParameter("userid"));
 			System.out.println(req.getParameter("distance"));
 			System.out.println(req.getParameter("profession"));
 			System.out.println(req.getParameter("gender"));
 			
-			if(req.getParameter("userLat") == null || req.getParameter("userLon") == null || req.getParameter("distance") == null || req.getParameter("profession") == null || req.getParameter("gender") == null) {
+			if(req.getParameter("userid") == null || req.getParameter("distance") == null || req.getParameter("profession") == null || req.getParameter("gender") == null) {
 				System.out.println("input contains null value");
 				out.print(new Gson().toJson(outList));
 				out.close();
 				return;
 			}
 			
-			double userLat = Double.parseDouble(req.getParameter("userLat").trim());
-			double userLon = Double.parseDouble(req.getParameter("userLon").trim());
+			String userid = req.getParameter("userid");
+			GetUser getUser = new GetUser();
+			User user = getUser.getUserDetails(userid);
+			
+			double userLat = Double.parseDouble(user.getLatitude());
+			double userLon = Double.parseDouble(user.getLongitude());
 			long distance = (long)( Double.parseDouble(req.getParameter("distance").trim())*1000 );
 			String profession = req.getParameter("profession").trim();
 			String gender = req.getParameter("gender").trim();
 			
 
 			ArrayList<User> list = new ArrayList<>();
-			GetAllUsers getAllUsers = new GetAllUsers();
-			list = getAllUsers.getAllUsers();
+			list = getUser.getAllUsers();
 			
 			
 			for(int i=0; i<list.size(); i++) {

@@ -9,20 +9,26 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>find Distance</title>
-	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 	
-	<style>
-		
-		@import url('https://fonts.googleapis.com/css?family=Abel');
-		
+	<style>		
+	
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
 		
 		body {
 			background-color: rgb(255, 255, 255);
-			font-family: Abel, Arial, Verdana, sans-serif;
+			font-family: 'Abel', sans-serif;
 		}
 
 		#user-section {
+			margin-top: 100px;
 			width: 100%;
 			height: auto;
 			display: flex;
@@ -75,63 +81,7 @@
 			border-color: rgb(244, 148, 148);
 		}
 
-		.profile-division {
-			margin: 10px 0px;
-			width: 600px;
-			height: 180px;
-			box-sizing: border-box;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid rgb(0, 0, 0);
-		}
-
-		.profile-top,
-		.profile-bottom {
-			width: 100%;
-			height: 50%;
-		}
-
-		.profile-top {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.name-phone {
-			height: 100%;
-			width: 80%;
-		}
-
-		.profile-image {
-			height: 100%;
-			width: 20%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.name-phone p {
-			margin: 1px;
-			padding-left: 10px;
-			padding-top: 5px;
-		}
-
-		.image-icon {
-			margin: 0;
-			text-align: center;
-			font-size: 60px;
-			border: 0px solid red;
-		}
-
-		.address,
-		.gender,
-		.email {
-			margin: 1px;
-			padding-left: 10px;
-			padding-top: 5px;
-		}
+		
 
 		/* output-section */
 
@@ -311,9 +261,7 @@
 
 <body>
 
-	<% 
-		String userid = (String) request.getAttribute("userid");
-	%>
+	<%@ include file="navbar.html" %>
 
 	<section id="user-section">
 		<div id="input-for-user">
@@ -353,93 +301,14 @@
 
 <script>
 
-	let userid = "<%= request.getAttribute("userid") %>";
-	let user = {};
-
-	getUserDetails();
-
-	async function getUserDetails() {
-
-		console.log("getUserDetails called");
-
-		try {
-
-			console.log("Fetch Process Initiated...");
-
-			let res = await fetch("http://localhost:8080/findNearest/getUserDetails", {
-				"headers": {
-					"content-type": "application/x-www-form-urlencoded"
-				},
-				"body": "userid="+userid,
-				"method": "POST"
-			});
-
-			let data = await res.text();
-			console.log("Users : " + data);
-			user = JSON.parse(data);
-			sessionStorage.setItem("user", user);
-
-			populateUser();
-
-		}
-		catch (err) {
-			console.log(err);
-		}
-
-	}
-
-
-	function populateUser() {
-
-		let profileDiv = document.getElementById("user-profile");
-		profileDiv.innerHTML = "";
-
-		// append in user profile
-
-		if (user.userid != undefined) {
-			let profileDivision = document.createElement("div");
-			profileDivision.className = "profile-division";
-
-			profileDivision.innerHTML = `<div class="profile-top">
-											<div class="name-phone">
-												<p class="name">Name: \${user.name}</p>
-												<p class="phone">Phone: \${user.phone}</p>
-												<p class="profession">Profession: \${user.profession}</p>
-											</div>
-											<div class="profile-image">
-												<p class="image-icon"></p>
-											</div>
-										</div>
-										<div class="profile-bottom">
-											<p class="email"> Email: \${user.email} </p>
-											<p class="gender"> Gender: \${user.gender} </p>
-											<p class="address"> Address: \${user.address} </p>
-											<input type="hidden" id="user-lat" name="userLat" value="\${user.latitude}">
-											<input type="hidden" id="user-lon" name="userLon" value="\${user.longitude}">
-											<input type="hidden" id="userid" name="userid" value="\${user.userid}">
-										</div>`;
-
-			profileDiv.append(profileDivision);
-
-
-		}
-
-
-	}
-
-
-</script>
-<script>
-
 	document.getElementById("user-input-button").addEventListener("click", fetchAndPopulate);
-	let userData = sessionStorage.getItem("user");
+	
 
 	function fetchAndPopulate() {
+		
 		console.log("button pressed");
 
-		let userLat = document.getElementById("user-lat").value;
-
-		let userLon = document.getElementById("user-lon").value;
+		let userid = "<%= (String)request.getAttribute("userid") %>";
 
 		let distance = document.getElementById("choose-distance").value;
 
@@ -449,7 +318,7 @@
 		let selectGender = document.getElementById("select-gender");
 		let gender = selectGender.options[selectGender.selectedIndex].value;
 
-		console.log(userLat, userLon, distance, profession, gender);
+		console.log(userid, distance, profession, gender);
 
 		getData();
 
@@ -465,7 +334,7 @@
 					"headers": {
 						"content-type": "application/x-www-form-urlencoded"
 					},
-					"body": `userLat=\${userLat}&userLon=\${userLon}&distance=\${distance}&profession=\${profession}&gender=\${gender}`,
+					"body": `userid=\${userid}&distance=\${distance}&profession=\${profession}&gender=\${gender}`,
 					"method": "POST"
 				});
 
@@ -481,7 +350,7 @@
 
 				for (let i = 0; i < outList.length; i++) {
 
-					if (document.getElementById("userid").value === outList[i].userid) continue;
+					if (userid === outList[i].userid) continue;
 
 					let profileDivision = document.createElement("div");
 					profileDivision.className = "card";

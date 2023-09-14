@@ -83,8 +83,8 @@ public class Signup extends HttpServlet {
 	
 	public boolean isValidEmail(String email) {
 		
-		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
-        Pattern pattern = Pattern.compile(regex);
+		String regex = "^(.+)@(\\\\S+)$";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
         

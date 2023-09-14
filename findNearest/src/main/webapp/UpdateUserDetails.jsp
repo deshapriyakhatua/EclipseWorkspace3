@@ -11,23 +11,24 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Jrp9PtHe0WapppUzxbIpMDWMAcV3qE4"></script>
 	<script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+	
 	<style>
-
-		@import url('https://fonts.googleapis.com/css?family=Abel');
 
 		* {
 			background-color: rgb(255, 255, 255);
-			font-family: Abel, Arial, Verdana, sans-serif;
+			font-family: 'Abel', sans-serif;
 		}
 
 		.form-container {
+			--theme-color: #f44177;
 			position: relative;
 			display: flex;
-			width: 800px;
+			width: 80%;
 			height: 850px;
-			margin: 50px auto;
-			background-color: rgba(255, 255, 255, 0.9);
-			border: 1px solid rgb(181, 180, 180);
+			margin: 80px auto;
 		}
 
 		.form-container .form-horizontal {
@@ -64,8 +65,8 @@
 			text-transform: uppercase;
 			text-align: center;
 			letter-spacing: 1px;
-			margin: 0 0 15px;
-			padding: 17px 0 0;
+			margin: 20px 0 25px;
+			padding: 27px 0 0;
 			border-bottom: 1px solid #9e9c9c;
 		}
 
@@ -87,8 +88,8 @@
 			width: 150px;
 			height: 100%;
 			color: #000000;
-			font-size: 13px;
-			font-weight: normal;
+			font-size: 14px;
+			font-weight: bold;
 			line-height: 40px;
 			text-align: left;
 			vertical-align: middle;
@@ -102,7 +103,7 @@
 			width: 100%;
 			height: 100%;
 			padding: 0 2px;
-			color: #303030;
+			color: #000;
 			background-color: transparent;
 			font-size: 17px;
 			font-weight: normal;
@@ -125,6 +126,7 @@
 			outline: none;
 			color: #000000;
 			border: 0px solid #0cd674;
+			font-weight: bold;
 		}
 
 		.edit-icon {
@@ -157,7 +159,7 @@
 		}
 
 		.form-horizontal .btn-enable {
-			background-color: #f44177;
+			background-color: var(--theme-color);
 			color: #ffffff;
 			cursor: pointer;
 		}
@@ -172,44 +174,46 @@
 </head>
 
 <body>
+
+	<%@ include file="navbar.html" %>
 	
 	<div class="form-container">
 		<form id="myForm" action="updateUserDetails" method="post" class="form-horizontal" spellcheck="false" >
 			<h3 class="title">Update Profile</h3>
 			<h4 class="sub-title">Personal Details</h4>
 			<div class="form-group">
-				<label>Name</label>
+				<label>Name:</label>
 				<input id="name" name="name" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
-				<label>Phone</label>
+				<label>Phone:</label>
 				<input id="phone" name="phone" class="form-control" type="number" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
-				<label>Gender</label>
+				<label>Gender:</label>
 				<input id="gender" name="gender" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
-				<label>Profession</label>
+				<label>Profession:</label>
 				<input id="profession" name="profession" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<h4 class="sub-title">Address</h4>
 			<div class="form-group phone-no">
-				<label>Address</label>
+				<label>Address:</label>
 				<input id="address" name="address" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group age">
-				<label>Latitude</label>
+				<label>Latitude:</label>
 				<input id="latitude" name="latitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group age">
-				<label>Longitude</label>
+				<label>Longitude:</label>
 				<input id="longitude" name="longitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>

@@ -12,7 +12,6 @@
 * {
 	padding: 0;
 	margin: 0;
-	color: #1a1f36;
 	box-sizing: border-box;
 	word-wrap: break-word;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -22,6 +21,7 @@
 body {
 	min-height: 100%;
 	background-color: #ffffff;
+	--theme-color: #f44177;
 }
 
 h1 {
@@ -29,7 +29,7 @@ h1 {
 }
 
 a {
-	color: #c35592;
+	color: var(--theme-color);
 	text-decoration: unset;
 }
 
@@ -138,7 +138,7 @@ label {
 }
 
 input[type="submit"] {
-	background-color: #c35592;
+	background-color: var(--theme-color);
 	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px
 		0px 0px, rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgb(84, 105, 212) 0px
 		0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px
