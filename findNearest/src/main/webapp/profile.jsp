@@ -35,7 +35,8 @@
 			border: 0px solid red;
 		}
 
-		.profile-main-child {
+		.profile-main-child-images {
+			width: 900px;
 			padding: 50px 0;
 			display: flex;
 			justify-content: space-evenly;
@@ -43,62 +44,41 @@
 			gap: 50px;
 			flex-direction: column;
 		}
-
-		.profile-main-child:nth-child(1) {
-			width: 900px;
-			border-bottom: 1px solid rgb(0, 0, 0, 0.4);
-		}
-
-		.profile-main-child:nth-child(2) {
-			width: 450px;
-		}
-
-		.profile-main-child:nth-child(3) {
-			width: 442px;
-		}
-
-		.profile-main-child > * {
-			width: 80%;
-		}
-		
-		.profile-main-child > a {
-			width: 10px;
-			align-self: center;
-			cursor: pointer;
-		}
 		
 		.devider {
-			width: 70%;
+			width: 30%;
 			border-bottom: 1px solid rgb(148, 148, 148);
 		}
 		
 		#profile-images-div {
 			position: relative;
 			width: calc(16*50px);
-			height: calc(9*50px);
+			height: 550px;
+			border: 0px solid red;
 		}
 		
 		#profile-cover {
-			width: 100%;
-			height: 100%;
+			width: calc(16*50px);;
+			height: calc(9*50px);
 			object-fit: cover;
+			border: 0px solid red;
 		}
 		
 		#profile-picture {
 			position: absolute;
 			right: 10px;
-			bottom: -100px;
+			bottom: 0;
 			border-radius: 50%;
 			border: 5px solid white;
 			width: 200px;
 			height: 200px;
-			object-fit: contain;
+			object-fit: cover;
 		}
 		
 		#person-name-desc {
 			position: absolute;
 			left: 10px;
-			bottom: -100px;
+			bottom: 0;
 			height: 100px;
 			display: flex;
 			justify-content: center;
@@ -106,119 +86,54 @@
 			flex-direction: column;
 		}
 
-		#person-name {
+		.profile-main-child-posts {
+			width: 850px;
+			border: 0px solid red;
 		}
-
-		#person-profession {
+		
+		#profile-main-child-posts-title {
 			font-size: 18px;
 		}
-
-		/* input type range */
 		
-			/*********** Baseline, reset styles ***********/
-		.profile-main-child:nth-child(2) input[type="range"] {
-			-webkit-appearance: none;
-			appearance: none;
-			background: transparent;
-			cursor: pointer;
-			width: 320px;
-			outline: none;
-		}
-
-		/* Removes default focus */
-		.profile-main-child:nth-child(2) input[type="range"]:focus {
-			outline: none;
-		}
-
-		/******** Chrome, Safari, Opera and Edge Chromium styles ********/
-		/* slider track */
-		.profile-main-child:nth-child(2) input[type="range"]::-webkit-slider-runnable-track {
-			background-color: rgb(192, 192, 192);
-			border-radius: 0rem;
-			height: 0.5rem;
-		}
-
-		/* slider thumb */
-		.profile-main-child:nth-child(2) input[type="range"]::-webkit-slider-thumb {
-			-webkit-appearance: none;
-			/* Override default look */
-			appearance: none;
-			margin-top: 0px;
-			/* Centers thumb on the track */
-			background-color: var(--theme-color);
-			border-radius: 0rem;
-			height: 0.5rem;
-			width: 1rem;
-		}
-
-		/*********** Baseline, reset styles ***********/
-		.profile-main-child:nth-child(3) input[type="range"] {
-			-webkit-appearance: none;
-			appearance: none;
-			background: transparent;
-			cursor: pointer;
-			width: 320px;
-			outline: none;
-			overflow: hidden;
-			height: 1rem;
-		}
-
-		/* Removes default focus */
-		.profile-main-child:nth-child(3) input[type="range"]:focus {
-			outline: none;
-		}
-
-		/******** Chrome, Safari, Opera and Edge Chromium styles ********/
-		/* slider track */
-		.profile-main-child:nth-child(3) input[type="range"]::-webkit-slider-runnable-track {
-			background-color: rgb(192, 192, 192);
-			border-radius: 0rem;
-		}
-
-		/* slider thumb */
-		.profile-main-child:nth-child(3) input[type="range"]::-webkit-slider-thumb {
-			-webkit-appearance: none;
-			/* Override default look */
-			appearance: none;
-			margin-top: 0px;
-			/* Centers thumb on the track */
-			background-color: #808080;
-			box-shadow: -160px 160px 0px 160px var(--theme-color);
-			border-radius: 0rem;
-			height: 0.5rem;
-			width: 0rem;
-		}
-
-
-		datalist {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			width: 320px;
-			color: rgb(93, 93, 93);
-		}
-
-		option {
-			padding: 0;
-		}
-
-		/* input type range */
-		
-		#favourite-brands-child {
-			padding: 10px;
-			width: 350px;
-			display: flex;
-			justify-content: start;
-			align-content: flex-start;
-			flex-wrap: wrap;
-			gap: 10px;
+		#profile-main-child-posts-devider {
+			margin-top: 10px;
+			border-bottom: 1px solid rgb(148, 148, 148);
 		}
 		
-		#favourite-brands-child > img {
-			width: 50px;
-			height: 50px;
-			object-fit: contain;
+		#profile-main-child-posts-container {
+		
+			max-width: 850px;
+			margin: 50px 0;
+			display: grid;
+			grid-gap: 50px;
+			/* fit as many columns as possible, 180px wide each: */
+			grid-template-columns: repeat(auto-fill, 400px);
+			/* each row is 20px high -- we always span 2+ */
+			grid-auto-rows: minmax(0, auto);
+			justify-content: center;
 		}
+		
+		.profile-main-child-posts-container-child-0 { grid-row-end: span 2; }
+		.profile-main-child-posts-container-child-1 { grid-row-end: span 3; }
+		.profile-main-child-posts-container-child-2 { grid-row-end: span 4; }
+		.profile-main-child-posts-container-child-3 { grid-row-end: span 5; }
+		.profile-main-child-posts-container-child-4 { grid-row-end: span 6; }
+		.profile-main-child-posts-container-child-5 { grid-row-end: span 7; }
+		.profile-main-child-posts-container-child-6 { grid-row-end: span 8; }
+		.profile-main-child-posts-container-child-7 { grid-row-end: span 9; }
+		
+		#profile-main-child-posts-container > div {
+			width: 400px;
+			height: auto;
+			background-color: rgb(200, 200, 200);
+		}
+		
+		.profile-main-child-posts-container-child-img {
+			width: 400px;
+			height: 100%;
+			object-fit: cover;
+		}
+		
 	</style>
 
 </head>
@@ -228,107 +143,28 @@
 	<%@ include file="navbar.html" %>
 	
 	<section class="profile-main-section">
-		<div class="profile-main-child">
+		<div class="profile-main-child-images">
 			<div id="profile-images-div">
-				<img src="https://as2.ftcdn.net/v2/jpg/06/35/55/01/1000_F_635550122_dAcUqkOyrUVkURNB5iFwVFJ7fYjD66SC.jpg"
+				<img src="https://images.unsplash.com/photo-1568585105565-e372998a195d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
 				alt="profile-cover" id="profile-cover">
-				<img src="https://qph.cf2.quoracdn.net/main-thumb-1746939484-200-midqdhghptoxpixijadhvkpopddvdedi.jpeg"
+				<img src="https://media.istockphoto.com/id/1219848059/photo/stylishly-dressed-indian-bearded-man-walks-down-the-street.jpg?s=2048x2048&w=is&k=20&c=G2M0-2stQDMD3kHvvmn0ZuDwvGRGnIys2Pzr-zLE3hQ="
 				alt="profile-picture" id="profile-picture">
 				<div id="person-name-desc">
 					<h1 id="person-name">John Sinha</h1>
 					<p id="person-profession">Softwear Designer</p>
 				</div>
 			</div>
-			
-			<a href="UpdateUserDetails.jsp"><i class="material-icons edit-icon" >edit</i></a>
 			<div class="devider"></div>
 			<p>Here we have two images and we want them to fill the width of 50% of the browser window and 100% of the
 				height.</p>
 			<div class="devider"></div>
-			<div id="personal-details">
-				<p id="person-age"><b>Age:</b> 32</p>
-				<p id="person-status"><b>Status:</b> Single</p>
-				<p id="person-archetype"><b>Archetype:</b> Frequent Flyer</p>
-				<p id="person-location"><b>Location:</b> London</p>
-			</div>
 		</div>
-		<div class="profile-main-child">
-			<div class="profile-section-card">
-				<h1>Personality</h1>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Introvert"></option>
-						<option value="100" label="Extrovert"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="20">
-					
-				</div>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Active"></option>
-						<option value="100" label="Passive"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="40">
-					
-				</div>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Analytical"></option>
-						<option value="100" label="Creative"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="28">
-					
-				</div>
-			</div>
-			<div class="devider"></div>
-			<div class="profile-section-card">
-				<h1>Political Interest</h1>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Left"></option>
-						<option value="50" label="None"></option>
-						<option value="100" label="Right"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="40">
-					
-				</div>
-			</div>
-		</div>
-		<div class="profile-main-child">
-			<div class="profile-section-card">
-				<h1>Personality</h1>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Introvert"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="28">
-				</div>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Active"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="38">
-				</div>
-				<div>
-					<datalist id="markers">
-						<option value="0" label="Analytical"></option>
-					</datalist>
-					<input type="range" id="vol" list="markers" name="vol" min="0" max="50" value="10">
-				</div>
-			</div>
-			<div class="devider"></div>
-			<div class="profile-section-card" id="favourite-brands-card">
-				<h1>Favourite Brands</h1>
-				<div id="favourite-brands-child">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-					<img src="https://seeklogo.com/images/N/nike-logo-47A65A59D5-seeklogo.com.png">
-				</div>
+		
+		<div class="profile-main-child-posts">
+			<p id="profile-main-child-posts-title">Photos </p>
+			<div id="profile-main-child-posts-devider"></div>
+			<div id="profile-main-child-posts-container">
+				
 			</div>
 		</div>
 	</section>
@@ -336,7 +172,59 @@
 
 <script type="text/javascript" src="code.jquery.com_jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-
+	
+	// appending photos
+	let images = ["https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/2865210/pexels-photo-2865210.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/3754159/pexels-photo-3754159.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/3754200/pexels-photo-3754200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/4664514/pexels-photo-4664514.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/3512336/pexels-photo-3512336.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/3055773/pexels-photo-3055773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/3051652/pexels-photo-3051652.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/3214776/pexels-photo-3214776.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/2221879/pexels-photo-2221879.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.unsplash.com/photo-1568585105565-e372998a195d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+		"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
+		"https://images.pexels.com/photos/1633559/pexels-photo-1633559.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://media.istockphoto.com/id/1219848059/photo/stylishly-dressed-indian-bearded-man-walks-down-the-street.jpg?s=2048x2048&w=is&k=20&c=G2M0-2stQDMD3kHvvmn0ZuDwvGRGnIys2Pzr-zLE3hQ=",
+		"https://images.pexels.com/photos/1893556/pexels-photo-1893556.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/1199958/pexels-photo-1199958.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/1633495/pexels-photo-1633495.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/327158/pexels-photo-327158.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/2983099/pexels-photo-2983099.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/1633526/pexels-photo-1633526.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/2983103/pexels-photo-2983103.jpeg?auto=compress&cs=tinysrgb&w=1600",
+		"https://images.pexels.com/photos/1199959/pexels-photo-1199959.jpeg?auto=compress&cs=tinysrgb&w=1600"];
+	
+	const divContainer = document.getElementById("profile-main-child-posts-container");
+	
+	for(let i of images){
+		
+		const divContainerChild = document.createElement("div");
+		const img = new Image();
+		img.className = "profile-main-child-posts-container-child-img";
+		img.src = i;
+		
+		img.onload = function() {
+			
+			console.log(this.width + 'x' + this.height);
+			console.log(400 + 'x' + Math.floor((this.height*400)/this.width));
+			divContainerChild.className = "profile-main-child-posts-container-child-" + Math.floor(this.height/100);
+		  
+		}
+		
+		
+		
+		divContainerChild.append(img);
+		divContainer.append(divContainerChild);
+		
+	}
+	
+	
+	// gettig user data
 	$(document).ready(function(){
 		
 	//getting user details
@@ -345,7 +233,6 @@
 		 console.log(res);
 		 $("#person-name").text(res.name);
 		 $("#person-profession").text(res.profession);
-		 $("#person-location").html("<b>Location:</b> " + res.address);
 		 
 	 });
 	
