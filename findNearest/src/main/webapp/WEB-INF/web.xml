@@ -86,6 +86,15 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 		<servlet-name>getMessages</servlet-name>
 		<url-pattern>/getMessages</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>profile</servlet-name>
+		<jsp-file>/profile.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profile</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
 
 
 </web-app>

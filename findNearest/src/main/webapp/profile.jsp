@@ -14,41 +14,43 @@
 	<style>
 		
 		* {
-			border: 0;
 			padding:0;
 			margin: 0;
 			box-sizing: border-box;
+		}
+		
+		body {
 			font-family: 'Abel', sans-serif;
 		}
 
 		.profile-main-section {
 			--theme-color: #f44177;
-			margin-top: 80px;
-			padding: 36px 65px;
+			margin: auto;
+			width: 900px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			flex-wrap: wrap;
 			gap: 5px;
+			border: 0px solid red;
 		}
 
 		.profile-main-child {
-			height: 828px;
-			border: 0px solid #bbb;
+			padding: 50px 0;
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
+			gap: 50px;
 			flex-direction: column;
-			border-radius: 20px;
-			box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 		}
 
 		.profile-main-child:nth-child(1) {
-			width: 442px;
+			width: 900px;
+			border-bottom: 1px solid rgb(0, 0, 0, 0.4);
 		}
 
 		.profile-main-child:nth-child(2) {
-			width: 442px;
+			width: 450px;
 		}
 
 		.profile-main-child:nth-child(3) {
@@ -70,20 +72,45 @@
 			border-bottom: 1px solid rgb(148, 148, 148);
 		}
 		
-		#profile-pic {
+		#profile-images-div {
+			position: relative;
+			width: calc(16*50px);
+			height: calc(9*50px);
+		}
+		
+		#profile-cover {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		
+		#profile-picture {
+			position: absolute;
+			right: 10px;
+			bottom: -100px;
 			border-radius: 50%;
 			border: 5px solid white;
 			width: 200px;
 			height: 200px;
 			object-fit: contain;
 		}
+		
+		#person-name-desc {
+			position: absolute;
+			left: 10px;
+			bottom: -100px;
+			height: 100px;
+			display: flex;
+			justify-content: center;
+			align-items: flex-start;
+			flex-direction: column;
+		}
 
 		#person-name {
-			text-align: center;
 		}
 
 		#person-profession {
-			text-align: center;
+			font-size: 18px;
 		}
 
 		/* input type range */
@@ -202,12 +229,17 @@
 	
 	<section class="profile-main-section">
 		<div class="profile-main-child">
-			<img src="https://qph.cf2.quoracdn.net/main-thumb-1746939484-200-midqdhghptoxpixijadhvkpopddvdedi.jpeg"
-				alt="profile-picture" id="profile-pic">
-			<div>
-				<h1 id="person-name">John Sinha</h1>
-				<h3 id="person-profession">Softwear Designer</h3>
+			<div id="profile-images-div">
+				<img src="https://as2.ftcdn.net/v2/jpg/06/35/55/01/1000_F_635550122_dAcUqkOyrUVkURNB5iFwVFJ7fYjD66SC.jpg"
+				alt="profile-cover" id="profile-cover">
+				<img src="https://qph.cf2.quoracdn.net/main-thumb-1746939484-200-midqdhghptoxpixijadhvkpopddvdedi.jpeg"
+				alt="profile-picture" id="profile-picture">
+				<div id="person-name-desc">
+					<h1 id="person-name">John Sinha</h1>
+					<p id="person-profession">Softwear Designer</p>
+				</div>
 			</div>
+			
 			<a href="UpdateUserDetails.jsp"><i class="material-icons edit-icon" >edit</i></a>
 			<div class="devider"></div>
 			<p>Here we have two images and we want them to fill the width of 50% of the browser window and 100% of the

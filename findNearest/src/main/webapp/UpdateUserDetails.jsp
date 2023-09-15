@@ -18,7 +18,12 @@
 	<style>
 
 		* {
-			background-color: rgb(255, 255, 255);
+			padding:0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		
+		body {
 			font-family: 'Abel', sans-serif;
 		}
 
@@ -26,9 +31,10 @@
 			--theme-color: #f44177;
 			position: relative;
 			display: flex;
-			width: 80%;
+			width: 900px;
 			height: 850px;
 			margin: 80px auto;
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 		}
 
 		.form-container .form-horizontal {
@@ -37,7 +43,7 @@
 			left: 50%;
 			-webkit-transform: translate(-50%, -50%);
 			transform: translate(-50%, -50%);
-			width: calc(100% - 10px);
+			width: 100%;
 			height: calc(100% - 10px);
 			display: flex;
 			flex-direction: column;
@@ -166,8 +172,17 @@
 		
 	</style>
 	<style type="text/css">
+		.map-section {
+			width: 900px;
+			height: 550px;
+			display: flex;
+			flex-direction: column;
+			
+			margin: auto;
+		}
+		
 		#map {
-			width: 100%;
+			width: 900px;
 			height: 480px;
 		}
 	</style>
@@ -222,12 +237,15 @@
 	</div>
 
 	<br>
-	<button id="confirmPosition">Confirm Position</button>
-	<br>
-	<p>On idle position: <span id="onIdlePositionView"></span></p>
-	<p>On click position: <span id="onClickPositionView"></span></p>
+	<section class="map-section">
+		<button id="confirmPosition">Confirm Position</button>
+		<br>
+		<p>On idle position: <span id="onIdlePositionView"></span></p>
+		<p>On click position: <span id="onClickPositionView"></span></p>
+		
+		<div id="map"></div>
+	</section>
 	
-	<div id="map"></div>
 
 
 </body>

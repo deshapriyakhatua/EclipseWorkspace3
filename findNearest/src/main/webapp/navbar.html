@@ -3,72 +3,69 @@
 
 <style>
 	/* header-main styles */
-	.header-main * {
-		margin: 0;
-		padding: 0;
-		font-family: 'Abel', sans-serif;
-		user-select: none;
-	}
+	
 
 	.header-main {
 		--font-color: rgb(116, 116, 116);
 		--theme-color-pink: rgb(239, 79, 95);
 		padding: 20px 0px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 		position: fixed;
-		top: 0px;
+		bottom: 0px;
 		left: 0px;
 		width: 100%;
 		background-color: rgb(255, 255, 255, 0.9);
 		z-index: 100;
-
+		transition: bottom 0.5s;
 	}
 
 	.navbar-main {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 60%;
+		max-width: 800px;
 		margin: 0 auto;
 	}
 
-	.navbar-main a {
-		font-size: 18px;
-		color: black;
-		text-decoration: none;
-	}
-
-	.navbar-main-logo>a {
+	.navbar-main i {
 		font-size: 25px;
-		font-weight: normal;
-		color: black;
+		color: rgb(68, 68, 68);
 	}
 
-	.nav-links {
-		list-style: none;
-		display: flex;
-	}
 
-	.nav-links li {
-		margin-left: 20px;
+	.navbar-main-logo {
+		font-size: 25px;
+		font-weight: bolder;
+		color: rgb(69, 69, 69);
+		text-decoration: none;
 	}
 </style>
 <header class="header-main">
 	<nav class="navbar-main">
 		<section>
-			<div class="navbar-main-logo"><a href="/findNearest">FFN &#129434;</a></div>
+			<a href="profile" class="account" id="account-icon-nav"><i class="material-icons">person</i></a>
 		</section>
 		<section>
-			<ul class="nav-links">
-				<li><a href="#">Friends</a></li>
-				<li><a href="#">Posts</a></li>
-				<li><a href="#">Messages</a></li>
-			</ul>
+			<a class="navbar-main-logo" href="/findNearest">FFN &#129434;</a>
 		</section>
 		<section>
-			<div class="account" id="account-icon-nav"><a href="#">&#128100; Account</a></div>
+			<a href="messages" class="messages" id="message-icon-nav"><i class="material-icons">send</i></a>
 		</section>
 	</nav>
 </header>
+
+<script>
+	let prevScrollpos = window.pageYOffset;
+	let windowNavbar = document.querySelector(".header-main");
+	window.onscroll = function () {
+		var currentScrollPos = window.pageYOffset;
+		if (prevScrollpos > currentScrollPos) {
+			windowNavbar.style.bottom = "0";
+		} else {
+			windowNavbar.style.bottom = "-80px";
+		}
+		prevScrollpos = currentScrollPos;
+	}
+</script>
 
 </html>

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel&display=swap">
 	
 	<style>		
 	
@@ -288,12 +288,6 @@
 
 	<section id="output-section">
 
-	</section>
-
-
-	<section id="register">
-		<a href="profile.jsp"><button id="registerButton" type="submit">profile</button></a>
-		<a href="logout"><button id="logoutButton" type="submit">Logout</button></a>
 	</section>
 	
 
