@@ -52,14 +52,14 @@
 		
 		#profile-images-div {
 			position: relative;
-			width: calc(16*50px);
-			height: 550px;
+			width: calc(16*56px);
+			height: 600px;
 			border: 0px solid red;
 		}
 		
 		#profile-cover {
-			width: calc(16*50px);;
-			height: calc(9*50px);
+			width: calc(16*56px);;
+			height: calc(9*56px);
 			object-fit: cover;
 			border: 0px solid red;
 		}

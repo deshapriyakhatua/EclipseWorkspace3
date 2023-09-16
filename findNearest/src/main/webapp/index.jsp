@@ -25,237 +25,246 @@
 		body {
 			background-color: rgb(255, 255, 255);
 			font-family: 'Abel', sans-serif;
+			--theme-color: #f44177;
 		}
 
 		#user-section {
-			margin-top: 100px;
-			width: 100%;
+			margin: 0 auto;
+			padding: 50px 0;
+			width: 900px;
 			height: auto;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-evenly;
-			align-items: center;
-		}
-
-		#input-for-user {
-			width: 750px;
-			height: 220px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-evenly;
 			align-items: center;
 		}
-
-		#user-profile {
-			width: 750px;
-			height: 220px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+		
+		#user-section-title {
+			width: max-content;
+			border-bottom: 1px solid red;
 		}
 
-		#choose-distance,
-		#select-profession,
-		#user-input-button,
-		#select-gender {
+		#input-for-user {
+			margin-top: 50px;
+			padding: 50px 0;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			gap: 40px;
+			border: 1px solid rgb(200, 200, 200);
+		}
+		
+		.input-span-container {
+			width: 60%;
+			height: 40px;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			align-items: center;
+			gap: 20px;
+		}
+		
+		.input-span-container > p {
+			font-size: 18px;
+		}
+		
+		.input-span-container > input,
+		.input-span-container > select {
 			box-sizing: border-box;
 			margin: 0;
 			padding: 0;
 			padding-left: 10px;
-			width: 300px;
-			height: 30px;
-			border-width: 1px;
+			width: 400px;
+			height: 40px;
+			border: 0;
+			border-bottom: 1px solid rgb(200, 200, 200);
+			outline: none;
+			font-family: 'Abel', sans-serif;
+			font-size: 18px;
 		}
 
+
 		#user-input-button {
-			background-color: rgb(244, 235, 235);
+			margin-top: 30px;
+			width: 400px;
+			padding: 5px 0;
+			background-color: var(--theme-color);
+			color: white;
+			font-family: 'Abel', sans-serif;
+			font-size: 17px;
+			border: 1px solid rgb(200, 200, 200);
+			border-radius: 5px;
+			cursor: pointer;
 			transition: all 0.3s;
 		}
 
 		#user-input-button:hover {
-			background-color: rgb(244, 202, 202);
+			background-color: rgb(244, 148, 148);
 		}
 
-		#user-input-button:focus {
-			background-color: rgb(244, 148, 148);
-			border-color: rgb(244, 148, 148);
-		}
 
 		
 
 		/* output-section */
 
 		#output-section {
+			margin: 0 auto 50px auto;
 			margin-top: 50px;
 			box-sizing: border-box;
-			width: 100%;
+			width: 900px;
 			height: auto;
 			display: flex;
-			justify-content: space-evenly;
+			justify-content: center;
+			align-items: flex-start;
 			flex-direction: row;
 			flex-wrap: wrap;
+			gap: 50px;
 		}
 		
-		.card {
-			width: 450px;
-			height: 250px;
+		
+		/* output-section */
+
+	</style>
+	
+	<style>
+		
+		/* output card css */
+		
+		.card-output-profiles * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		.card-output-profiles {
+			user-select: none;
+			margin: 0;
+			font-family: Abel, Arial, Verdana, sans-serif;
+			width: 400px;
+			height: 700px;
 			background-color: #fff;
 			background: linear-gradient(#f8f8f8, #fff);
 			box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
 			border-radius: 6px;
 			overflow: hidden;
 			position: relative;
-			margin: 1.5rem;
-		}
-		
-		.center {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-		}
-		
-		.card h1 {
-			text-align: center;
 		}
 
-		.card .additional {
-			position: absolute;
-			width: 150px;
-			height: 100%;
-			background: linear-gradient(#f53e78, #c24889);
-			transition: width 0.4s;
-			overflow: hidden;
-			z-index: 2;
-		}
-
-		.card:hover .additional {
+		.card-output-profiles .general {
 			width: 100%;
-			border-radius: 0 5px 5px 0;
-		}
-
-		.card .additional .user-card {
-			width: 150px;
 			height: 100%;
 			position: relative;
-			float: left;
-		}
-
-		.card .additional .user-card::after {
-			content: "";
-			display: block;
-			position: absolute;
-			top: 10%;
-			right: -2px;
-			height: 80%;
-			border-left: 2px solid rgba(0, 0, 0, 0.025);
-
-		}
-
-		.profile-img {
-			width: 80%;
-			border-radius: 50%;
-			border: 2px solid white;
-		}
-
-		.card .additional .more-info {
-			width: 300px;
-			float: left;
-			position: absolute;
-			left: 150px;
-			height: 100%;
-		}
-
-		.card .additional .more-info h1 {
-			color: #fff;
-			margin-bottom: 0;
-		}
-
-		.card .additional .more-info .chat {
-			position: absolute;
-			bottom: 2rem;
-			right: 2rem;
-			border-radius: 50%;
-			border: 2px solid rgb(255, 255, 255);
-			background-color: transparent;
-			color: #ffffff;
-			font-size: 1rem;
-			padding: 0.5rem;
-			cursor: pointer;
-			transition: all 0.4s;
-		}
-
-		.card .additional .more-info .like {
-			position: absolute;
-			bottom: 2rem;
-			right: 6rem;
-			border-radius: 50%;
-			border: 2px solid rgb(255, 255, 255);
-			background-color: transparent;
-			color: #ffffff;
-			font-size: 1rem;
-			padding: 0.5rem;
-			cursor: pointer;
-			transition: all 0.4s;
-		}
-
-		.card .additional .more-info i:hover {
-			background-color: white;
-			color: #020000;
-		}
-		
-		.card .additional .more-info input:hover {
-			background-color: white;
-			color: #020000;
-		}
-
-		.card .general .coords {
-			margin-left: 1rem;
-			margin-top: 0.5rem;
-			color: #020000;
-			font-size: 1rem;
-			text-align: left;
-		}
-
-		.card .general {
-			width: 300px;
-			height: 100%;
-			position: absolute;
 			top: 0;
 			right: 0;
 			z-index: 1;
-			box-sizing: border-box;
 			padding: 1rem;
 			padding-top: 0;
 		}
 
-		.card .general .more {
-			padding: 0 1rem;
+		.card-output-profiles .general .card-general-image {
+			margin: 0;
 			position: absolute;
-			bottom: 1rem;
-			right: 2rem;
-			font-size: 0.9em;
-			font-weight: bold;
-			border-radius: 1rem;
-			border: 1px solid #f53e78;
-		}
-
-		/* output-section */
-
-		#register {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			top: 0;
+			left: 0;
 			width: 100%;
-			height: 50px;
+			height: 100%;
+			border-radius: 6px;
+			object-fit: cover;
+		}
+		
+		.card-output-profiles .general .additional {
+			margin: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0px;
+			height: 100%;
+			background-color: rgb(0, 0, 0, 0.4);
+			border-radius: 6px;
+			transition: width 0.6s;
 		}
 
-		#registerButton {
-
-			width: 100px;
+		.card-output-profiles:hover .general .additional {
+			width: 100%;
+		}
+		
+		.card-output-profiles .general .card-general-name {
+			margin: 0;
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			max-width: 400px;
 			height: 40px;
+			padding: 0 10px;
+			font-size: 28px;
+			color: white;
+			background-color: rgb(0, 0, 0, 0.6);
+			cursor: pointer;
+			transition: all 0.6s;
 		}
+		
+		.card-output-profiles:hover .general .card-general-name {
+			left: 10px;
+			bottom: 210px;
+			background-color: transparent;
+			font-size: 32px;
+		}
+		
+		.card-output-profiles .general .message-icon {
+			-webkit-appearance: none;
+			position: absolute;
+			right: 10px;
+			bottom: 210px;
+			font-size: 22px;
+			border: none;
+			color: rgb(255, 255, 255, 0);
+			background-color: transparent;
+			outline: none;
+			cursor: pointer;
+			transition: all 0.6s;
+		}
+		
+		.card-output-profiles:hover .general .message-icon {
+			right: 20px;
+			color: white;
+		}
+		
+		.card-output-profiles .general .card-general-user-details {
+			
+			margin: 0;
+			position: absolute;
+			bottom: 10px;
+			left: -600px;
+			max-width: 400px;
+			height: 200px;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 20px;
+			color: rgb(255, 255, 255, 0);
+			background-color: transparent;
+			transition: all 0.6s;
+		}
+		
+		.card-output-profiles:hover .general .card-general-user-details {
+			left: 0;
+			color: white;
+			background-color: transparent;
+		}
+		
+		.card-output-profiles .general .card-general-profession {
+			font-size: 18px;
+		}
+		
+		.card-output-profiles .general .card-general-bio {
+			font-size: 22px;
+		}
+		
+		/* output card css */
+
 	</style>
 </head>
 
@@ -264,25 +273,36 @@
 	<%@ include file="navbar.html" %>
 
 	<section id="user-section">
+		<h1 id="user-section-title">Search For Friends</h1>
 		<div id="input-for-user">
-			<input type="number" min="0" step="0.1" id="choose-distance" placeholder="Distance (km)" value="10">
-			<select name="profession" id="select-profession">
-				<option value="all">All</option>
-				<option value="teacher">Teacher</option>
-				<option value="artist">Artist</option>
-				<option value="engineer">Engineer</option>
-				<option value="doctor">Doctor</option>
-				<option value="student">Student</option>
-			</select>
-			<select name="gender" id="select-gender">
-				<option value="all">All</option>
-				<option value="male">Male</option>
-				<option value="female">Female</option>
-			</select>
+			<div class="input-span-container">
+				<p class="input-healper-text">Distance(k.m.) : </p>
+				<input type="number" min="0" step="0.1" id="choose-distance" placeholder="Distance (km)" value="10">
+			</div>
+			
+			<div class="input-span-container">
+				<p class="input-healper-text">Gender : </p>
+				<select name="gender" id="select-gender">
+					<option value="all">All</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</select>
+			</div>
+			
+			<div class="input-span-container">
+				<p class="input-healper-text">Profession : </p>
+				<select name="profession" id="select-profession">
+					<option value="all">All</option>
+					<option value="teacher">Teacher</option>
+					<option value="artist">Artist</option>
+					<option value="engineer">Engineer</option>
+					<option value="doctor">Doctor</option>
+					<option value="student">Student</option>
+				</select>
+			</div>
+			
 			<button id="user-input-button">SUBMIT</button>
 
-		</div>
-		<div id="user-profile">
 		</div>
 	</section>
 
@@ -349,7 +369,29 @@
 					let profileDivision = document.createElement("div");
 					profileDivision.className = "card";
 
-					profileDivision.innerHTML = `<div class="additional">
+					profileDivision.innerHTML = `<div class="card-output-profiles">
+													<div class="general">
+														<img class="card-general-image" src="https://images.pexels.com/photos/3754200/pexels-photo-3754200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+														<div class="additional"></div>
+														<p class="card-general-name">\${outList[i].name}</p>
+														<form id="startChat" action="chatUI.jsp" method="post">
+															<input type="hidden" name="userid" value="\${ userid }">
+															<input type="hidden" name="receiverid" value="\${outList[i].userid}">
+															<input type="submit" class="material-icons message-icon" value="chat">
+														</form>
+														<div class="card-general-user-details">
+															<p class="card-general-profession">\${outList[i].profession}</p>
+															<p class="card-general-bio">This enables him to accompany an Padma Vibhushan Dr. M. Balamuralikrishna with the same verve and e.</p>
+														</div>
+													</div>
+												</div>`;
+						
+						
+						
+						
+						
+						
+						`<div class="additional">
 														<div class="user-card">
 															<img class="profile-img center"
 																src="\${outList[i].gender.toUpperCase() == "MALE"  ?maleImg :femaleImg}"

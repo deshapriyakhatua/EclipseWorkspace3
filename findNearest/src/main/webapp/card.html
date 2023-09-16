@@ -5,181 +5,152 @@
 	<style>
 		@import url('https://fonts.googleapis.com/css?family=Abel');
 
+		/* output card css */
 		
-		.center {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
+		.card-output-profiles * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
 		}
 
-		.card {
+		.card-output-profiles {
+			user-select: none;
+			margin: 0;
 			font-family: Abel, Arial, Verdana, sans-serif;
-			width: 450px;
-			height: 250px;
+			width: 400px;
+			height: 700px;
 			background-color: #fff;
 			background: linear-gradient(#f8f8f8, #fff);
 			box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
 			border-radius: 6px;
 			overflow: hidden;
 			position: relative;
-			margin: 1.5rem;
 		}
 
-		.card h1 {
-			text-align: center;
-		}
-
-		.card .additional {
-			position: absolute;
-			width: 150px;
-			height: 100%;
-			background: linear-gradient(#f53e78, #c24889);
-			transition: width 0.4s;
-			overflow: hidden;
-			z-index: 2;
-		}
-
-
-
-
-		.card:hover .additional {
+		.card-output-profiles .general {
 			width: 100%;
-			border-radius: 0 5px 5px 0;
-		}
-
-		.card .additional .user-card {
-			width: 150px;
 			height: 100%;
 			position: relative;
-			float: left;
-		}
-
-		.card .additional .user-card::after {
-			content: "";
-			display: block;
-			position: absolute;
-			top: 10%;
-			right: -2px;
-			height: 80%;
-			border-left: 2px solid rgba(0, 0, 0, 0.025);
-
-		}
-
-		.profile-img {
-			width: 80%;
-			border-radius: 50%;
-		}
-
-		.card .additional .more-info {
-			width: 300px;
-			float: left;
-			position: absolute;
-			left: 150px;
-			height: 100%;
-		}
-
-		.card .additional .more-info h1 {
-			color: #fff;
-			margin-bottom: 0;
-		}
-
-		.card .additional .more-info .chat {
-			position: absolute;
-			bottom: 2rem;
-			right: 2rem;
-			border-radius: 50%;
-			border: 2px solid rgb(255, 255, 255);
-			background-color: transparent;
-			color: #ffffff;
-			font-size: 1rem;
-			padding: 0.5rem;
-			cursor: pointer;
-			transition: all 0.4s;
-		}
-
-		.card .additional .more-info .like {
-			position: absolute;
-			bottom: 2rem;
-			right: 6rem;
-			border-radius: 50%;
-			border: 2px solid rgb(255, 255, 255);
-			background-color: transparent;
-			color: #ffffff;
-			font-size: 1rem;
-			padding: 0.5rem;
-			cursor: pointer;
-			transition: all 0.4s;
-		}
-
-		.card .additional .more-info i:hover {
-			background-color: white;
-			color: #020000;
-		}
-
-		.card .general .coords {
-			margin-left: 1rem;
-			margin-top: 0.5rem;
-			color: #020000;
-			font-size: 1rem;
-			text-align: left;
-		}
-
-		.card .general {
-			width: 300px;
-			height: 100%;
-			position: absolute;
 			top: 0;
 			right: 0;
 			z-index: 1;
-			box-sizing: border-box;
 			padding: 1rem;
 			padding-top: 0;
 		}
 
-		.card .general .more {
-			padding: 0 1rem;
+		.card-output-profiles .general .card-general-image {
+			margin: 0;
 			position: absolute;
-			bottom: 1rem;
-			right: 2rem;
-			font-size: 0.9em;
-			font-weight: bold;
-			border-radius: 1rem;
-			border: 1px solid #f53e78;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 6px;
+			object-fit: cover;
 		}
+		
+		.card-output-profiles .general .additional {
+			margin: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0px;
+			height: 100%;
+			background-color: rgb(0, 0, 0, 0.4);
+			border-radius: 6px;
+			transition: width 0.6s;
+		}
+
+		.card-output-profiles:hover .general .additional {
+			width: 100%;
+		}
+		
+		.card-output-profiles .general .card-general-name {
+			margin: 0;
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			max-width: 400px;
+			height: 40px;
+			padding: 0 10px;
+			font-size: 28px;
+			color: white;
+			background-color: rgb(0, 0, 0, 0.6);
+			cursor: pointer;
+			transition: all 0.6s;
+		}
+		
+		.card-output-profiles:hover .general .card-general-name {
+			left: 10px;
+			bottom: 210px;
+			background-color: transparent;
+			font-size: 32px;
+		}
+		
+		.card-output-profiles .general .message-icon {
+			position: absolute;
+			right: 10px;
+			bottom: 210px;
+			font-size: 22px;
+			color: rgb(255, 255, 255, 0);
+			cursor: pointer;
+			transition: all 0.6s;
+		}
+		
+		.card-output-profiles:hover .general .message-icon {
+			right: 20px;
+			color: white;
+		}
+		
+		.card-output-profiles .general .card-general-user-details {
+			
+			margin: 0;
+			position: absolute;
+			bottom: 10px;
+			left: -600px;
+			max-width: 400px;
+			height: 200px;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 20px;
+			color: rgb(255, 255, 255, 0);
+			background-color: transparent;
+			transition: all 0.6s;
+		}
+		
+		.card-output-profiles:hover .general .card-general-user-details {
+			left: 0;
+			color: white;
+			background-color: transparent;
+		}
+		
+		.card-output-profiles .general .card-general-profession {
+			font-size: 18px;
+		}
+		
+		.card-output-profiles .general .card-general-bio {
+			font-size: 22px;
+		}
+		
+		/* output card css */
+
 	</style>
 
 	<div class="center">
 
-		<div class="card">
-			<div class="additional">
-				<div class="user-card">
-					<img class="profile-img center"
-						src="https://e7.pngegg.com/pngimages/643/98/png-clipart-computer-icons-avatar-mover-business-flat-design-corporate-elderly-care-microphone-heroes-thumbnail.png"
-						alt="">
-				</div>
-				<div class="more-info">
-					<h1>Deshapriya Khatua</h1>
-					<i class="material-icons chat">chat</i>
-					<i class="material-icons like">thumb_up</i>
-				</div>
-			</div>
+		<div class="card-output-profiles">
+			
 			<div class="general">
-				<h1>Deshapriya Khatua</h1>
-				<div class="coords">
-					<span>Student</span>
+				<img class="card-general-image" src="https://images.pexels.com/photos/3754200/pexels-photo-3754200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+				<div class="additional"></div>
+				<p class="card-general-name">Deshapriya Khatua</p>
+				<span class="material-icons message-icon">chat</span>
+				<div class="card-general-user-details">
+					<p class="card-general-profession">Student</p>
+					<p class="card-general-bio">This enables him to accompany an Padma Vibhushan Dr. M. Balamuralikrishna with the same verve and e.</p>
 				</div>
-				<div class="coords">
-					<span>Menkapur</span>
-				</div>
-				<div class="coords">
-					<span>9091494739</span>
-				</div>
-				<div class="coords">
-					<span>deshapriyakhatua@gmail.com</span>
-				</div>
-				<span class="more">Male</span>
 			</div>
 		</div>
 
