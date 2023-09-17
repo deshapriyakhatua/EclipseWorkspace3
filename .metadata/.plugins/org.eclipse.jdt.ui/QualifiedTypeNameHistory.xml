@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
     <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
-    <fullyQualifiedTypeName name="jakarta.servlet.annotation.WebServlet"/>
     <fullyQualifiedTypeName name="jakarta.servlet.ServletException"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletResponse"/>
@@ -40,4 +39,7 @@
     <fullyQualifiedTypeName name="dao.GetAllUsers"/>
     <fullyQualifiedTypeName name="dao.GetJsonString"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+    <fullyQualifiedTypeName name="org.eclipse.jetty.websocket.core.server.WebSocketServerComponents"/>
+    <fullyQualifiedTypeName name="jakarta.websocket.server.ServerEndpoint"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.annotation.WebServlet"/>
 </qualifiedTypeNameHistroy>

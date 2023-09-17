@@ -24,9 +24,12 @@ public class LoginTokenValidator implements Filter {
 			throws IOException, ServletException {
 
 		System.out.println("-->>> Filter: Login token validator started running...");
+		
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
+		
+		System.out.println("URI:   " + req.getRequestURI());
 		
 		// validate access token from cookie
 

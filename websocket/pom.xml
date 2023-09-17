@@ -6,12 +6,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.deshapriya.projects</groupId>
-	<artifactId>findNearest</artifactId>
+	<artifactId>websocket</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>findNearest Maven Webapp</name>
-	<!-- FIXME change it to the project's website -->
+	<name>websocket Maven Webapp</name>
+	
 	<url>http://www.example.com</url>
 
 	<properties>
@@ -27,8 +27,7 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
@@ -36,23 +35,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.10.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<version>8.1.0</version>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-api -->
 		<dependency>
 			<groupId>jakarta.websocket</groupId>
 			<artifactId>jakarta.websocket-api</artifactId>
@@ -60,19 +42,23 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!--
-		https://mvnrepository.com/artifact/jakarta.websocket/jakarta.websocket-client-api -->
 		<dependency>
-			<groupId>jakarta.websocket</groupId>
-			<artifactId>jakarta.websocket-client-api</artifactId>
-			<version>2.1.1</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.15.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.2</version>
 		</dependency>
 
 
 	</dependencies>
 
 	<build>
-		<finalName>findNearest</finalName>
+		<finalName>websocket</finalName>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven
 			defaults (may be moved to parent pom) -->
 			<plugins>
