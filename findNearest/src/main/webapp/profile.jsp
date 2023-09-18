@@ -7,8 +7,6 @@
 	<meta charset="ISO-8859-1">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 	
 	<style>
@@ -147,11 +145,11 @@
 			<div id="profile-images-div">
 				<img src="https://images.unsplash.com/photo-1568585105565-e372998a195d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
 				alt="profile-cover" id="profile-cover">
-				<img src="https://media.istockphoto.com/id/1219848059/photo/stylishly-dressed-indian-bearded-man-walks-down-the-street.jpg?s=2048x2048&w=is&k=20&c=G2M0-2stQDMD3kHvvmn0ZuDwvGRGnIys2Pzr-zLE3hQ="
+				<img src=""
 				alt="profile-picture" id="profile-picture">
 				<div id="person-name-desc">
-					<h1 id="person-name">John Sinha</h1>
-					<p id="person-profession">Softwear Designer</p>
+					<h1 id="person-name"></h1>
+					<p id="person-profession"></p>
 				</div>
 			</div>
 			<div class="devider"></div>
@@ -231,6 +229,7 @@
 	 $.post("http://localhost:8080/findNearest/getUserDetails",{userid:"<%= (String)request.getAttribute("userid") %>"}, function(res){
 		 
 		 console.log(res);
+		 $("#profile-picture").attr("src", res.profile_pic);
 		 $("#person-name").text(res.name);
 		 $("#person-profession").text(res.profession);
 		 

@@ -1,44 +1,24 @@
 package servlets.chat;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.UUID;
-
-import com.google.gson.Gson;
-
 import databaseConnector.DatabaseConnect;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
-public class SendMessage extends HttpServlet {
+public class SendMessage {
 
-	private static final long serialVersionUID = 1L;
+	public boolean send(String userid, String receiverid, String msgText) throws IOException {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		System.out.println("-->>> Servlet: SendMessage started running...");
+		System.out.println("-->>>  SendMessage started running...");
 
 		boolean is_success = false;
 
-		String userid = req.getParameter("userid");
-		String receiverid = req.getParameter("receiverid");
-		String msgText = req.getParameter("msgText");
 
 		if (userid == null || receiverid == null) {
 
 			System.out.println("input contains null value");
-			String employeeJsonString = new Gson().toJson(is_success);
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
-			out.print(employeeJsonString);
-			out.close();
-			return;
+			return is_success;
 		}
 
 		StartChat startChat = new StartChat();
@@ -85,12 +65,7 @@ public class SendMessage extends HttpServlet {
 
 		
 
-		String employeeJsonString = new Gson().toJson(is_success);
-
-		PrintWriter out = resp.getWriter();
-		resp.setContentType("application/json");
-		resp.setCharacterEncoding("UTF-8");
-		out.print(employeeJsonString);
+		return is_success;
 
 	}
 	

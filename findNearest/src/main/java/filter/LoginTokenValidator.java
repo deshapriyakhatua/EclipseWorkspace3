@@ -113,7 +113,7 @@ public class LoginTokenValidator implements Filter {
 				Timestamp currTimestamp = new Timestamp(System.currentTimeMillis());
 				long tokenAge = (currTimestamp.getTime() - timeStamp.getTime()) / (1000 * 60); // in minute
 
-				if (tokenAge < (20 * 1)) {
+				if (tokenAge < (60 * 24)) {
 
 					
 					System.out.println("user cookie is valid");

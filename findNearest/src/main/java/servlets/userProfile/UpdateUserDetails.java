@@ -26,6 +26,8 @@ public class UpdateUserDetails extends HttpServlet {
 		String longitude = req.getParameter("longitude");
 		String profession = req.getParameter("profession");
 		String address = req.getParameter("address");
+		String profile_pic = req.getParameter("profile_pic");
+		String cover_pic = req.getParameter("cover_pic");
 
 		System.out.println("input: name: " + name + " phone: " + phone + " gender: " + gender + " latitude: " + latitude
 				+ " longitude: " + longitude + " profession: " + profession + " address: " + address);
@@ -64,7 +66,7 @@ public class UpdateUserDetails extends HttpServlet {
 
 			// Accessing Data from table
 			PreparedStatement ptst = con.prepareStatement(
-					"update users set name = ?, phone = ?, gender = ?, latitude = ?, longitude = ?, profession = ?, address = ? where useruid = \'" + userid + "\'");
+					"update users set name = ?, phone = ?, gender = ?, latitude = ?, longitude = ?, profession = ?, address = ?, profile_pic=?, cover_pic=? where useruid = \'" + userid + "\'");
 
 			ptst.setString(1, name);
 			ptst.setString(2, phone);
@@ -73,6 +75,8 @@ public class UpdateUserDetails extends HttpServlet {
 			ptst.setString(5, longitude);
 			ptst.setString(6, profession);
 			ptst.setString(7, address);
+			ptst.setString(8, profile_pic);
+			ptst.setString(9, cover_pic);
 			ptst.executeUpdate();
 
 			con.close();

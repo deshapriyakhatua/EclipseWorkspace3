@@ -83,21 +83,21 @@ body {
 	font-size: 20px;
 }
 
-.msger-chat {
+.msger-chat-messages-container {
 	flex: 1;
 	overflow-y: auto;
 	padding: 10px;
 }
 
-.msger-chat::-webkit-scrollbar {
+.msger-chat-messages-container::-webkit-scrollbar {
 	width: 6px;
 }
 
-.msger-chat::-webkit-scrollbar-track {
+.msger-chat-messages-container::-webkit-scrollbar-track {
 	background: #ddd;
 }
 
-.msger-chat::-webkit-scrollbar-thumb {
+.msger-chat-messages-container::-webkit-scrollbar-thumb {
 	background: #bdbdbd;
 }
 
@@ -164,14 +164,14 @@ body {
 	margin: 0 0 0 10px;
 }
 
-.msger-inputarea {
+.msger-form {
 	display: flex;
 	padding: 10px;
 	border-top: var(--border);
 	background: #eee;
 }
 
-.msger-inputarea * {
+.msger-form * {
 	padding: 10px;
 	border: none;
 	border-radius: 3px;
@@ -220,7 +220,7 @@ body {
 	rotate: -30deg;
 }
 
-.msger-chat {
+.msger-chat-messages-container {
 	background-color: #fcfcfe;
 }
 </style>
@@ -237,7 +237,6 @@ body {
 	if (userid == null || receiverid == null) {
 		System.out.println("input contains null value");
 		System.out.println("<<<-- JSP: chatUI servlet redirected...");
-		response.sendRedirect("badrequest.jsp");
 		return;
 	}
 
@@ -267,11 +266,11 @@ body {
 			</div>
 		</header>
 
-		<main class="msger-chat" id="msger-chat">
+		<main class="msger-chat-messages-container" id="msger-chat-messages-container">
 			
 		</main>
 
-		<form class="msger-inputarea" >
+		<form class="msger-form" >
 			<input type="hidden" id="groupid" value="<%= groupid %>">
 			<input type="hidden" id="userid" value="<%= userid %>">
 			<input type="hidden" id="receiverid" value="<%= receiverid %>">
@@ -284,6 +283,12 @@ body {
 
 </body>
 
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
 <script type="text/javascript">
 
 
@@ -291,16 +296,16 @@ body {
 chatUI();
 async function chatUI(){
 	
-	const msgerForm = get(".msger-inputarea");
-	const msgerInput = get(".msger-input");
-	const msgerChat = get(".msger-chat");
+	const msgerChat = document.querySelector(".msger-chat-messages-container");
+	const msgerForm = document.querySelector(".msger-form");
+	const msgerInput = document.querySelector(".msger-input");
 
 	
 	
 	// Icons made by Freepik from www.flaticon.com
-	const groupid = document.getElementById("groupid").value;
-	const userid = document.getElementById("userid").value;
-	const receiverid = document.getElementById("receiverid").value;
+	const groupid = "<%= groupid %>";
+	const userid = "<%= userid %>";
+	const receiverid = "<%= receiverid %>";
 	
 	const user = await getUserDetails(userid);
 	const receiver = await getUserDetails(receiverid);
@@ -314,37 +319,34 @@ async function chatUI(){
 
 	document.title = receiverName;
 	document.getElementById("recerverNameHeader").innerText = receiverName;
-	document.getElementById("recerverImgHeader").src = receiver.gender.toLowerCase() == "male" ?maleImg :femaleImg;
+	document.getElementById("recerverImgHeader").src = receiver.profile_pic;
 	getMessages(populateMessages);
 	
 	//setInterval(() => {
 	//	getMessages(populateMessages);
 	//},2000);
 	
+	let socket = new WebSocket("ws://" + "localhost:8080/findNearest/" + "chat?userid=" + userid + "&recipientid=" + receiverid + "&groupid=" + groupid);
+	
+	socket.onmessage = (e)=>{ 
+		console.log(e.data);
+		appendMessage(receiver.name, receiver.profile_pic, "left", e.data, new Date().toLocaleString());
+	};
 	
 	msgerForm.addEventListener("submit", event => {	
 		
 		event.preventDefault();
-		onMessageSend();
+		
+		const msgText = msgerInput.value.trim();
+		if (msgText.length == 0) return;
+		
+		socket.send(msgText);
+		appendMessage(user.name, user.profile_pic, "right", msgText, new Date().toLocaleString());
+		msgerInput.value = "";
 		
 	});
 	
-	async function onMessageSend(){
-		const msgText = msgerInput.value.trim();
-		if (msgText.length == 0) return;	
-		
-		let isMessageSent =  await sendMessage(msgText);	
-		
-		if(isMessageSent) {
-			//appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
-			
-			getMessages(populateMessages);
-			
-			msgerInput.value = "";
-		}
-		
-		console.log(isMessageSent);
-	}
+	
 	
 	async function getUserDetails( userid ){
 		
@@ -379,38 +381,6 @@ async function chatUI(){
 
 	}
 	
-	async function sendMessage(msgText){
-
-		console.log("sendMessage method called");
-		
-		let isMessageSent = false;
-				
-		try {
-
-			console.log("Fetch Process Initiated...");
-
-			let res = await fetch("http://localhost:8080/findNearest/sendMessage", {
-				"headers": {
-					"content-type": "application/x-www-form-urlencoded"
-				},
-				"body": `groupid=\${groupid}&userid=\${userid}&receiverid=\${receiverid}&msgText=\${msgText}`,
-				"method": "POST"
-			});
-
-			let data = await res.text();
-			console.log("responce : " + data);
-			isMessageSent = JSON.parse(data);
-			
-			
-			
-			
-		}catch (err) {
-			console.log(err);
-		}
-		
-		return isMessageSent;
-		
-	}
 	
 	async function getMessages(callback){
 		
@@ -455,12 +425,12 @@ async function chatUI(){
 			if(elem.senderid == userid){
 				name = userName;
 				side = "right";
-				img = user.gender.toUpperCase() == 'MALE' ?maleImg :femaleImg;
+				img = user.profile_pic;
 			}
 			else{
 				name = receiverName;
 				side = "left";
-				img = receiver.gender.toUpperCase() == 'MALE' ?maleImg :femaleImg;
+				img = receiver.profile_pic;
 			}
 			
 			appendMessage(name, img, side, text, time);
@@ -491,9 +461,6 @@ async function chatUI(){
 
 
 	// Utils
-	function get(selector, root = document) {
-		return root.querySelector(selector);
-	}
 
 	function formatDate(time) {
 		const day = time.slice(0,10);

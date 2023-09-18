@@ -40,6 +40,15 @@
     <fullyQualifiedTypeName name="dao.GetJsonString"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
     <fullyQualifiedTypeName name="org.eclipse.jetty.websocket.core.server.WebSocketServerComponents"/>
-    <fullyQualifiedTypeName name="jakarta.websocket.server.ServerEndpoint"/>
     <fullyQualifiedTypeName name="jakarta.servlet.annotation.WebServlet"/>
+    <fullyQualifiedTypeName name="jakarta.websocket.server.ServerEndpoint"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="jakarta.websocket.Session"/>
+    <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="jakarta.websocket.OnOpen"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="jakarta.websocket.OnMessage"/>
+    <fullyQualifiedTypeName name="jakarta.websocket.OnClose"/>
+    <fullyQualifiedTypeName name="servlets.chat.SendMessage"/>
 </qualifiedTypeNameHistroy>

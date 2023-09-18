@@ -11,13 +11,15 @@ public class User {
 	String longitude;
 	String profession;
 	String address;
+	String profile_pic;
+	String cover_pic;
 	
 	public User() {
 		
 	}
 
 	public User(String userid, String email, String name, String phone, String gender, String latitude,
-			String longitude, String profession, String address) {
+			String longitude, String profession, String address, String profile_pic, String cover_pic) {
 		super();
 		this.userid = userid;
 		this.email = email;
@@ -28,6 +30,8 @@ public class User {
 		this.longitude = longitude;
 		this.profession = profession;
 		this.address = address;
+		this.profile_pic = profile_pic;
+		this.cover_pic = cover_pic;
 	}
 
 	public String getUserid() {
@@ -102,7 +106,21 @@ public class User {
 		this.address = address;
 	}
 
-	
-	
-	
+	public String getProfile_pic() {
+		return profile_pic;
+	}
+
+	public void setProfile_pic(String profile_pic) {
+		this.profile_pic = profile_pic;
+	}
+
+	public String getCover_pic() {
+		return cover_pic;
+	}
+
+	public void setCover_pic(String cover_pic) {
+		this.cover_pic = cover_pic;
+	}
+
+		
 }

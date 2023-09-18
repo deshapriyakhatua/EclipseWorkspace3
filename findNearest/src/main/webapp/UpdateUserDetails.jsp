@@ -11,8 +11,6 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Jrp9PtHe0WapppUzxbIpMDWMAcV3qE4"></script>
 	<script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
 	
 	<style>
@@ -222,12 +220,22 @@
 				<input id="address" name="address" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
-			<div class="form-group age">
+			<div class="form-group">
+				<label>Prifile Pic.:</label>
+				<input id="profile_pic" name="profile_pic" class="form-control" type="text" value="" disabled autocomplete="off"  ondrop="return false;" >
+				<i class="material-icons edit-icon">edit</i>
+			</div>
+			<div class="form-group">
+				<label>Cover Pic.:</label>
+				<input id="cover_pic" name="cover_pic" class="form-control" type="text" value="" disabled autocomplete="off"  ondrop="return false;" >
+				<i class="material-icons edit-icon">edit</i>
+			</div>
+			<div class="form-group">
 				<label>Latitude:</label>
 				<input id="latitude" name="latitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
-			<div class="form-group age">
+			<div class="form-group">
 				<label>Longitude:</label>
 				<input id="longitude" name="longitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
@@ -347,6 +355,8 @@
 			document.getElementById("gender").value = user.gender == undefined ?"Not available" :user.gender;
 			document.getElementById("profession").value = user.profession == undefined ?"Not available" :user.profession;
 			document.getElementById("address").value = user.address == undefined ?"Not available" :user.address;
+			document.getElementById("profile_pic").value = user.profile_pic == undefined ?"" :user.profile_pic;
+			document.getElementById("cover_pic").value = user.cover_pic == undefined ?"" :user.cover_pic;
 			document.getElementById("latitude").value = user.latitude == undefined ?"00.000000" :user.latitude;
 			document.getElementById("longitude").value = user.longitude == undefined ?"00.000000" :user.longitude;
 		}
@@ -372,6 +382,8 @@
 		    	document.getElementById("gender").value != user.gender ||
 		    	document.getElementById("profession").value != user.profession ||
 		    	document.getElementById("address").value != user.address ||
+		    	document.getElementById("profile_pic").value != user.profile_pic ||
+		    	document.getElementById("cover_pic").value != user.cover_pic ||
 		    	document.getElementById("latitude").value != user.latitude ||
 		    	document.getElementById("longitude").value != user.longitude){
 					let button = document.getElementById("formSubmit");
