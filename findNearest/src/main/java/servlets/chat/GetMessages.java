@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
+import dao.StartChat;
 import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

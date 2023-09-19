@@ -1,5 +1,5 @@
 <%@page import="java.util.UUID"%>
-<%@page import="servlets.chat.StartChat"%>
+<%@page import="dao.StartChat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -312,8 +312,6 @@ async function chatUI(){
 	
 	console.log("user: " + user," receiver: " + receiver);
 	
-	const maleImg = "https://cdn-icons-png.flaticon.com/512/147/147133.png";
-	const femaleImg = "https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png";
 	const receiverName = receiver.name;
 	const userName = user.name;
 

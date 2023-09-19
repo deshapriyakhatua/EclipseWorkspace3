@@ -1,9 +1,10 @@
-package servlets.chat;
+package dao;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.UUID;
+
 import databaseConnector.DatabaseConnect;
 
 public class SendMessage {
