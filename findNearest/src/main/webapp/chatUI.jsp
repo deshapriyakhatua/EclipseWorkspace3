@@ -320,15 +320,20 @@ async function chatUI(){
 	document.getElementById("recerverImgHeader").src = receiver.profile_pic;
 	getMessages(populateMessages);
 	
-	//setInterval(() => {
-	//	getMessages(populateMessages);
-	//},2000);
 	
 	let socket = new WebSocket("ws://" + "localhost:8080/findNearest/" + "chat?userid=" + userid + "&recipientid=" + receiverid + "&groupid=" + groupid);
 	
+	socket.onopen = ()=> {
+		console.log("socket connected..");
+	};
+	
 	socket.onmessage = (e)=>{ 
-		console.log(e.data);
+		console.log("message : " + e.data);
 		appendMessage(receiver.name, receiver.profile_pic, "left", e.data, new Date().toLocaleString());
+	};
+	
+	socket.onclose = ()=>{
+		console.log("socket connetion closed...");
 	};
 	
 	msgerForm.addEventListener("submit", event => {	
