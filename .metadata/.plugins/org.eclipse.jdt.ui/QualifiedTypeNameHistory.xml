@@ -51,4 +51,5 @@
     <fullyQualifiedTypeName name="jakarta.websocket.OnMessage"/>
     <fullyQualifiedTypeName name="jakarta.websocket.OnClose"/>
     <fullyQualifiedTypeName name="servlets.chat.SendMessage"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

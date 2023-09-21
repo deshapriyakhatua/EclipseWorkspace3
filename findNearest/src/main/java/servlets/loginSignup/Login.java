@@ -14,6 +14,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class Login extends HttpServlet {
 
@@ -23,6 +24,8 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("-->>> Servlet: login servlet started running...");
+		
+		HttpSession session = req.getSession();
 
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
@@ -32,6 +35,7 @@ public class Login extends HttpServlet {
 		if (email == null || password == null) {
 			System.out.println("email/password is null ");
 			System.out.println("<<<-- Servlet: Login servlet redirected...");
+			session.setAttribute("login_status", "Failed: Empty input fields");
 			resp.sendRedirect("login.jsp");
 			return;
 		}
@@ -89,16 +93,20 @@ public class Login extends HttpServlet {
 				resp.sendRedirect("index.jsp");
 				return;
 
+			}else {
+				System.out.println("<<<-- Servlet: Login servlet redirected...");
+				session.setAttribute("login_status", "Failed: Wrong credintials");
+				resp.sendRedirect("login.jsp");
 			}
 
 			con.close();
 
-			System.out.println("<<<-- Servlet: Login servlet redirected...");
-			resp.sendRedirect("login.jsp");
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("<<<-- Servlet: Login servlet redirected...");
+			session.setAttribute("login_status", "Failed: Error ocurs try again");
 			resp.sendRedirect("login.jsp");
 
 		}

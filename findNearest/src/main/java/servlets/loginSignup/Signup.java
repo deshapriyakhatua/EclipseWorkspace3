@@ -13,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class Signup extends HttpServlet {
 
@@ -22,6 +23,8 @@ public class Signup extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("-->>> Servlet: Signup servlet started running...");
+		HttpSession session = req.getSession();
+		
 		String userUID = UUID.randomUUID().toString();
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
@@ -30,6 +33,7 @@ public class Signup extends HttpServlet {
 		if(email == null || password == null) {
 			System.out.println("email and password should not be null");
 			System.out.println("<<<-- Servlet: signup servlet redirected...");
+			session.setAttribute("signup_status", "Failed: Empty input fields");
 			resp.sendRedirect("signup.jsp");
 			return;
 		}
@@ -37,6 +41,7 @@ public class Signup extends HttpServlet {
 		if(isValidEmail(email)) {
 			System.out.println("email pattern not valid");
 			System.out.println("<<<-- Servlet: signup servlet redirected...");
+			session.setAttribute("signup_status", "Failed: Email pattern invalid");
 			resp.sendRedirect("signup.jsp");
 			return;
 		}
@@ -44,6 +49,7 @@ public class Signup extends HttpServlet {
 		if(password.length() > 16 || password.length() < 8) {
 			System.out.println("password length should between 8-16");
 			System.out.println("<<<-- Servlet: signup servlet redirected...");
+			session.setAttribute("signup_status", "Failed: Password length should between 8-16");
 			resp.sendRedirect("signup.jsp");
 			return;
 		}
@@ -68,6 +74,7 @@ public class Signup extends HttpServlet {
 			ptst.executeUpdate();
 
 			con.close();
+			System.out.println("sign up successful");
 			System.out.println("<<<-- Servlet: signup servlet redirected...");
 			resp.sendRedirect("login.jsp");
 
@@ -75,6 +82,7 @@ public class Signup extends HttpServlet {
 			e.printStackTrace();
 			System.out.println(e);
 			System.out.println("<<<-- Servlet: signup servlet redirected...");
+			session.setAttribute("signup_status", "Failed: Error ocured try again");
 			resp.sendRedirect("signup.jsp");
 
 		}

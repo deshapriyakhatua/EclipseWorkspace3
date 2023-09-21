@@ -166,6 +166,14 @@ a.ssolink {
 	font-weight: 600;
 }
 
+#status_text {
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 600;
+	color: red;
+}
+
 .footer-link span {
 	font-size: 14px;
 	text-align: center;
@@ -217,6 +225,8 @@ a.ssolink {
 								<div class="field padding-bottom--24">
 									<input type="submit" name="submit" value="Continue">
 								</div>
+								<p id="status_text"><%= session.getAttribute("signup_status")==null ?"" :session.getAttribute("signup_status") %></p>
+								<% if(session.getAttribute("signup_status")!=null) session.removeAttribute("signup_status"); %>
 								<div class="field">
 									<a class="ssolink" href="#">Use single sign-up (Google)
 										instead</a>
