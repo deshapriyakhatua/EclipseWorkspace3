@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-import dao.StartChat;
+import dao.Chat;
 import databaseConnector.DatabaseConnect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -45,7 +45,7 @@ public class GetMessages extends HttpServlet {
 
 		}
 
-		StartChat startChat = new StartChat();
+		Chat startChat = new Chat();
 		String groupid = startChat.getGroupId(userid, receiverid);
 
 		if (groupid == null) {

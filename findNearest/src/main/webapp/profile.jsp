@@ -19,6 +19,7 @@
 		
 		body {
 			font-family: 'Abel', sans-serif;
+			--theme-color-pink: rgb(239, 79, 95);
 		}
 
 		.profile-main-section {
@@ -83,6 +84,22 @@
 			align-items: flex-start;
 			flex-direction: column;
 		}
+		
+		.buttons {
+			display: flex;
+			width: 200px;
+			justify-content: space-between;
+		}
+		
+		.buttons > a {
+			text-decoration: none;
+			padding: 2px 5px;
+			background-color: var(--theme-color-pink);
+			color: white;
+		}
+		
+		
+		/* pssts */
 
 		.profile-main-child-posts {
 			width: 850px;
@@ -156,6 +173,10 @@
 			<p>Here we have two images and we want them to fill the width of 50% of the browser window and 100% of the
 				height.</p>
 			<div class="devider"></div>
+			<div class="buttons"> 
+				<a href="logout">Log out</a>
+				<a href="updateProfile.jsp">Update Profile</a>
+			</div>
 		</div>
 		
 		<div class="profile-main-child-posts">

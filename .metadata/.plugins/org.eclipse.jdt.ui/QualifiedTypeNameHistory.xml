@@ -31,7 +31,6 @@
     <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServlet"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.sun.tools.javac.api.Messages"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="databaseConnector.DatabaseConnect"/>
@@ -52,4 +51,7 @@
     <fullyQualifiedTypeName name="jakarta.websocket.OnClose"/>
     <fullyQualifiedTypeName name="servlets.chat.SendMessage"/>
     <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="model.LastMessage"/>
+    <fullyQualifiedTypeName name="dao.GetUser"/>
 </qualifiedTypeNameHistroy>

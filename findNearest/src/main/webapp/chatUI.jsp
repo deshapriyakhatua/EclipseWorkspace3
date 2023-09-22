@@ -1,5 +1,5 @@
 <%@page import="java.util.UUID"%>
-<%@page import="dao.StartChat"%>
+<%@page import="dao.Chat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -229,30 +229,30 @@ body {
 <body>
 
 	<%
-	System.out.println("-->>> JSP: chatUI started running...");
+	
 
-	String userid = request.getParameter("userid");
-	String receiverid = request.getParameter("receiverid");
+		System.out.println("-->>> JSP: chatUI started running...");
 
-	if (userid == null || receiverid == null) {
-		System.out.println("input contains null value");
-		System.out.println("<<<-- JSP: chatUI servlet redirected...");
-		return;
-	}
+		String userid = request.getParameter("userid");
+		String receiverid = request.getParameter("receiverid");
 
-	System.out.println("userid: " + userid + " receiverid: " + receiverid);
-	
-	StartChat startChat = new StartChat();
-	
-	String groupid = startChat.getGroupId(userid, receiverid);
-	
-	if(groupid == null){
-		System.out.println("groupid is null creating new");
-		groupid = UUID.randomUUID().toString();
-	}
-	
-	System.out.println("groupid: " + groupid);
-	
+		if (userid == null || receiverid == null) {
+			System.out.println("input contains null value");
+			return;
+		}
+
+		System.out.println("userid: " + userid + " receiverid: " + receiverid);
+		
+		Chat chat = new Chat();
+		
+		String groupid = chat.getGroupId(userid, receiverid);
+		
+		if(groupid == null){
+			System.out.println("groupid is null creating new");
+			groupid = UUID.randomUUID().toString();
+		}
+		
+		System.out.println("groupid: " + groupid);
 	%>
 
 	<section class="msger">

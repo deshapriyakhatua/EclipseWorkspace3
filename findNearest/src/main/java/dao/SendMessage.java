@@ -22,7 +22,7 @@ public class SendMessage {
 			return is_success;
 		}
 
-		StartChat startChat = new StartChat();
+		Chat startChat = new Chat();
 		String groupid = startChat.getGroupId(userid, receiverid);
 
 		if (groupid == null) {

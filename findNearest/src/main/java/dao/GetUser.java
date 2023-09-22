@@ -105,6 +105,8 @@ public class GetUser {
 				user.setLongitude(set.getString(8));
 				user.setProfession(set.getString(9));
 				user.setAddress(set.getString(10));
+				user.setCover_pic(set.getString(11));
+				user.setProfile_pic(set.getString(12));
 
 				System.out.println("Database: user ID: " + set.getString(1) + " | Email: " + set.getString(2)
 						+ " | Name: " + set.getString(4));
