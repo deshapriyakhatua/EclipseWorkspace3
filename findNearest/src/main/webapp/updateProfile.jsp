@@ -27,40 +27,30 @@
 
 		.form-container {
 			--theme-color: #f44177;
-			position: relative;
-			display: flex;
+			display: block;
 			width: 900px;
-			height: 850px;
 			margin: 80px auto;
-			box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 		}
-
-		.form-container .form-horizontal {
-			position: relative;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-			width: 100%;
-			height: calc(100% - 10px);
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-
+		
 		.form-container .form-horizontal .title {
 			box-sizing: border-box;
 			height: 70px;
 			color: #333;
 			font-size: 24px;
 			font-weight: 600;
-			line-height: 75px;
-			text-align: center;
-			vertical-align: middle;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
 			margin: 0;
+		}
+
+		.form-container .form-horizontal {
+			width: 100%;
+			height: calc(100% - 10px);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
 		}
 
 		.form-container .form-horizontal .sub-title {
@@ -71,20 +61,16 @@
 			letter-spacing: 1px;
 			margin: 20px 0 25px;
 			padding: 27px 0 0;
-			border-bottom: 1px solid #9e9c9c;
 		}
 
 		.form-horizontal .form-group {
 			box-sizing: border-box;
-			width: calc(80% - 10px);
+			width: calc(90% - 10px);
 			height: 40px;
 			margin: 15px auto;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			border-width: 0 0 1px 0;
-			border-style: solid;
-			border-color: #dcdada;
 		}
 
 		.form-horizontal .form-group label {
@@ -191,8 +177,9 @@
 	<%@ include file="navbar.html" %>
 	
 	<div class="form-container">
+		<h3 class="title">Update Profile</h3>
 		<form id="myForm" action="updateUserDetails" method="post" class="form-horizontal" spellcheck="false" >
-			<h3 class="title">Update Profile</h3>
+			
 			<h4 class="sub-title">Personal Details</h4>
 			<div class="form-group">
 				<label>Name:</label>

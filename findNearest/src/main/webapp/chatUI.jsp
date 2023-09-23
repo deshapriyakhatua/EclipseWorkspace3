@@ -15,8 +15,6 @@
 @import url('https://fonts.googleapis.com/css?family=Abel');
 
 :root {
-	--body-bg: #afedea;
-	--msger-bg: #fff;
 	--border: 2px solid #ddd;
 	--left-msg-bg: #ececec;
 	--right-msg-bg: #579ffb;
@@ -38,7 +36,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	background-color: var(--body-bg);
 }
 
 .msger {
@@ -49,10 +46,7 @@ body {
 	max-width: 867px;
 	margin: 25px 10px;
 	height: calc(100% - 50px);
-	border: var(--border);
-	border-radius: 5px;
-	background: var(--msger-bg);
-	box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+	border: 1px solid #ccc;
 }
 
 .msger-header {
@@ -75,6 +69,7 @@ body {
 	box-sizing: border-box;
 	width: 30px;
 	height: auto;
+	border-radius: 50%;
 }
 
 #recerverNameHeader {
@@ -168,7 +163,7 @@ body {
 	display: flex;
 	padding: 10px;
 	border-top: var(--border);
-	background: #eee;
+	background: #fff;
 }
 
 .msger-form * {
@@ -180,7 +175,8 @@ body {
 
 .msger-input {
 	flex: 1;
-	background: #ddd;
+	background: #fff;
+	border: 1px solid #aaa;
 }
 
 .msger-input:focus {
@@ -254,6 +250,8 @@ body {
 		
 		System.out.println("groupid: " + groupid);
 	%>
+	
+	<%@ include file="navbar.html" %>
 
 	<section class="msger">
 		<header class="msger-header">

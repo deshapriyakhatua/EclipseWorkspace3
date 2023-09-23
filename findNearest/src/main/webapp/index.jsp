@@ -31,15 +31,10 @@
 			padding: 50px 0;
 			width: 900px;
 			height: auto;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-evenly;
-			align-items: center;
 		}
 		
 		#user-section-title {
 			width: max-content;
-			border-bottom: 1px solid red;
 		}
 
 		#input-for-user {
@@ -51,20 +46,21 @@
 			justify-content: space-evenly;
 			align-items: center;
 			gap: 40px;
-			border: 1px solid rgb(200, 200, 200);
 		}
 		
 		.input-span-container {
-			width: 60%;
+			width: 80%;
 			height: 40px;
 			display: flex;
 			flex-direction: row;
-			justify-content: flex-end;
+			justify-content: flex-start;
 			align-items: center;
 			gap: 20px;
 		}
 		
 		.input-span-container > p {
+			min-width: 100px;
+			text-align: right;
 			font-size: 18px;
 		}
 		

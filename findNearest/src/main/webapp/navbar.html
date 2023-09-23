@@ -3,53 +3,95 @@
 
 <style>
 	/* header-main styles */
-	
+	*{
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
 
 	.header-main {
 		--font-color: rgb(116, 116, 116);
 		--theme-color-pink: rgb(239, 79, 95);
-		padding: 20px 0px;
+		padding: 10px 0px;
 		box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 		position: fixed;
-		bottom: 0px;
+		top: 0px;
 		left: 0px;
-		width: 100%;
-		background-color: rgb(255, 255, 255, 1);
+		width: 350px;
+		height: 100%;
+		background-color: white;
 		z-index: 100;
 		transition: bottom 0.5s;
 	}
+	
+	.navbar-main-logo {
+		margin: 30px 0 0 30px;
+		display: block;
+		font-size: 25px;
+		font-weight: bolder;
+		color: rgb(0, 0, 0);
+		text-decoration: none;
+	}
 
 	.navbar-main {
+		margin: 40px 0 0 30px;
 		display: flex;
-		justify-content: space-between;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: 20px;
+		height: 800px;		
+		background-color: white;
+		transition: all 0.4s;
+	}
+	
+	.navbar-main > section {
+		width: 100%;
+		padding: 5px 10px;
+	}
+	
+	.navbar-main > section:hover {
+		background-color: #eee;
+	}
+	
+	.navbar-main a {
+		width: 200px;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
 		align-items: center;
-		max-width: 800px;
-		margin: 0 auto;
+		gap: 30px;
+		text-decoration: none;
+		height: 30px;
 	}
 
 	.navbar-main i {
+		display: block;
 		font-size: 25px;
-		color: rgb(68, 68, 68);
+		color: rgb(0, 0, 0);
+	}
+	
+	.navbar-main span {
+		padding: 0;
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 20px;
+		color: rgb(0, 0, 0);
 	}
 
-
-	.navbar-main-logo {
-		font-size: 25px;
-		font-weight: bolder;
-		color: rgb(69, 69, 69);
-		text-decoration: none;
-	}
+	
 </style>
 <header class="header-main">
+	<a class="navbar-main-logo" href="/findNearest">&#129434; FFN</a>
 	<nav class="navbar-main">
 		<section>
-			<a href="profile" class="account" id="account-icon-nav"><i class="material-icons">person</i></a>
+			<a href="/findNearest" class="home" id="home-icon-nav"> <i class="material-icons">home</i> <span>Home</span> </a>
 		</section>
 		<section>
-			<a class="navbar-main-logo" href="/findNearest">FFN &#129434;</a>
+			<a href="profile" class="account" id="account-icon-nav"> <i class="material-icons">person</i> <span>Profile</span> </a>
 		</section>
 		<section>
-			<a href="inbox.jsp" class="messages" id="message-icon-nav"><i class="material-icons">message</i></a>
+			<a href="inbox.jsp" class="messages" id="message-icon-nav"><i class="material-icons">message</i> <span>Messages</span> </a>
 		</section>
 	</nav>
 </header>

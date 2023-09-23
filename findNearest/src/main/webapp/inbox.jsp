@@ -25,14 +25,28 @@
 		font-family: 'Abel', sans-serif;
 	}
 	.inbox_container_section {
-		padding: 30px 0;
-		margin: 100px auto;
+		padding: 10px 0;
+		margin: 10px auto;
 		width: 900px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		gap: 30px;
+	}
+	.inbox_main {
+		padding: 0 20px;
+		width: 100%;
+		height: 50px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.title {
+		font-size: 20px;
+		font-weight: bold;
 	}
 	
 	.user_inbox {
@@ -43,7 +57,12 @@
 		justify-content: center;
 		align-items: center;
 		gap: 20px;
-		background-color: rgb(229, 229, 229);
+		cursor: pointer;
+		transition: all 0.4s;
+	}
+	
+	.user_inbox:hover {
+		background-color: #eee;
 	}
 	
 	.user_inbox > img {
@@ -78,7 +97,10 @@
 	<%@ include file="navbar.html" %>
 	
 	<section class="inbox_container_section">
-		
+		<div class="inbox_main">
+			<p class="title">Inbox</p>
+			<i class="material-icons">more_vert</i>
+		</div>
 		
 		
 		<%
