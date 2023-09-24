@@ -32,20 +32,22 @@ public class GetUser {
 
 			// Accessing Data from table
 			Statement stmt = con.createStatement();
-			ResultSet set = stmt.executeQuery("select * from users");
+			ResultSet set = stmt.executeQuery("select useruid,email,name,phone,gender,latitude,longitude,profession,address,profile_pic,cover_pic from users");
 
 			while (set.next()) {
 
 				User user = new User();
 				user.setUserid(set.getString(1));
 				user.setEmail(set.getString(2));
-				user.setName(set.getString(4));
-				user.setPhone(set.getString(5));
-				user.setGender(set.getString(6));
-				user.setLatitude(set.getString(7));
-				user.setLongitude(set.getString(8));
-				user.setProfession(set.getString(9));
-				user.setAddress(set.getString(10));
+				user.setName(set.getString(3));
+				user.setPhone(set.getString(4));
+				user.setGender(set.getString(5));
+				user.setLatitude(set.getString(6));
+				user.setLongitude(set.getString(7));
+				user.setProfession(set.getString(8));
+				user.setAddress(set.getString(9));
+				user.setProfile_pic(set.getString(10));
+				user.setCover_pic(set.getString(11));
 				list.add(user);
 				
 				System.out.println("Database: user id: " + set.getString(1) + " | Email: " + set.getString(2) + " | name: "
@@ -90,7 +92,7 @@ public class GetUser {
 			}
 
 			// Accessing Data from table
-			PreparedStatement ptmt = con.prepareStatement("select useruid,email,name,phone,gender,latitude,longitude,profession,address,cover_pic,profile_pic from users where useruid = ?");
+			PreparedStatement ptmt = con.prepareStatement("select useruid,email,name,phone,gender,latitude,longitude,profession,address,profile_pic,cover_pic from users where useruid = ?");
 			ptmt.setString(1, userid);
 			ResultSet set = ptmt.executeQuery();
 
@@ -105,8 +107,8 @@ public class GetUser {
 				user.setLongitude(set.getString(7));
 				user.setProfession(set.getString(8));
 				user.setAddress(set.getString(9));
-				user.setCover_pic(set.getString(10));
-				user.setProfile_pic(set.getString(11));
+				user.setProfile_pic(set.getString(10));
+				user.setCover_pic(set.getString(11));
 
 				System.out.println("Database: user ID: " + set.getString(1) + " | Email: " + set.getString(2)
 						+ " | Name: " + set.getString(4));

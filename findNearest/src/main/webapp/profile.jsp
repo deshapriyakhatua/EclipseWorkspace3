@@ -60,7 +60,7 @@
 			width: calc(16*56px);;
 			height: calc(9*56px);
 			object-fit: cover;
-			border: 0px solid red;
+			border: 1px solid #aaa;
 		}
 		
 		#profile-picture {
@@ -69,6 +69,7 @@
 			bottom: 0;
 			border-radius: 50%;
 			border: 5px solid white;
+			outline: 1px solid #aaa;
 			width: 200px;
 			height: 200px;
 			object-fit: cover;
@@ -160,7 +161,7 @@
 	<section class="profile-main-section">
 		<div class="profile-main-child-images">
 			<div id="profile-images-div">
-				<img src="https://images.unsplash.com/photo-1568585105565-e372998a195d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+				<img src=""
 				alt="profile-cover" id="profile-cover">
 				<img src=""
 				alt="profile-picture" id="profile-picture">
@@ -251,6 +252,7 @@
 		 
 		 console.log(res);
 		 $("#profile-picture").attr("src", res.profile_pic);
+		 $("#profile-cover").attr("src", res.cover_pic);
 		 $("#person-name").text(res.name);
 		 $("#person-profession").text(res.profession);
 		 

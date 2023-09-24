@@ -158,21 +158,21 @@
 	<style type="text/css">
 		.map-section {
 			width: 900px;
-			height: 550px;
+			height: 900px;
 			display: flex;
 			flex-direction: column;
 			
-			margin: auto;
+			margin: 50px auto;
 		}
 		
 		#map {
 			width: 900px;
-			height: 480px;
+			height: 900px;
 		}
 	</style>
 </head>
 
-<body>
+<body> 
 
 	<%@ include file="navbar.html" %>
 	
@@ -183,28 +183,28 @@
 			<h4 class="sub-title">Personal Details</h4>
 			<div class="form-group">
 				<label>Name:</label>
-				<input id="name" name="name" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="name" name="name" class="form-control" type="text" value="" disabled autocomplete="off" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Phone:</label>
-				<input id="phone" name="phone" class="form-control" type="number" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="phone" name="phone" class="form-control" type="number" value="" disabled autocomplete="off" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Gender:</label>
-				<input id="gender" name="gender" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="gender" name="gender" class="form-control" type="text" value="" disabled autocomplete="off"  ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Profession:</label>
-				<input id="profession" name="profession" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="profession" name="profession" class="form-control" type="text" value="" disabled autocomplete="off"  ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<h4 class="sub-title">Address</h4>
 			<div class="form-group phone-no">
 				<label>Address:</label>
-				<input id="address" name="address" class="form-control" type="text" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="address" name="address" class="form-control" type="text" value="" disabled autocomplete="off" ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
@@ -219,12 +219,12 @@
 			</div>
 			<div class="form-group">
 				<label>Latitude:</label>
-				<input id="latitude" name="latitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="latitude" name="latitude" class="form-control" type="number" step="0.000000000000001" value="" disabled autocomplete="off"  ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<div class="form-group">
 				<label>Longitude:</label>
-				<input id="longitude" name="longitude" class="form-control" type="number" step="0.00000000001" value="" disabled autocomplete="off" onpaste="return false;" ondrop="return false;" >
+				<input id="longitude" name="longitude" class="form-control" type="number" step="0.000000000000001" value="" disabled autocomplete="off"  ondrop="return false;" >
 				<i class="material-icons edit-icon">edit</i>
 			</div>
 			<input id="formSubmit" type="submit" class="btn" value="save changes" disabled>
@@ -265,6 +265,8 @@
 		for(let element of document.getElementsByClassName("edit-icon")){
 
 			element.addEventListener("click",(elem) => {
+				
+				enableButton();
 				
 				if(elem.target.className == "material-icons edit-icon"){
 					elem.target.className = "material-icons edit-icon clicked-icon";
@@ -397,27 +399,27 @@
 		// Initialize LocationPicker plugin
 		var lp = new locationPicker(map, {
 			setCurrentPosition: true, // You can omit this, defaults to true
-			lat: 21.940570,
-			lng: 87.347965
+			lat: 22.5,
+			lng: 82
 		}, {
-			zoom: 15 // You can set any google map options here, zoom defaults to 15
+			zoom: 5 // You can set any google map options here, zoom defaults to 15
 		});
 
 		// Listen to button onclick event
 		confirmBtn.onclick = function () {
 			// Get current location and show it in HTML
 			var location = lp.getMarkerPosition();
-			onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+			onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',  ' + location.lng;
 			document.getElementById("latitude").value = location.lat;
 			document.getElementById("longitude").value = location.lng;
-			
+			enableButton();
 		};
 
 		// Listen to map idle event, listening to idle event more accurate than listening to ondrag event
 		google.maps.event.addListener(lp.map, 'idle', function (event) {
 			// Get current location and show it in HTML
 			var location = lp.getMarkerPosition();
-			onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+			onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',  ' + location.lng;
 		});
 	</script>
 

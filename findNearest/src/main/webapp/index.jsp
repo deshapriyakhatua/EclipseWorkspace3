@@ -365,7 +365,7 @@
 
 					profileDivision.innerHTML = `<div class="card-output-profiles">
 													<div class="general">
-														<img class="card-general-image" src="https://images.pexels.com/photos/3754200/pexels-photo-3754200.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+														<img class="card-general-image" src="\${outList[i].profile_pic}">
 														<div class="additional"></div>
 														<p class="card-general-name">\${outList[i].name}</p>
 														<form id="startChat" action="chatUI.jsp" method="post">
