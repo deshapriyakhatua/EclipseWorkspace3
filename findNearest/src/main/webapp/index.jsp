@@ -27,8 +27,9 @@
 		}
 
 		#user-section {
-			margin: 0 auto;
-			padding: 50px 0;
+			margin: 50px auto;
+			margin-left: 400px;
+			padding: 0;
 			width: 900px;
 			height: auto;
 		}
@@ -106,6 +107,7 @@
 		#output-section {
 			margin: 0 auto 50px auto;
 			margin-top: 50px;
+			margin-left: 400px;
 			box-sizing: border-box;
 			width: 900px;
 			height: auto;

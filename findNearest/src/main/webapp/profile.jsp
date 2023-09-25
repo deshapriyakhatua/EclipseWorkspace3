@@ -24,7 +24,8 @@
 
 		.profile-main-section {
 			--theme-color: #f44177;
-			margin: auto;
+			margin: 50px auto;
+			margin-left: 400px;
 			width: 900px;
 			display: flex;
 			justify-content: center;
@@ -36,7 +37,7 @@
 
 		.profile-main-child-images {
 			width: 900px;
-			padding: 50px 0;
+			padding: 0;
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;

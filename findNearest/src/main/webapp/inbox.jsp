@@ -25,8 +25,9 @@
 		font-family: 'Abel', sans-serif;
 	}
 	.inbox_container_section {
-		padding: 10px 0;
-		margin: 10px auto;
+		padding: 0;
+		margin: 50px auto;
+		margin-left: 400px;
 		width: 900px;
 		display: flex;
 		flex-direction: column;
@@ -35,21 +36,17 @@
 		gap: 30px;
 	}
 	.inbox_main {
-		padding: 0 20px;
+		padding: 0;
 		width: 100%;
-		height: 50px;
+		height: max-content;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 	}
 	
-	.title {
-		font-size: 20px;
-		font-weight: bold;
-	}
-	
 	.user_inbox {
+		position: relative;
 		width: 100%;
 		height: 80px;
 		display: flex;
@@ -63,6 +60,21 @@
 	
 	.user_inbox:hover {
 		background-color: #eee;
+	}
+	
+	#startChat {
+		position: absolute;
+		width: 100%;
+		height: 80px;
+	}
+	
+	.user_inbox_form_submit {
+		width: 100%;
+		height: 80px;
+		background-color: transparent;
+		outline: none;
+		border: none;
+		cursor: pointer;
 	}
 	
 	.user_inbox > img {
@@ -98,7 +110,7 @@
 	
 	<section class="inbox_container_section">
 		<div class="inbox_main">
-			<p class="title">Inbox</p>
+			<h1 class="title">Inbox</h1>
 			<i class="material-icons">more_vert</i>
 		</div>
 		
@@ -135,6 +147,11 @@
 			
 			%>
 				<div class="user_inbox">
+					<form id="startChat" action="chatUI.jsp" method="post">
+						<input type="hidden" name="userid" value="<%= userid %>">
+						<input type="hidden" name="receiverid" value="<%= recipientid %>">
+						<input type="submit" class="user_inbox_form_submit" value="">
+					</form>
 					<img src="<%= recipientImgURL %>">
 					<div class="message_container">
 						<p class="recipient_name"><%= recipientName %></p>

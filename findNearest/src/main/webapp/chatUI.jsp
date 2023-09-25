@@ -44,7 +44,8 @@ body {
 	justify-content: space-between;
 	width: 100%;
 	max-width: 867px;
-	margin: 25px 10px;
+	margin: 50px auto;
+	margin-left: 400px;
 	height: calc(100% - 50px);
 	border: 1px solid #ccc;
 }
@@ -68,7 +69,7 @@ body {
 #recerverImgHeader {
 	box-sizing: border-box;
 	width: 30px;
-	height: auto;
+	height: 30px;
 	border-radius: 50%;
 }
 

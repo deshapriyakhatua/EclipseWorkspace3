@@ -29,19 +29,10 @@
 			--theme-color: #f44177;
 			display: block;
 			width: 900px;
-			margin: 80px auto;
+			margin: 50px auto;
+			margin-left: 400px;
 		}
 		
-		.form-container .form-horizontal .title {
-			box-sizing: border-box;
-			height: 70px;
-			color: #333;
-			font-size: 24px;
-			font-weight: 600;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-			margin: 0;
-		}
 
 		.form-container .form-horizontal {
 			width: 100%;
@@ -177,7 +168,7 @@
 	<%@ include file="navbar.html" %>
 	
 	<div class="form-container">
-		<h3 class="title">Update Profile</h3>
+		<h1 class="title">Update Profile</h1>
 		<form id="myForm" action="updateUserDetails" method="post" class="form-horizontal" spellcheck="false" >
 			
 			<h4 class="sub-title">Personal Details</h4>
