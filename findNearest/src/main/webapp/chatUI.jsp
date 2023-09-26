@@ -97,6 +97,12 @@ body {
 	background: #bdbdbd;
 }
 
+#welcome_message {
+	margin-top: 10px;
+	text-align: center;
+	background-color: #ddd;
+}
+
 .msg {
 	display: flex;
 	align-items: flex-end;
@@ -415,7 +421,10 @@ async function chatUI(){
 	
 	function populateMessages(messages){
 		
-		if(messages.length == 0) return;
+		if(messages.length == 0) {
+			msgerChat.innerHTML = `<p id="welcome_message">Start Chat</p>`;
+			return;
+		}
 		msgerChat.innerHTML = "";
 		messages.forEach((elem, index, array) => {
 			

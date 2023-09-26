@@ -54,16 +54,17 @@ public class Chat {
 		sendMessage.send(userid, recipientid, message);
 		System.out.println(message);
 		Session recipient = chatRooms.get(recipientid);
-		recipient.getBasicRemote().sendText(message);
+		System.out.println(recipient);
+		if(recipient != null) recipient.getBasicRemote().sendText(message);
 
 	}
 
 	@OnClose
 	public void onClose(Session session) throws Exception {
 
-		String groupid = (String) session.getUserProperties().get(GROUPID_KEY);
-		chatRooms.remove(groupid);
-
+		String userid = (String) session.getUserProperties().get(USERID_KEY);
+		chatRooms.remove(userid);
+		System.out.println("User : " + userid + "left chat");
 	}
 
 }
