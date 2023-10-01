@@ -1,8 +1,4 @@
-# EclipseWorkspace3 > findNearest
-<details>
-    <summary><b>abc</b></summary><br/>
-    Sample text
-</details>
+
 
 # Project Name - Find Friends Nearby
 
